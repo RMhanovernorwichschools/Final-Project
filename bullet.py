@@ -29,9 +29,12 @@ class Bullet(Sprite):
         self.rotation=direc
     
     def step(self):
-        if self.x<myapp.widt:
-        self.x+=(3*sin(self.rotation))
-        self.y+=(3*cos(self.rotation))
+        if self.x<myapp.width and self.y<myapp.height and self.y>0 and self.x>0:
+            self.x+=(3*sin(self.rotation))
+            self.y+=(3*cos(self.rotation))
+        else:
+            print('Hit!')
+            self.destroy()
         
 
 class Char(Sprite):
