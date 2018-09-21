@@ -17,13 +17,20 @@ class ShooterTest(App):
     def step(self):
         for x in self.getSpritesbyClass(Char):
             x.step()
+        for x in self.getSpritesbyClass(Bullet):
+            x.step()
         
 class Bullet(Sprite):
-    asset=CircleAsset(5, noline, black)
+    asset=CircleAsset(3, noline, black)
     def __init__(self, x,y, direc):
         super().__init__(Bullet.asset)
         self.x=x
         self.y=y
+        direc=self.rotation
+    
+    def step(self):
+        self.x+=(2*sin(self.rotation))
+        self.y+=(2*cos(self.rotation))
 
 class Char(Sprite):
     asset=RectangleAsset(15,15,noline, black)
@@ -39,6 +46,7 @@ class Char(Sprite):
         ShooterTest.listenKeyEvent('keyup', 'a', self.ct)
         ShooterTest.listenKeyEvent('keydown', 'd', self.tr)
         ShooterTest.listenKeyEvent('keyup', 'd', self.ct)
+        ShooterTest.listenKeyEvent('keydown', 'space', self.shoot)
         
     def step(self):
         self.rotation+=self.rch
@@ -53,6 +61,9 @@ class Char(Sprite):
         self.rch=-0.03
     def ct(self, event):
         self.rch=0
+        
+    def shoot(self, event):
+        Bullet(self.x, self.y, self.rotation)
 
 myapp=ShooterTest()
 myapp.run()
