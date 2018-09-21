@@ -14,4 +14,4 @@ class Char(Sprite):
         super().__init__(Char.asset)
 
 myapp=ShooterTest()
-ShooterTest.run()
+myapp.run()
