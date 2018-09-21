@@ -1,5 +1,5 @@
 from ggame import App, RectangleAsset, CircleAsset, Sprite, LineStyle, Color
-from math import radians, sin, cos
+from math import radians, sin, cos, degrees
 
 #So radians(90) means to the right, radians (180) is up, so 0 should be down and 270 left. 
 
@@ -26,11 +26,13 @@ class Bullet(Sprite):
         super().__init__(Bullet.asset)
         self.x=x
         self.y=y
-        direc=self.rotation
+        self.rotation=direc
     
     def step(self):
-        self.x+=(2*sin(self.rotation))
-        self.y+=(2*cos(self.rotation))
+        if self.x<myapp.widt:
+        self.x+=(3*sin(self.rotation))
+        self.y+=(3*cos(self.rotation))
+        
 
 class Char(Sprite):
     asset=RectangleAsset(15,15,noline, black)
