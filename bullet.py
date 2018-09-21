@@ -33,7 +33,6 @@ class Bullet(Sprite):
             self.x+=(3*sin(self.rotation))
             self.y+=(3*cos(self.rotation))
         else:
-            print('Hit!')
             self.destroy()
         
 
