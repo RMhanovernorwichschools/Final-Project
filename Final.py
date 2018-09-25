@@ -1,15 +1,18 @@
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
 class Member(Sprite):
-    asset=RectangleAsset
+    asset=ImageAsset("images/beach-ball-575425_640.png")
     def __init__(self, damage, caution, evasion, talk, health):
-        super().__init__()
+        super().__init__(Member.asset)
+        self.scale=0.1
         self.hp=health
         self.damage=damage
         self.dodge=evasion
         self.comm=talk
         self.caution=caution
-        myapp.listenMouseEvent('click', direct)
+        self.targetx=self.x
+        self.targety=self.y
+        Game.listenMouseEvent('click', self.direct)
         
     def direct(self, event):
         self.targetx=event.x
@@ -20,8 +23,9 @@ class Member(Sprite):
         self.y=(self.y+self.targety+self.y)/3
         
 class Enemy(Sprite):
+    asset=ImageAsset('images/enemy_wheels.png')
     def __init__(self, damage, caution, evasion, talk, health):
-        super().__init__()
+        super().__init__(Enemy.asset)
         self.hp=200
 
 class Game(App):
