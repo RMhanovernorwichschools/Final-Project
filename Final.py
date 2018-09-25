@@ -1,10 +1,40 @@
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
+class Member(Sprite):
+    asset=RectangleAsset
+    def __init__(self, damage, caution, evasion, talk, health):
+        super().__init__()
+        self.hp=health
+        self.damage=damage
+        self.dodge=evasion
+        self.comm=talk
+        self.caution=caution
+        myapp.listenMouseEvent('click', direct)
+        
+    def direct(self, event):
+        self.targetx=event.x
+        self.targety=event.y
+        
+    def step(self):
+        self.x=(self.x+self.targetx+self.x)/3
+        self.y=(self.y+self.targety+self.y)/3
+        
+class Enemy(Sprite):
+    def __init__(self, damage, caution, evasion, talk, health):
+        super().__init__()
+        self.hp=200
+
 class Game(App):
     def __init__(self):
         super().__init__()
         m = ImageAsset("images/map_base.jpg")
         am=Sprite(m)
+        am.scale=2.2
+        a=Member(1,1,1,1,1)
+        
+    def step(self):
+        for char in self.getSpritesbyClass(Member):
+            char.step()
 
 myapp=Game()
 myapp.run()
