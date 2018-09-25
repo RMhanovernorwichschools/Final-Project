@@ -6,5 +6,10 @@ class Game(App):
         m = ImageAsset("Map Base.jpg")
         am=Sprite(m)
 
-myapp=Game()
+myapp=App()
+
+m = ImageAsset("Map Base.jpg")
+am=Sprite(m)
+am.scale=5
+
 myapp.run()
