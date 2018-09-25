@@ -1,4 +1,5 @@
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+from math import radians, sin, cos
 
 class Member(Sprite):
     asset=ImageAsset("images/beach-ball-575425_640.png")
@@ -27,6 +28,7 @@ class Enemy(Sprite):
     def __init__(self):
         super().__init__(Enemy.asset)
         self.hp=200
+        self.direction=0
 
 class Game(App):
     def __init__(self):
