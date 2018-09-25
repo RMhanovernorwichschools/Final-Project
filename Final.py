@@ -35,6 +35,7 @@ class Game(App):
         am=Sprite(m)
         am.scale=2.2
         a=Member(1,1,1,1,1)
+        b=Enemy
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
