@@ -23,7 +23,7 @@ class Member(Sprite):
         self.y=(self.y+self.targety+self.y)/3
         
 class Enemy(Sprite):
-    asset=ImageAsset("images/enemy_wheels.png")
+    asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,159,133), 4, 'horizontal')
     def __init__(self):
         super().__init__(Enemy.asset)
         self.hp=200
