@@ -13,6 +13,7 @@ class Member(Sprite):
         self.caution=caution
         self.targetx=self.x
         self.targety=self.y
+        self.direction=0
         Game.listenMouseEvent('click', self.direct)
         
     def direct(self, event):
@@ -29,6 +30,13 @@ class Enemy(Sprite):
         super().__init__(Enemy.asset)
         self.hp=200
         self.direction=0
+        self.f=0
+    
+    def step(self):
+        self.f+=1
+        if self.f==2:
+            self.f=0
+        self.setImage(self.f)
 
 class Game(App):
     def __init__(self):
@@ -41,6 +49,8 @@ class Game(App):
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
+            char.step()
+        for char in self.getSpritesbyClass(Enemy):
             char.step()
 
 myapp=Game()
