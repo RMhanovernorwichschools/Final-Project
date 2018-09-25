@@ -1,5 +1,5 @@
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
-from math import radians, sin, cos
+from math import radians, sin, cos, atan, degrees
 
 black = Color(0, 0.3)
 noline = LineStyle(0, black)
@@ -16,16 +16,26 @@ class Member(Sprite):
         self.caution=caution
         self.targetx=self.x
         self.targety=self.y
-        self.direction=0
+        self.turn=0
+        self.vx=1
+        self.vy=1
         Game.listenMouseEvent('click', self.direct)
         
     def direct(self, event):
         self.targetx=event.x
         self.targety=event.y
+        self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
+        print(degrees(self.turn))
         
     def step(self):
-        self.x=(self.x+self.targetx+self.x)/3
-        self.y=(self.y+self.targety+self.y)/3
+        self.x+=(self.vx*cos(self.turn))
+        self.y+=(self.vy*sin(self.turn))
+        if self.x==self.targetx and self.y==self.targety:
+            self.vx=0
+            self.vy=0
+        else:
+            self.vx=2
+            self.vy=2
         
 class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,159,133), 4, 'horizontal')
@@ -34,6 +44,8 @@ class Enemy(Sprite):
         self.hp=200
         self.direction=0
         self.f=0
+        self.targetx=self.x
+        self.targety=self.y
         self.scale=0.5
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
     
