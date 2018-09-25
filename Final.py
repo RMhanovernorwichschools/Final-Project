@@ -1,6 +1,9 @@
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 from math import radians, sin, cos
 
+black = Color(0, 0.3)
+noline = LineStyle(0, black)
+
 class Member(Sprite):
     asset=ImageAsset("images/beach-ball-575425_640.png")
     def __init__(self, damage, caution, evasion, talk, health):
@@ -31,6 +34,8 @@ class Enemy(Sprite):
         self.hp=200
         self.direction=0
         self.f=0
+        self.scale=0.5
+        #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
     
     def step(self):
         self.f+=1
