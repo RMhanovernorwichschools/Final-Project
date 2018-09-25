@@ -24,7 +24,7 @@ class Member(Sprite):
         
 class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png")
-    def __init__(self, damage, caution, evasion, talk, health):
+    def __init__(self):
         super().__init__(Enemy.asset)
         self.hp=200
 
@@ -35,7 +35,7 @@ class Game(App):
         am=Sprite(m)
         am.scale=2.2
         a=Member(1,1,1,1,1)
-        b=Enemy
+        b=Enemy()
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
