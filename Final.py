@@ -36,7 +36,7 @@ class Member(Sprite):
             self.v=3
         else:
             self.v+=0.3
-            if self.v>6:
+            if self.v>4:
                 self.v=4
             elif self.v<0:
                 self.v=0
@@ -48,8 +48,8 @@ class Enemy(Sprite):
         self.hp=200
         self.turn=0
         self.f=0
-        self.targetx=self.x
-        self.targety=self.y
+        self.targetx=100
+        self.targety=100
         self.scale=0.5
         self.v=1
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
@@ -59,6 +59,9 @@ class Enemy(Sprite):
             if self.f==2:
                 self.f=0
             self.setImage(self.f)
+            self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
+            if self.targetx<self.x:
+                self.turn+=radians(180)
             self.x+=(self.v*cos(self.turn))
             self.y+=(self.v*sin(self.turn))
             if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
@@ -66,9 +69,9 @@ class Enemy(Sprite):
             elif self.x<self.targetx+28 and self.x>self.targetx-28 and self.y<self.targety+28 and self.y>self.targety-28:
                 self.v=3
             else:
-                self.v+=0.3
-                if self.v>6:
-                    self.v=4
+                self.v+=0.1
+                if self.v>1.8:
+                    self.v=1.8
                 elif self.v<0:
                     self.v=0
                 self.f+=1
