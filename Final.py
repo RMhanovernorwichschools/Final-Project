@@ -46,18 +46,32 @@ class Enemy(Sprite):
     def __init__(self):
         super().__init__(Enemy.asset)
         self.hp=200
-        self.direction=0
+        self.turn=0
         self.f=0
         self.targetx=self.x
         self.targety=self.y
         self.scale=0.5
+        self.v=1
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
     
     def step(self):
-        self.f+=1
-        if self.f==2:
-            self.f=0
-        self.setImage(self.f)
+        if self.v>0:
+            if self.f==2:
+                self.f=0
+            self.setImage(self.f)
+            self.x+=(self.v*cos(self.turn))
+            self.y+=(self.v*sin(self.turn))
+            if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
+                self.v=0
+            elif self.x<self.targetx+28 and self.x>self.targetx-28 and self.y<self.targety+28 and self.y>self.targety-28:
+                self.v=3
+            else:
+                self.v+=0.3
+                if self.v>6:
+                    self.v=4
+                elif self.v<0:
+                    self.v=0
+                self.f+=1
 
 class Game(App):
     def __init__(self):
