@@ -17,25 +17,25 @@ class Member(Sprite):
         self.targetx=self.x
         self.targety=self.y
         self.turn=0
-        self.vx=1
-        self.vy=1
+        self.v=1
         Game.listenMouseEvent('click', self.direct)
         
     def direct(self, event):
         self.targetx=event.x
         self.targety=event.y
         self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
-        print(degrees(self.turn))
+        if self.targetx<self.x:
+            self.turn+=radians(180)
         
     def step(self):
-        self.x+=(self.vx*cos(self.turn))
-        self.y+=(self.vy*sin(self.turn))
-        if self.x==self.targetx and self.y==self.targety:
-            self.vx=0
-            self.vy=0
+        self.x+=(self.v*cos(self.turn))
+        self.y+=(self.v*sin(self.turn))
+        if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
+            self.v=0
         else:
-            self.vx=2
-            self.vy=2
+            self.v+=0.3
+            if self.v>6:
+                self.v=4
         
 class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,159,133), 4, 'horizontal')
