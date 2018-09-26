@@ -36,8 +36,8 @@ class Member(Sprite):
             self.v=3
         else:
             self.v+=0.3
-            if self.v>4:
-                self.v=4
+            if self.v>3:
+                self.v=3
             elif self.v<0:
                 self.v=0
         
@@ -48,10 +48,10 @@ class Enemy(Sprite):
         self.hp=200
         self.turn=0
         self.f=0
-        self.targetx=100
-        self.targety=100
+        self.targetx=self.x
+        self.targety=self.y
         self.scale=0.5
-        self.v=1
+        self.v=0
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
     
     def step(self):
