@@ -32,10 +32,14 @@ class Member(Sprite):
         self.y+=(self.v*sin(self.turn))
         if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
             self.v=0
+        elif self.x<self.targetx+28 and self.x>self.targetx-28 and self.y<self.targety+28 and self.y>self.targety-28:
+            self.v=3
         else:
             self.v+=0.3
             if self.v>6:
                 self.v=4
+            elif self.v<0:
+                self.v=0
         
 class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,159,133), 4, 'horizontal')
