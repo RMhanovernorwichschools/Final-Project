@@ -28,8 +28,6 @@ class Member(Sprite):
         self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
         if self.targetx<self.x:
             self.turn+=radians(180)
-        self.select_enemy()
-        print (self.enemy)
         
     def step(self):
         self.x+=(self.v*cos(self.turn))
