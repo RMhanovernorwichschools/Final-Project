@@ -33,7 +33,7 @@ class Member(Sprite):
     def step(self):
         self.x+=(self.v*cos(self.turn))
         self.y+=(self.v*sin(self.turn))
-        if self.x<self.targetx+1 and self.x>self.targetx-1 and self.y<self.targety+1 and self.y>self.targety-1 and self.enemy=="None":
+        if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
             self.v=0
             self.state='idle'
         elif self.enemy!="None" and self.x<self.targetx+80 and self.x>self.targetx-80 and self.y<self.targety+80 and self.y>self.targety-80:
