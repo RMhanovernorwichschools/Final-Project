@@ -53,7 +53,7 @@ class Member(Sprite):
             elif self.v>0 and self.enemy!="None":
                 self.v=0
                 self.state='ready'
-        if self.state='motion':
+        if self.state=='motion':
             self.f+=1
             if self.f>1:
                 self.f=0
