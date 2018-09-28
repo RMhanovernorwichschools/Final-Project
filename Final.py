@@ -20,6 +20,7 @@ class Member(Sprite):
         self.v=1
         self.f=0
         self.enemy="None"
+        self.state='idle'
         Game.listenMouseEvent('click', self.direct)
         
     def direct(self, event):
@@ -32,17 +33,27 @@ class Member(Sprite):
     def step(self):
         self.x+=(self.v*cos(self.turn))
         self.y+=(self.v*sin(self.turn))
-        if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
+        if self.x<self.targetx+1 and self.x>self.targetx-1 and self.y<self.targety+1 and self.y>self.targety-1 and self.enemy=="None":
             self.v=0
+            self.state='idle'
+        elif self.enemy!="None" and self.x<self.targetx+80 and self.x>self.targetx-80 and self.y<self.targety+80 and self.y>self.targety-80:
+            self.v=0
+            self.state='ready'
         elif self.x<self.targetx+28 and self.x>self.targetx-28 and self.y<self.targety+28 and self.y>self.targety-28:
             self.v=3
+            self.state='motion'
         else:
+            self.state='motion'
             self.v+=0.3
             if self.v>3:
                 self.v=3
-            elif self.v<0:
+            elif self.v<0 and self.enemy=="None":
                 self.v=0
-        if self.v>0:
+                self.state='idle'
+            elif self.v>0 and self.enemy!="None":
+                self.v=0
+                self.state='ready'
+        if self.state='motion':
             self.f+=1
             if self.f>1:
                 self.f=0
@@ -57,6 +68,16 @@ class Member(Sprite):
             d1=x**2+y**2
             if d1<d2:
                 self.enemy=enemy
+            if self.enemy!="None":
+                self.targetx=enemy.x 
+                self.targety=enemy.y
+    
+    def fire(self):
+        self.targetx=event.x-30
+        self.targety=event.y-30
+        self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
+        if self.targetx<self.x:
+            self.turn+=radians(180)
 
 class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,159,133), 4, 'horizontal')
