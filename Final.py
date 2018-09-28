@@ -28,6 +28,8 @@ class Member(Sprite):
         self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
         if self.targetx<self.x:
             self.turn+=radians(180)
+        self.select_enemy()
+        print (self.enemy)
         
     def step(self):
         self.x+=(self.v*cos(self.turn))
@@ -50,8 +52,8 @@ class Member(Sprite):
         
     def select_enemy(self):
         self.enemy="None"
-        d2=100**2
-        for enemy in self.getSpritesbyClass(Enemy):
+        d2=164**2
+        for enemy in myapp.getSpritesbyClass(Enemy):
             y=enemy.y-self.y
             x=enemy.x-self.x
             d1=x**2+y**2
@@ -69,9 +71,11 @@ class Enemy(Sprite):
         self.targety=self.y
         self.scale=0.5
         self.v=0
+        self.enemy="None"
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
     
     def step(self):
+        self.pick_target
         if self.v>0:
             if self.f==2:
                 self.f=0
@@ -92,6 +96,16 @@ class Enemy(Sprite):
                 elif self.v<0:
                     self.v=0
                 self.f+=1
+                
+    def pick_target(self):
+            self.enemy="None"
+            d2=120**2
+            for enemy in myapp.getSpritesbyClass(Member):
+                y=enemy.y-self.y
+                x=enemy.x-self.x
+                d1=x**2+y**2
+                if d1<d2:
+                    self.enemy=enemy
 
 class Game(App):
     def __init__(self):
