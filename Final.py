@@ -60,7 +60,7 @@ class Member(Sprite):
                     self.f=0
             self.setImage(self.f)
         elif self.state=='dead':
-            self.setImage(4)
+            self.setImage(3)
         
     def select_enemy(self):
         self.enemy="None"
@@ -128,8 +128,8 @@ class Game(App):
         m = ImageAsset("images/map_base.jpg")
         am=Sprite(m)
         am.scale=2.2
-        a=Member(1,1,1,1,1)
         b=Enemy()
+        a=Member(1,1,1,1,1)
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
