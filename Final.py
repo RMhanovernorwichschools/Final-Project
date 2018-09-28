@@ -40,6 +40,13 @@ class Member(Sprite):
                 self.v=3
             elif self.v<0:
                 self.v=0
+                
+class Member_A(Member):
+    asset=ImageAsset("images/Member_A.png")
+    def __init__(self):
+        super().__init__(Member_A.asset)
+        
+    
         
 class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,159,133), 4, 'horizontal')
