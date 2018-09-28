@@ -43,7 +43,7 @@ class Member(Sprite):
 class Member_A(Member):
     asset=ImageAsset("images/Member_A.png")
     def __init__(self):
-        super().__init__(Member_A.asset)
+        super().__init__(Member_A.asset, 1, 1, 1, 1, 1)
         
     
         
