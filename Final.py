@@ -5,9 +5,10 @@ black = Color(0, 0.3)
 noline = LineStyle(0, black)
 
 class Member(Sprite):
+    asset=ImageAsset("images/Member_A.png", Frame(0,0,127,115), 5, 'horizontal')
     def __init__(self, damage, caution, evasion, talk, health):
-        super().__init__()
-        self.scale=0.1
+        super().__init__(Member.asset)
+        self.scale=0.6
         self.hp=health
         self.damage=damage
         self.dodge=evasion
@@ -17,11 +18,13 @@ class Member(Sprite):
         self.targety=self.y
         self.turn=0
         self.v=1
+        self.f=0
+        self.enemy="None"
         Game.listenMouseEvent('click', self.direct)
         
     def direct(self, event):
-        self.targetx=event.x
-        self.targety=event.y
+        self.targetx=event.x-30
+        self.targety=event.y-30
         self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
         if self.targetx<self.x:
             self.turn+=radians(180)
@@ -39,14 +42,22 @@ class Member(Sprite):
                 self.v=3
             elif self.v<0:
                 self.v=0
-                
-class Member_A(Member):
-    asset=ImageAsset("images/Member_A.png")
-    def __init__(self):
-        super().__init__(Member_A.asset, 1, 1, 1, 1, 1)
+        if self.v>0:
+            self.f+=1
+            if self.f>1:
+                self.f=0
+        self.setImage(self.f)
         
-    
-        
+    def select_enemy(self):
+        self.enemy="None"
+        d2=100**2
+        for enemy in self.getSpritesbyClass(Enemy):
+            y=enemy.y-self.y
+            x=enemy.x-self.x
+            d1=x**2+y**2
+            if d1<d2:
+                self.enemy=enemy
+
 class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,159,133), 4, 'horizontal')
     def __init__(self):
@@ -88,7 +99,7 @@ class Game(App):
         m = ImageAsset("images/map_base.jpg")
         am=Sprite(m)
         am.scale=2.2
-        a=Member_A()
+        a=Member(1,1,1,1,1)
         b=Enemy()
         
     def step(self):
