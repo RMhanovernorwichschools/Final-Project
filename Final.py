@@ -5,9 +5,8 @@ black = Color(0, 0.3)
 noline = LineStyle(0, black)
 
 class Member(Sprite):
-    asset=ImageAsset("images/beach-ball-575425_640.png")
     def __init__(self, damage, caution, evasion, talk, health):
-        super().__init__(Member.asset)
+        super().__init__()
         self.scale=0.1
         self.hp=health
         self.damage=damage
@@ -89,7 +88,7 @@ class Game(App):
         m = ImageAsset("images/map_base.jpg")
         am=Sprite(m)
         am.scale=2.2
-        a=Member(1,1,1,1,1)
+        a=Member_A()
         b=Enemy()
         
     def step(self):
