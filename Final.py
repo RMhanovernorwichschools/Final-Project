@@ -31,37 +31,40 @@ class Member(Sprite):
             self.turn+=radians(180)
         
     def step(self):
-        self.x+=(self.v*cos(self.turn))
-        self.y+=(self.v*sin(self.turn))
-        if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
-            self.v=0
-            self.state='idle'
-        elif self.enemy!="None" and self.x<self.targetx+80 and self.x>self.targetx-80 and self.y<self.targety+80 and self.y>self.targety-80:
-            self.v=0
-            self.state='ready'
-        elif self.x<self.targetx+28 and self.x>self.targetx-28 and self.y<self.targety+28 and self.y>self.targety-28:
-            self.v=3
-            self.state='motion'
-        else:
-            self.state='motion'
-            self.v+=0.3
-            if self.v>3:
-                self.v=3
-            elif self.v<0 and self.enemy=="None":
+        if self.state=="idle" or self.state=='motion':
+            self.x+=(self.v*cos(self.turn))
+            self.y+=(self.v*sin(self.turn))
+            if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
                 self.v=0
                 self.state='idle'
-            elif self.v>0 and self.enemy!="None":
+            elif self.enemy!="None" and self.x<self.targetx+30 and self.x>self.targetx-30 and self.y<self.targety+30 and self.y>self.targety-30:
                 self.v=0
                 self.state='ready'
-        if self.state=='motion':
-            self.f+=1
-            if self.f>1:
-                self.f=0
-        self.setImage(self.f)
+            elif self.x<self.targetx+28 and self.x>self.targetx-28 and self.y<self.targety+28 and self.y>self.targety-28:
+                self.v=3
+                self.state='motion'
+            else:
+                self.state='motion'
+                self.v+=0.3
+                if self.v>3:
+                    self.v=3
+                elif self.v<0 and self.enemy=="None":
+                    self.v=0
+                    self.state='idle'
+                elif self.v>0 and self.enemy!="None":
+                    self.v=0
+                    self.state='ready'
+            if self.state=='motion':
+                self.f+=1
+                if self.f>1:
+                    self.f=0
+            self.setImage(self.f)
+        elif self.state=='dead':
+            self.setImage(4)
         
     def select_enemy(self):
         self.enemy="None"
-        d2=164**2
+        d2=66**2
         for enemy in myapp.getSpritesbyClass(Enemy):
             y=enemy.y-self.y
             x=enemy.x-self.x
@@ -71,13 +74,6 @@ class Member(Sprite):
             if self.enemy!="None":
                 self.targetx=enemy.x 
                 self.targety=enemy.y
-    
-    def fire(self):
-        self.targetx=event.x-30
-        self.targety=event.y-30
-        self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
-        if self.targetx<self.x:
-            self.turn+=radians(180)
 
 class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,159,133), 4, 'horizontal')
