@@ -95,12 +95,13 @@ class Enemy(Sprite):
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
     
     def step(self):
-        self.pick_target
+        self.pick_target()
         if self.v>0:
             if self.f==2:
                 self.f=0
             self.setImage(self.f)
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
+            print(self.turn)
             if self.targetx<self.x:
                 self.turn+=radians(180)
             self.x+=(self.v*cos(self.turn))
@@ -126,6 +127,8 @@ class Enemy(Sprite):
                 d1=x**2+y**2
                 if d1<d2:
                     self.enemy=enemy
+                    self.targetx=enemy.x
+                    self.targety=enemy.y
                     d2=d1
                     self.v=1
 
