@@ -116,7 +116,7 @@ class Enemy(Sprite):
                 self.turn+=radians(180)
             self.x+=(self.v*cos(self.turn))
             self.y+=(self.v*sin(self.turn))
-            if self.x<self.targetx+20 and self.x>self.targetx-20 and self.y<self.targety+20 and self.y>self.targety-20 and self.state=='Seeking':
+            if self.x<self.targetx+25 and self.x>self.targetx-25 and self.y<self.targety+25 and self.y>self.targety-25 and self.state=='Seeking':
                 self.state='Firing'
                 self.v=0
             elif self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
