@@ -54,10 +54,15 @@ class Member(Sprite):
                 elif self.v>0 and self.enemy!="None":
                     self.v=0
                     self.state='ready'
-            if self.state=='motion':
+            if self.state=='motion' and cos(self.turn)>=0:
                 self.f+=1
                 if self.f>1:
                     self.f=0
+            elif self.state=='motion' and cos(self.turn)<0:
+                if self.f==6:
+                    self.f=7
+                else:
+                    self.f=6
             self.setImage(self.f)
         elif self.state=='dead':
             self.setImage(3)
