@@ -126,6 +126,8 @@ class Enemy(Sprite):
                 d1=x**2+y**2
                 if d1<d2:
                     self.enemy=enemy
+                    d2=d1
+                    self.v=1
 
 class Game(App):
     def __init__(self):
