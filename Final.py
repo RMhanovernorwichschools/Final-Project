@@ -5,9 +5,9 @@ black = Color(0, 0.3)
 noline = LineStyle(0, black)
 
 class Member(Sprite):
-    asset=ImageAsset("images/Member_A.png", Frame(0,0,127,115), 5, 'horizontal')
-    def __init__(self, damage, caution, evasion, talk, health):
-        super().__init__(Member.asset)
+    asset=ImageAsset("images/Member_A.png", Frame(0,0,127,115), 8, 'horizontal')
+    def __init__(self, damage, caution, evasion, talk, health, position):
+        super().__init__(Member.asset, position)
         self.scale=0.6
         self.hp=health
         self.damage=damage
@@ -129,7 +129,7 @@ class Game(App):
         am=Sprite(m)
         am.scale=2.2
         b=Enemy()
-        a=Member(1,1,1,1,1)
+        a=Member(1,1,1,1,1, (500,0))
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
