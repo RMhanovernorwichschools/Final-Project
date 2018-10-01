@@ -81,7 +81,7 @@ class Member(Sprite):
                 self.targety=enemy.y
 
 class Enemy(Sprite):
-    asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,159,133), 4, 'horizontal')
+    asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,159,133), 7, 'horizontal')
     def __init__(self):
         super().__init__(Enemy.asset)
         self.hp=200
@@ -97,11 +97,19 @@ class Enemy(Sprite):
     def step(self):
         self.pick_target()
         if self.v>0:
+            if cos(self.turn)>=0:
+                self.f+=1
+                if self.f>1:
+                    self.f=0
+            elif cos(self.turn)<0:
+                if self.f==6:
+                    self.f=7
+                else:
+                    self.f=6
             if self.f==2:
                 self.f=0
             self.setImage(self.f)
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
-            print(self.turn)
             if self.targetx<self.x:
                 self.turn+=radians(180)
             self.x+=(self.v*cos(self.turn))
@@ -116,11 +124,10 @@ class Enemy(Sprite):
                     self.v=1.8
                 elif self.v<0:
                     self.v=0
-                self.f+=1
                 
     def pick_target(self):
             self.enemy="None"
-            d2=120**2
+            d2=200**2
             for enemy in myapp.getSpritesbyClass(Member):
                 y=enemy.y-self.y
                 x=enemy.x-self.x
