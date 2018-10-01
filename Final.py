@@ -4,6 +4,22 @@ from math import radians, sin, cos, atan, degrees
 black = Color(0, 0.3)
 noline = LineStyle(0, black)
 
+class Bullet(Sprite):
+    asset=CircleAsset(2, noline, black)
+    def __init__(self, x,y, direc, damage):
+        super().__init__(Bullet.asset)
+        self.x=x
+        self.y=y
+        self.rotation=direc
+        self.damage=damage
+    
+    def step(self):
+        if self.x<myapp.width and self.y<myapp.height and self.y>0 and self.x>0:
+            self.x+=(3*sin(self.rotation))
+            self.y+=(3*cos(self.rotation))
+        else:
+            self.destroy()
+
 class Member(Sprite):
     asset=ImageAsset("images/Member_A.png", Frame(0,0,127,115), 8, 'horizontal')
     def __init__(self, damage, caution, evasion, talk, health, position):
@@ -98,6 +114,8 @@ class Enemy(Sprite):
     def step(self):
         if self.state=='Seeking':
             self.pick_target()
+        elif self.state=='Firing':
+            
         if self.v>0:
             if cos(self.turn)>=0:
                 self.f+=1
