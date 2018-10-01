@@ -102,10 +102,10 @@ class Enemy(Sprite):
                 if self.f>1:
                     self.f=0
             elif cos(self.turn)<0:
-                if self.f==6:
-                    self.f=7
-                else:
+                if self.f==5:
                     self.f=6
+                else:
+                    self.f=5
             if self.f==2:
                 self.f=0
             self.setImage(self.f)
