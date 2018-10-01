@@ -81,7 +81,7 @@ class Member(Sprite):
                 self.targety=enemy.y
 
 class Enemy(Sprite):
-    asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,159,133), 7, 'horizontal')
+    asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,158,133), 7, 'horizontal')
     def __init__(self):
         super().__init__(Enemy.asset)
         self.hp=200
@@ -92,10 +92,12 @@ class Enemy(Sprite):
         self.scale=0.5
         self.v=0
         self.enemy="None"
+        self.state='Seeking'
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
     
     def step(self):
-        self.pick_target()
+        if self.state=='Seeking':
+            self.pick_target()
         if self.v>0:
             if cos(self.turn)>=0:
                 self.f+=1
@@ -114,7 +116,10 @@ class Enemy(Sprite):
                 self.turn+=radians(180)
             self.x+=(self.v*cos(self.turn))
             self.y+=(self.v*sin(self.turn))
-            if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
+            if self.x<self.targetx+20 and self.x>self.targetx-20 and self.y<self.targety+20 and self.y>self.targety-20 and self.state=='Seeking':
+                self.state='Firing'
+                self.v=0
+            elif self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
                 self.v=0
             elif self.x<self.targetx+28 and self.x>self.targetx-28 and self.y<self.targety+28 and self.y>self.targety-28:
                 self.v=3
