@@ -1,5 +1,5 @@
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame, CircleAsset
-from math import radians, sin, cos, atan, degrees
+from math import radians, sin, cos, atan, degrees, time
 
 black = Color(0, 0.3)
 noline = LineStyle(0, black)
