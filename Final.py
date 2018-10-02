@@ -8,11 +8,15 @@ white = Color(0xFFFFFF, 1)
 
 class Bullet(Sprite):
     asset=CircleAsset(3, noline, white)
-    def __init__(self, x,y, direc, damage):
+    def __init__(self, x,y, targetx, targety, damage):
         super().__init__(Bullet.asset)
         self.x=x+45
         self.y=y+30
-        self.rotation=direc
+        self.targetx=targetx
+        self.targety=targety
+        self.rotation=atan((self.targety-self.y)/(self.targetx-self.x))
+        if self.targetx<self.x:
+            self.rotation+=radians(180)
         self.damage=damage
     
     def step(self):
