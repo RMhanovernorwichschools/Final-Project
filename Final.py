@@ -4,6 +4,7 @@ import time
 
 black = Color(0, 0.3)
 noline = LineStyle(0, black)
+white = Color(#FFFFFF, 1)
 
 class Bullet(Sprite):
     asset=CircleAsset(2, noline, black)
@@ -16,8 +17,8 @@ class Bullet(Sprite):
     
     def step(self):
         if self.x<myapp.width and self.y<myapp.height and self.y>0 and self.x>0:
-            self.x+=(3*sin(self.rotation))
-            self.y+=(3*cos(self.rotation))
+            self.x+=(3*cos(self.rotation))
+            self.y+=(3*sin(self.rotation))
         else:
             self.destroy()
 
