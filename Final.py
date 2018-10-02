@@ -124,7 +124,7 @@ class Enemy(Sprite):
             else:
                 self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
                 if time.time()>self.wait:
-                    print('bang')
+                    Bullet(self.x, self.y, self.turn, self.damage)
                     self.wait=time.time()+2
         if self.v>0:
             if cos(self.turn)>=0:
