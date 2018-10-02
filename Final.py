@@ -117,7 +117,6 @@ class Enemy(Sprite):
         if self.state=='Seeking':
             self.pick_target()
         elif self.state=='Firing':
-            self.f=3
             self.pick_target()
             self.v=0
             if self.enemy=='None':
@@ -127,6 +126,10 @@ class Enemy(Sprite):
                 if time.time()>self.wait:
                     a=Bullet(self.x, self.y, self.turn, self.damage)
                     self.wait=time.time()+2
+                if cos(self.turn)>=0:
+                    self.f=2
+                else:
+                    self.f=4
         if self.v>0:
             if cos(self.turn)>=0:
                 self.f+=1
