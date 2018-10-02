@@ -122,6 +122,7 @@ class Enemy(Sprite):
             else:
                 self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
                 print('bang')
+                (print(time.time())
         if self.v>0:
             if cos(self.turn)>=0:
                 self.f+=1
