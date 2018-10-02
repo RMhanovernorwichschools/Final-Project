@@ -4,10 +4,10 @@ import time
 
 black = Color(0, 0.3)
 noline = LineStyle(0, black)
-white = Color(#FFFFFF, 1)
+white = Color(0xFFFFFF, 1)
 
 class Bullet(Sprite):
-    asset=CircleAsset(2, noline, black)
+    asset=CircleAsset(2, noline, white)
     def __init__(self, x,y, direc, damage):
         super().__init__(Bullet.asset)
         self.x=x
