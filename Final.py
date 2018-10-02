@@ -187,6 +187,8 @@ class Game(App):
             char.step()
         for char in self.getSpritesbyClass(Enemy):
             char.step()
+        for x in self.getSpritebyClass(Bullet):
+            x.step()
 
 myapp=Game()
 myapp.run()
