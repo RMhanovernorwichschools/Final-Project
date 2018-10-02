@@ -117,6 +117,7 @@ class Enemy(Sprite):
         if self.state=='Seeking':
             self.pick_target()
         elif self.state=='Firing':
+            self.f=3
             self.pick_target()
             self.v=0
             if self.enemy=='None':
@@ -124,7 +125,7 @@ class Enemy(Sprite):
             else:
                 self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
                 if time.time()>self.wait:
-                    Bullet(self.x, self.y, self.turn, self.damage)
+                    a=Bullet(self.x, self.y, self.turn, self.damage)
                     self.wait=time.time()+2
         if self.v>0:
             if cos(self.turn)>=0:
@@ -144,7 +145,7 @@ class Enemy(Sprite):
                 self.turn+=radians(180)
             self.x+=(self.v*cos(self.turn))
             self.y+=(self.v*sin(self.turn))
-            if self.x<self.targetx+25 and self.x>self.targetx-25 and self.y<self.targety+25 and self.y>self.targety-25 and self.state=='Seeking':
+            if self.x<self.targetx+70 and self.x>self.targetx-70 and self.y<self.targety+70 and self.y>self.targety-70 and self.state=='Seeking':
                 self.state='Firing'
                 self.v=0
                 self.wait=time.time()
@@ -161,7 +162,7 @@ class Enemy(Sprite):
                 
     def pick_target(self):
             self.enemy="None"
-            d2=200**2
+            d2=300**2
             for enemy in myapp.getSpritesbyClass(Member):
                 y=enemy.y-self.y
                 x=enemy.x-self.x
@@ -187,7 +188,7 @@ class Game(App):
             char.step()
         for char in self.getSpritesbyClass(Enemy):
             char.step()
-        for x in self.getSpritebyClass(Bullet):
+        for x in self.getSpritesbyClass(Bullet):
             x.step()
 
 myapp=Game()
