@@ -119,7 +119,7 @@ class Enemy(Sprite):
         if self.v>0:
             if cos(self.turn)>=0:
                 self.f+=1
-                if self.f>1:
+                    if self.f>1:
                     self.f=0
             elif cos(self.turn)<0:
                 if self.f==5:
