@@ -121,9 +121,9 @@ class Enemy(Sprite):
     
     def step(self):
         if self.state=='Seeking':
-            self.pick_target()
+            self.pick_target(250)
         elif self.state=='Firing':
-            self.pick_target()
+            self.pick_target(100)
             self.v=0
             if self.enemy=='None':
                 self.state='Seeking'
@@ -132,7 +132,7 @@ class Enemy(Sprite):
                 if time.time()>self.wait:
                     Bullet(self.x, self.y, self.targetx, self.targety, self.damage)
                     self.wait=time.time()+2
-                if cos(self.turn)<0:
+                if sin(self.turn)<0:
                     self.f=4
                 else:
                     self.f=2
@@ -169,9 +169,9 @@ class Enemy(Sprite):
                     self.v=0
         self.setImage(self.f)
                 
-    def pick_target(self):
+    def pick_target(self, d):
             self.enemy="None"
-            d2=300**2
+            d2=d**2
             for enemy in myapp.getSpritesbyClass(Member):
                 y=enemy.y-self.y
                 x=enemy.x-self.x
