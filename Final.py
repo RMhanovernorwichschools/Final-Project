@@ -115,11 +115,11 @@ class Enemy(Sprite):
         if self.state=='Seeking':
             self.pick_target()
         elif self.state=='Firing':
-            a=Bullet(self.x, self.y, self.turn, self.damage)
+            print('bang')
         if self.v>0:
             if cos(self.turn)>=0:
                 self.f+=1
-                    if self.f>1:
+                if self.f>1:
                     self.f=0
             elif cos(self.turn)<0:
                 if self.f==5:
