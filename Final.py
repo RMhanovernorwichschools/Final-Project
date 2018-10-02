@@ -10,15 +10,15 @@ class Bullet(Sprite):
     asset=CircleAsset(3, noline, white)
     def __init__(self, x,y, direc, damage):
         super().__init__(Bullet.asset)
-        self.x=x+50
-        self.y=y+40
+        self.x=x+45
+        self.y=y+30
         self.rotation=direc
         self.damage=damage
     
     def step(self):
         if self.x<myapp.width and self.y<myapp.height and self.y>0 and self.x>0:
-            self.x+=(3*cos(self.rotation))
-            self.y+=(3*sin(self.rotation))
+            self.x+=(6*cos(self.rotation))
+            self.y+=(6*sin(self.rotation))
         else:
             self.destroy()
 
