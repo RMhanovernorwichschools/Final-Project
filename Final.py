@@ -110,6 +110,7 @@ class Enemy(Sprite):
         self.v=0
         self.enemy="None"
         self.state='Seeking'
+        self.wait=0
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
     
     def step(self):
@@ -122,8 +123,9 @@ class Enemy(Sprite):
                 self.state='Seeking'
             else:
                 self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
-                print('bang')
-                print(time.time())
+                if time.time()==self.wait:
+                    print('bang')
+                    self.wait=time.time()+2
         if self.v>0:
             if cos(self.turn)>=0:
                 self.f+=1
@@ -145,6 +147,7 @@ class Enemy(Sprite):
             if self.x<self.targetx+25 and self.x>self.targetx-25 and self.y<self.targety+25 and self.y>self.targety-25 and self.state=='Seeking':
                 self.state='Firing'
                 self.v=0
+                self.wait=time.time()+2
             elif self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
                 self.v=0
             elif self.x<self.targetx+28 and self.x>self.targetx-28 and self.y<self.targety+28 and self.y>self.targety-28:
