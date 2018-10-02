@@ -123,7 +123,7 @@ class Enemy(Sprite):
                 self.state='Seeking'
             else:
                 self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
-                if time.time()==self.wait:
+                if time.time()>self.wait:
                     print('bang')
                     self.wait=time.time()+2
         if self.v>0:
@@ -147,7 +147,7 @@ class Enemy(Sprite):
             if self.x<self.targetx+25 and self.x>self.targetx-25 and self.y<self.targety+25 and self.y>self.targety-25 and self.state=='Seeking':
                 self.state='Firing'
                 self.v=0
-                self.wait=time.time()+2
+                self.wait=time.time()
             elif self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
                 self.v=0
             elif self.x<self.targetx+28 and self.x>self.targetx-28 and self.y<self.targety+28 and self.y>self.targety-28:
