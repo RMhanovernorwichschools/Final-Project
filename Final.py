@@ -12,8 +12,8 @@ class Bullet(Sprite):
         super().__init__(Bullet.asset)
         self.x=x+45
         self.y=y+30
-        self.targetx=targetx
-        self.targety=targety
+        self.targetx=targetx+20
+        self.targety=targety+30
         self.rotation=atan((self.targety-self.y)/(self.targetx-self.x))
         if self.targetx<self.x:
             self.rotation+=radians(180)
@@ -132,10 +132,10 @@ class Enemy(Sprite):
                 if time.time()>self.wait:
                     Bullet(self.x, self.y, self.targetx, self.targety, self.damage)
                     self.wait=time.time()+2
-                if cos(self.turn)>=0:
-                    self.f=2
-                else:
+                if cos(self.turn)<0:
                     self.f=4
+                else:
+                    self.f=2
         if self.v>0:
             if cos(self.turn)>=0:
                 self.f+=1
