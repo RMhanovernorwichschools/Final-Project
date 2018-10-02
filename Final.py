@@ -110,6 +110,7 @@ class Enemy(Sprite):
         self.v=0
         self.enemy="None"
         self.state='Seeking'
+        self.damage=10
         self.wait=0
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
     
@@ -124,7 +125,7 @@ class Enemy(Sprite):
             else:
                 self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
                 if time.time()>self.wait:
-                    a=Bullet(self.x, self.y, self.turn, self.damage)
+                    Bullet(self.x, self.y, self.turn, self.damage)
                     self.wait=time.time()+2
                 if cos(self.turn)>=0:
                     self.f=2
