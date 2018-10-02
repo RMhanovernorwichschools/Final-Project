@@ -7,11 +7,11 @@ noline = LineStyle(0, black)
 white = Color(0xFFFFFF, 1)
 
 class Bullet(Sprite):
-    asset=CircleAsset(2, noline, white)
+    asset=CircleAsset(3, noline, white)
     def __init__(self, x,y, direc, damage):
         super().__init__(Bullet.asset)
-        self.x=x
-        self.y=y
+        self.x=x+50
+        self.y=y+40
         self.rotation=direc
         self.damage=damage
     
@@ -144,7 +144,6 @@ class Enemy(Sprite):
                     self.f=5
             if self.f==2:
                 self.f=0
-            self.setImage(self.f)
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
             if self.targetx<self.x:
                 self.turn+=radians(180)
@@ -164,6 +163,7 @@ class Enemy(Sprite):
                     self.v=1.8
                 elif self.v<0:
                     self.v=0
+        self.setImage(self.f)
                 
     def pick_target(self):
             self.enemy="None"
