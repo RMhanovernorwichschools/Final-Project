@@ -7,7 +7,7 @@ noline = LineStyle(0, black)
 white = Color(0xFFFFFF, 1)
 
 class Cove(Sprite):
-    asset=ImageAsset('images/Rocks.png', Frame(0,0,130,300), 3, 'vertical')
+    asset=ImageAsset('images/Rocks.png', Frame(0,0,100,180), 3, 'vertical')
     def __init__(self, position):
         super().__init__(Cove.asset, position)
 
