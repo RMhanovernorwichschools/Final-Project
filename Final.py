@@ -30,6 +30,7 @@ class Bullet(Sprite):
             for char in myapp.getSpritesbyClass(Member):
                 if self.x>char.x+21 and self.x<char.x+57 and self.y>char.y+6 and self.y<char.y+63:
                     char.hit(self.damage)
+                    self.destroy()
 
 class Member(Sprite):
     asset=ImageAsset("images/Member_A.png", Frame(0,0,127,115), 8, 'horizontal')
@@ -202,7 +203,7 @@ class Game(App):
         am=Sprite(m)
         am.scale=2.2
         b=Enemy()
-        a=Member(1,1,1,1,1, (500,0))
+        a=Member(1,1,1,1,200, (500,0))
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
