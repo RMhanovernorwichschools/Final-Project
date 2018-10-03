@@ -26,6 +26,10 @@ class Bullet(Sprite):
             self.y+=(6*sin(self.rotation))
         else:
             self.destroy()
+        if self.source=='E':
+            for char in myapp.getSpritesbyClass(Member):
+                if self.x>char.x+21 and self.x<char.x+57 and self.y>char.y+6 and self.y<char.y+63:
+                    char.hit(self.damage)
 
 class Member(Sprite):
     asset=ImageAsset("images/Member_A.png", Frame(0,0,127,115), 8, 'horizontal')
@@ -45,6 +49,7 @@ class Member(Sprite):
         self.enemy="None"
         self.state='idle'
         Game.listenMouseEvent('click', self.direct)
+        #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
         
     def direct(self, event):
         self.targetx=event.x-30
@@ -52,6 +57,12 @@ class Member(Sprite):
         self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
         if self.targetx<self.x:
             self.turn+=radians(180)
+            
+    def hit(self, dam):
+        self.hp-=dam
+        if self.hp<=0:
+            self.state='Dead'
+        print(self.hp)
         
     def step(self):
         if self.state=="idle" or self.state=='motion':
@@ -118,7 +129,7 @@ class Enemy(Sprite):
         self.state='Seeking'
         self.damage=10
         self.wait=0
-        #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
+        #Member hitbox is as follows: Starts 25.5 to right of and 6 below spawn point. Stretches 29 wide and 50 tall
     
     def step(self):
         if self.state=='Seeking':
@@ -192,7 +203,6 @@ class Game(App):
         am.scale=2.2
         b=Enemy()
         a=Member(1,1,1,1,1, (500,0))
-        RectangleAsset(100,100,noline,black)
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
