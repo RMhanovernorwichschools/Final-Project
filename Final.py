@@ -58,7 +58,7 @@ class Member(Sprite):
         self.targetx=event.x-30
         self.targety=event.y-30
         self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
-        if self.targetx<self.x:
+        if self.targetx<self.x+20:
             self.turn+=radians(180)
             
     def hit(self, dam):
