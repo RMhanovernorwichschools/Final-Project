@@ -8,10 +8,11 @@ white = Color(0xFFFFFF, 1)
 
 class Bullet(Sprite):
     asset=CircleAsset(3, noline, white)
-    def __init__(self, x,y, targetx, targety, damage):
+    def __init__(self, x,y, targetx, targety, damage, source):
         super().__init__(Bullet.asset)
         self.x=x+45
         self.y=y+30
+        self.source=source
         self.targetx=targetx+20
         self.targety=targety+30
         self.rotation=atan((self.targety-self.y)/(self.targetx-self.x))
@@ -130,7 +131,7 @@ class Enemy(Sprite):
             else:
                 self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
                 if time.time()>self.wait:
-                    Bullet(self.x, self.y, self.targetx, self.targety, self.damage)
+                    Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'E')
                     self.wait=time.time()+2
                 if sin(self.turn)<0:
                     self.f=4
@@ -191,6 +192,7 @@ class Game(App):
         am.scale=2.2
         b=Enemy()
         a=Member(1,1,1,1,1, (500,0))
+        RectangleAsset(100,100,noline,black)
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
