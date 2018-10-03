@@ -31,7 +31,7 @@ class Bullet(Sprite):
             self.y+=(6*sin(self.rotation))
         else:
             self.source='None'
-        if self.source='NOne':
+        if self.source=='None':
             self.destroy()
 
 class Member(Sprite):
