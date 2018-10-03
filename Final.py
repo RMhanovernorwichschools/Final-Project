@@ -21,16 +21,18 @@ class Bullet(Sprite):
         self.damage=damage
     
     def step(self):
-        if self.x<myapp.width and self.y<myapp.height and self.y>0 and self.x>0:
-            self.x+=(6*cos(self.rotation))
-            self.y+=(6*sin(self.rotation))
-        else:
-            self.destroy()
         if self.source=='E':
             for char in myapp.getSpritesbyClass(Member):
                 if self.x>char.x+21 and self.x<char.x+57 and self.y>char.y+6 and self.y<char.y+63:
                     char.hit(self.damage)
-                    self.destroy()
+                    self.source='None'
+        if self.x<myapp.width and self.y<myapp.height and self.y>0 and self.x>0:
+            self.x+=(6*cos(self.rotation))
+            self.y+=(6*sin(self.rotation))
+        else:
+            self.source='None'
+        if self.source='NOne':
+            self.destroy()
 
 class Member(Sprite):
     asset=ImageAsset("images/Member_A.png", Frame(0,0,127,115), 8, 'horizontal')
