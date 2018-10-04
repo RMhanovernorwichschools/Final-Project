@@ -14,7 +14,7 @@ newtopic='false'
 
 def yn_check(response):
     for arp in response:
-        if arp=='yes' or arp=='yeah' or arp=='yup' or arp=='yep' or arp=='ya' or or arp=='uh-huh' or arp=='of':
+        if arp=='yes' or arp=='yeah' or arp=='yup' or arp=='yep' or arp=='ya' or arp=='uh-huh' or arp=='of':
             return 1
         elif arp=='no' or arp=='nah' or arp=='nope'or arp=='not':
             return -1
@@ -98,6 +98,7 @@ for x in (1,2):
                     message+=' How about you?'
                     tot='howareyou'
     elif tot=='howareyou':
+        global rep
         if len(words)==1:
             rep=words[0]
         elif len(words)==2:
