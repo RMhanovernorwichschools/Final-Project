@@ -8,6 +8,8 @@ adverbs=['pretty', 'fairly', 'very', 'extremely', 'sorta', 'kinda', 'mostly', 'r
 message='Hey! My name is January.'
 tot='none'
 userstate='unknown'
+assign=0
+newtopic='false'
 
 for x in (1,2):
     question=0
@@ -86,7 +88,6 @@ for x in (1,2):
                     message+=' How about you?'
                     tot='howareyou'
     elif tot=='howareyou':
-        print('i')
         if len(words)==1:
             rep=words[0]
         elif len(words)==2:
@@ -94,22 +95,24 @@ for x in (1,2):
                 rep=words[1]
         elif len(words)==3:
             for x in adverbs:
-                if words[0]=='im' and words[1]==adverbs[x]:
+                if words[0]=='im' and words[1]==x:
                     rep=words[2]
         if rep=='good' or rep=='great' or rep=='yeah' or rep=='yes' or rep=='yup' or rep=='yep':
             userstate='good'
             message="I'm glad."
-            newtopic(random.randint(1,2))
+            newtopic='true'
+            assign=random.randint(1,2)
     else:
         message=="Sorry... I'm confused."
+    if newtopic=='true':
+        if assign==1:
+            message=message+' Um... do you like chocolate?'
+            tot='chocolate'
+        elif assign==2:
+            message=message+' If everyone on earth disappeared except for you, what would you do?'
+            tot='ghostworld'
+        newtopic='false'
         
-def newtopic(n):
-    if n==1:
-        message+=' Um... do you like chocolate?'
-        tot='chocolate'
-    elif n==2:
-        message+=' If everyone on earth disappeared except for you, what would you do?'
-        tot='ghostworld'
                 
 print(message)
             
