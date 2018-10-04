@@ -72,7 +72,7 @@ for x in (1,2):
                 mash=words[1]+words[2]
                 if mash=='areyou' or mash=='arethings' or mash=='isit' or mash=='arethings' or words[1]=='it':
                     message="I'm fine, thanks."
-                    if userstate='unknown':
+                    if userstate=='unknown':
                         message+=' How about you?'
                         tot='howareyou'
     else:
