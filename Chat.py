@@ -163,6 +163,7 @@ for x in range(6):
                 tot='none'
     else:
         message="Sorry... I'm confused."
+        tot='none'
     if newtopic=='true':
         if assign==1:
             message=message+' Um... do you like chocolate?'
