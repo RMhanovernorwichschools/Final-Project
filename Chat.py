@@ -114,6 +114,10 @@ for x in range(6):
             message="I'm glad."
             newtopic='true'
             assign=random.randint(1,2)
+        elif rep=='bad' or rep=='awful' or rep=='terrible' or rep=='lame' or rep=='boring' or yn_check(words)==-1:
+            userstate='bad'
+            message="Oh no! What's wrong?"
+            tot='userstate'
     elif tot=='chocolate':
         if yn_check(words)==1:
             message='Good. I like chocolate, too.'
@@ -122,7 +126,7 @@ for x in range(6):
         else:
             message='...oh.'
     else:
-        message=="Sorry... I'm confused."
+        message="Sorry... I'm confused."
     if newtopic=='true':
         if assign==1:
             message=message+' Um... do you like chocolate?'
