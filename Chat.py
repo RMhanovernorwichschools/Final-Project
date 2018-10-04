@@ -8,14 +8,14 @@ characters=[]
 print_b=''
 
 for x in range(0,sl):
-    for n in range(uppercase):
+    for n in range(len(uppercase)):
         if x==uppercase[n]:
             x=lowercase[n]
     characters.append(string[x])
 
 
 space_loci=[]
-for x in range (0,sl):
+for x in range(0,sl):
     if characters[x]==' ':
         space_loci.append(x)
 
