@@ -4,7 +4,7 @@ greetings=['Hey.', 'Hi!']
 howyou=['How are you?', "How's it going", "Is everything going well?"]
 neutrals=['Oh. Okay.', 'Huh.', 'Okay.', 'Hm.']
 
-adverbs=['pretty', 'fairly', 'very', 'extremely', 'sorta', 'kinda', 'mostly', 'rather']
+adverbs=['pretty', 'fairly', 'very', 'extremely', 'sorta', 'kinda', 'mostly', 'rather', 'really']
 
 message='Hey! My name is January.'
 tot='none'
@@ -13,7 +13,13 @@ assign=0
 newtopic='false'
 
 def yn_check(response):
-    return 1
+    for arp in response:
+        if arp=='yes' or arp=='yeah' or arp=='yup' or arp=='yep' or arp=='ya' or or arp=='uh-huh' or arp=='of':
+            return 1
+        elif arp=='no' or arp=='nah' or arp=='nope'or arp=='not':
+            return -1
+        else:
+            return 0
 
 for x in (1,2):
     question=0
