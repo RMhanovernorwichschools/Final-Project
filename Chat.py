@@ -82,7 +82,7 @@ for x in range(6):
             if words[0]=='hi' or words[0]=='hello' or words[0]=='greetings' or words[0]=='heya' or words[0]=='hiya' or words[0]=='howdy' or words[0]=='hey':
                 message=random.choice(greetings)
                 if random.randint(1,2)==1:
-                    userstate="howareyou"
+                    tot="howareyou"
                     message+=' '+random.choice(howyou)
             if words[0]=='cool' or words[0]=='awesome' or words[0]=='great' or words[0]=='nice':
                 agreement=['Probably.', 'Pretty {0}.'.format(words[0]), 'Fairly {0}.'.format(words[0]), 'Yeah, pretty {0}.'.format(words[0])]
