@@ -88,7 +88,7 @@ for x in (1,2):
         elif len(words)==2:
             if words[0]=='im':
                 rep=words[1]
-        if rep=='good' or rep=='great':
+        if rep=='good' or rep=='great' or rep=='yeah' or rep=='yes' or rep=='yup' or rep=='yep':
             userstate='good'
             message="I'm glad."
             newtopic(random.randint(1,2))
