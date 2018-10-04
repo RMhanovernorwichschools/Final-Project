@@ -70,13 +70,33 @@ for x in (1,2):
         elif len(words)==3:
             if words[0]=='how' or words[0]=='hows':
                 mash=words[1]+words[2]
-                if mash=='areyou' or mash=='arethings' or mash=='isit' or mash=='arethings' or words[1]=='it':
+                if mash=='areyou' or mash=='areya' or mash=='ru' or mash=='areu':
                     message="I'm fine, thanks."
-                    if userstate=='unknown':
-                        message+=' How about you?'
-                        tot='howareyou'
+                elif mash=='arethings' or mash=='isit' or mash=='arethings' or words[1]=='it':
+                    message="Good."
+                if userstate=='unknown':
+                    message+=' How about you?'
+                    tot='howareyou'
+    elif tot=='howareyou':
+        if len(words)==1:
+            rep=words[0]
+        elif len(words)==2:
+            if words[0]=='im':
+                rep=words[1]
+        if rep=='good' or rep=='great':
+            userstate='good'
+            message="I'm glad."
+            newtopic(random.randint(1,2))
     else:
         message=="Sorry... I'm confused."
+        
+def newtopic(n):
+    if n==1:
+        message+=' Um... do you like chocolate?'
+        tot='chocolate'
+    elif n==2:
+        message+=' If everyone on earth disappeared except for you, what would you do?'
+        tot='ghostworld'
                 
 print(message)
             
