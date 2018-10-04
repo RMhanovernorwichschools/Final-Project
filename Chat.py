@@ -78,7 +78,7 @@ for x in (1,2):
                 mash=words[1]+words[2]
                 if mash=='areyou' or mash=='areya' or mash=='ru' or mash=='areu':
                     message="I'm fine, thanks."
-                elif mash=='arethings' or mash=='isit' or mash=='arethings' or words[1]=='it':
+                elif mash=='arethings' or mash=='isit' or mash=='arethings' or words[1]=='it' or mash=='goesit':
                     message="Good."
                 if userstate=='unknown':
                     message+=' How about you?'
@@ -92,8 +92,8 @@ for x in (1,2):
                 rep=words[1]
         elif len(words)==3:
             for x in adverbs:
-            if words[0]=='im' and words[1]==adverbs[x]:
-                rep=words[2]
+                if words[0]=='im' and words[1]==adverbs[x]:
+                    rep=words[2]
         if rep=='good' or rep=='great' or rep=='yeah' or rep=='yes' or rep=='yup' or rep=='yep':
             userstate='good'
             message="I'm glad."
