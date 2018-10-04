@@ -142,14 +142,14 @@ for x in range(6):
                 elif y==3:
                     message="Uh... Well, haven't you ever had any?"
                     tot='confirmation'
-        elif yn_check(words)==1:
-            message='Good. I like chocolate, too.'
-        elif yn_check(words)==0:
-            message=random.choice(neutrals)
-            tot='none'
-        else:
-            message='...oh.'
-            tot='none'
+            elif yn_check(words)==1:
+                message='Good. I like chocolate, too.'
+            elif yn_check(words)==0:
+                message=random.choice(neutrals)
+                tot='none'
+            elif yn_check(words)==-1:
+                message='...oh.'
+                tot='none'
     else:
         message="Sorry... I'm confused."
     if newtopic=='true':
