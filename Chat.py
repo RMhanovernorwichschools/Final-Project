@@ -126,6 +126,17 @@ for x in range(6):
             userstate='bad'
             message="Oh no! What's wrong?"
             tot='userstate'
+        else:
+            for x in words:
+                if x=='well' or x=='cool' or x=='good' or x=='great':
+                    message='Nice.'
+                    tot='none'
+                if x=='bad' or x=='not':
+                    message="Oh... that's too bad. How come?"
+                    tot='userstate'
+                else:
+                    message=random.choice(neutrals)
+                    tot='none'
     elif tot=='chocolate':
         for x in words:
             if x=='favorite' or x=='favourite':
