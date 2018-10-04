@@ -3,6 +3,8 @@ import random
 greetings=['Hey.', 'Hi!']
 howyou=['How are you?', "How's it going", "Is everything going well?"]
 
+adverbs=['pretty', 'fairly', 'very', 'extremely', 'sorta', 'kinda', 'mostly', 'rather']
+
 message='Hey! My name is January.'
 tot='none'
 userstate='unknown'
@@ -88,6 +90,10 @@ for x in (1,2):
         elif len(words)==2:
             if words[0]=='im':
                 rep=words[1]
+        elif len(words)==3:
+            for x in adverbs:
+            if words[0]=='im' and words[1]==adverbs[x]:
+                rep=words[2]
         if rep=='good' or rep=='great' or rep=='yeah' or rep=='yes' or rep=='yup' or rep=='yep':
             userstate='good'
             message="I'm glad."
