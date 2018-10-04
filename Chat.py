@@ -2,6 +2,7 @@ import random
 
 greetings=['Hey.', 'Hi!']
 howyou=['How are you?', "How's it going", "Is everything going well?"]
+neutrals=['Oh. Okay.', 'Huh.', 'Okay.', 'Hm.']
 
 adverbs=['pretty', 'fairly', 'very', 'extremely', 'sorta', 'kinda', 'mostly', 'rather']
 
@@ -10,6 +11,9 @@ tot='none'
 userstate='unknown'
 assign=0
 newtopic='false'
+
+def yn_check(response):
+    return 1
 
 for x in (1,2):
     question=0
@@ -103,6 +107,13 @@ for x in (1,2):
             message="I'm glad."
             newtopic='true'
             assign=random.randint(1,2)
+    elif tot=='chocolate':
+        if yn_check(words)==1:
+            message='Good. I like chocolate, too.'
+        elif yn_check(words)==0:
+            message=random.choice(neutrals)
+        else:
+            message='...oh.'
     else:
         message=="Sorry... I'm confused."
     if newtopic=='true':
