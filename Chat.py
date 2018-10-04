@@ -21,7 +21,7 @@ def yn_check(response):
         else:
             return 0
 
-for x in (1,2):
+for x in range(6):
     question=0
     string=list(input(message+'''
 '''))
@@ -75,7 +75,7 @@ for x in (1,2):
         
     print(words)
     
-    if len(words)==1 and word[0]=='ugh':
+    if len(words)==1 and words[0]=='ugh':
         message="Wait, what's wrong?"
     elif tot=='none':
         if len(words)==1:
@@ -109,7 +109,7 @@ for x in (1,2):
             for x in adverbs:
                 if words[0]=='im' and words[1]==x:
                     rep=words[2]
-        if rep=='good' or rep=='great' or rep=='yeah' or rep=='yes' or rep=='yup' or rep=='yep':
+        if rep=='good' or rep=='great' or rep=='yeah' or rep=='yes' or rep=='yup' or rep=='yep' or yn_check(words)==1:
             userstate='good'
             message="I'm glad."
             newtopic='true'
