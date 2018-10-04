@@ -1,6 +1,7 @@
 import random
 
-greetings=['Hey.', 'Hi!', 'Hey, how are you?']
+greetings=['Hey.', 'Hi!']
+howyou=['How are you?', "How's it going", "Is everything going well?"]
 
 message='Hey! My name is January.'
 tot='none'
@@ -49,7 +50,7 @@ for x in (1,2):
             else:
                 fin=space_loci[0]
         elif x==len(wordnum_list)-1:
-            start=space_loci[-1]
+            start=space_loci[-1]+1
             fin=sl
         else:
             start=space_loci[x-1]+1
@@ -64,6 +65,9 @@ for x in (1,2):
         if len(words)==1:
             if words[0]=='hi' or words[0]=='hello' or words[0]=='greetings' or words[0]=='heya' or words[0]=='hiya' or words[0]=='howdy' or words[0]=='hey':
                 message=random.choice(greetings)
+                if random.randint(1,2)==1:
+                    userstate="howareyou"
+                    message+=' '+random.choice(howyou)
             if words[0]=='cool' or words[0]=='awesome' or words[0]=='great' or words[0]=='nice':
                 agreement=['Probably.', 'Pretty {0}.'.format(words[0]), 'Fairly {0}.'.format(words[0]), 'Yeah, pretty {0}.'.format(words[0])]
                 message=random.choice(agreement)
@@ -78,6 +82,7 @@ for x in (1,2):
                     message+=' How about you?'
                     tot='howareyou'
     elif tot=='howareyou':
+        print('i')
         if len(words)==1:
             rep=words[0]
         elif len(words)==2:
