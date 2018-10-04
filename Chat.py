@@ -63,7 +63,9 @@ for x in (1,2):
         
     print(words)
     
-    if tot=='none':
+    if len(words)==1 and word[0]=='ugh':
+        message="Wait, what's wrong?"
+    elif tot=='none':
         if len(words)==1:
             if words[0]=='hi' or words[0]=='hello' or words[0]=='greetings' or words[0]=='heya' or words[0]=='hiya' or words[0]=='howdy' or words[0]=='hey':
                 message=random.choice(greetings)
