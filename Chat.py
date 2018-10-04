@@ -3,6 +3,7 @@ import random
 greetings=['Hey.', 'Hi!']
 howyou=['How are you?', "How's it going", "Is everything going well?"]
 neutrals=['Oh. Okay.', 'Huh.', 'Okay.', 'Hm.']
+agrees=['Yeah.', "That's what I'd thought.", 'Uh huh.', 'Yeah... good.']
 
 adverbs=['pretty', 'fairly', 'very', 'extremely', 'sorta', 'kinda', 'mostly', 'rather', 'really']
 
@@ -77,6 +78,13 @@ for x in range(6):
     
     if len(words)==1 and words[0]=='ugh':
         message="Wait, what's wrong?"
+    elif tot='confirmation':
+        if yn_check(words)==1:
+            message=random.choice(agrees)
+        elif yn_check(words)==0:
+            message=random.choice(neutrals)
+        else:
+            message='Oh.'
     elif tot=='none':
         if len(words)==1:
             if words[0]=='hi' or words[0]=='hello' or words[0]=='greetings' or words[0]=='heya' or words[0]=='hiya' or words[0]=='howdy' or words[0]=='hey':
@@ -119,12 +127,27 @@ for x in range(6):
             message="Oh no! What's wrong?"
             tot='userstate'
     elif tot=='chocolate':
-        if yn_check(words)==1:
+        for x in words:
+            if x=='favorite' or x=='favourite':
+                message='My favorite kind is probably white chocolate.
+            if x=='why':
+                y=random.randint(1,3)
+                if y==1:
+                    message="I think I like white best because... I don't know. It's creamy?"
+                    tot='confirmation'
+                elif y==2:
+                    message="White chocolate is just so good! I dunno why."
+                elif y==3:
+                    message="Uh... Well, haven't you ever had any?"
+                    tot='confirmation'
+        elif yn_check(words)==1:
             message='Good. I like chocolate, too.'
         elif yn_check(words)==0:
             message=random.choice(neutrals)
+            tot='none'
         else:
             message='...oh.'
+            tot='none'
     else:
         message="Sorry... I'm confused."
     if newtopic=='true':
