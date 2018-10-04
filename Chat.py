@@ -91,8 +91,9 @@ for x in (1,2):
         if len(words)==1:
             rep=words[0]
         elif len(words)==2:
-            if words[0]=='im':
-                rep=words[1]
+            for x in adverbs:
+                if words[0]=='im' or words[0]==adverbs:
+                    rep=words[1]
         elif len(words)==3:
             for x in adverbs:
                 if words[0]=='im' and words[1]==x:
@@ -109,7 +110,7 @@ for x in (1,2):
             message=message+' Um... do you like chocolate?'
             tot='chocolate'
         elif assign==2:
-            message=message+' If everyone on earth disappeared except for you, what would you do?'
+            message=message+' Can I ask a random question? If everyone on earth disappeared except for you, what would you do?'
             tot='ghostworld'
         newtopic='false'
         
