@@ -6,6 +6,7 @@ neutrals=['Oh. Okay.', 'Huh.', 'Okay.', 'Hm.']
 agrees=['Yeah.', "That's what I'd thought.", 'Uh huh.', 'Yeah... good.']
 
 adverbs=['pretty', 'fairly', 'very', 'extremely', 'sorta', 'kinda', 'mostly', 'rather', 'really']
+psotive=['good', 'great', 'awesome', 'cool', 'amazing', 'superb']
 
 message='Hey! My name is January.'
 tot='none'
