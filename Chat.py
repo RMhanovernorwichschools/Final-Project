@@ -79,7 +79,7 @@ for x in range(6):
     
     if len(words)==1 and words[0]=='ugh':
         message="Wait, what's wrong?"
-    if lens(words)>1 and words[0]=='its':
+    if len(words)>1 and words[0]=='its':
         if words[1]=='okay' or words[1]=='fine' or words[1]=='cool':
             Message='Yeah. Okay.'
             tot='none'
