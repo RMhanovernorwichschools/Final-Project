@@ -81,7 +81,7 @@ for x in range(6):
         message="Wait, what's wrong?"
     if len(words)>1 and words[0]=='its':
         if words[1]=='okay' or words[1]=='fine' or words[1]=='cool':
-            Message='Yeah. Okay.'
+            message='Yeah. Okay.'
             tot='none'
             newtopic='true'
             assign=random.randint(1,2)
