@@ -79,6 +79,10 @@ for x in range(6):
     
     if len(words)==1 and words[0]=='ugh':
         message="Wait, what's wrong?"
+    if len(words)==1 and words[0]=='what':
+        messages=['Did I say something weird?', 'Was that strange of me to say?', 'Sorry, did I just say something off?']
+        message=random.choice(messages)
+        tot='self_failure'
     if len(words)>1 and words[0]=='its':
         if words[1]=='okay' or words[1]=='fine' or words[1]=='cool':
             message='Yeah. Okay.'
@@ -188,6 +192,19 @@ for x in range(6):
             elif yn_check(words)==-1:
                 message='...oh.'
                 tot='none'
+    elif tot=='self_failure':
+        if yn_check(words)==1:
+            messages=["Oh. I'm so sorry.", "Sorry, I didn't mean to.", "Okay. I'll try to not do it again."]
+            message=random.choice(messages)
+            tot='none'
+        elif yn_check(words)==-1:
+            messages=["I'm relieved. I though from your reaction that maybe I had.", "Oh, okay. Good."]
+            message=random.choice(messages)
+            tot='none'
+        else:
+            message='Um... Can we maybe change the subject? Uh...'
+            newtopic='true'
+            assign=random.randint(1,2)
     else:
         message="Sorry... I'm confused."
         tot='none'
