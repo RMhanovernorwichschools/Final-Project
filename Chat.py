@@ -121,43 +121,67 @@ for x in range(6):
                 message+=' How about you?'
                 tot='howareyou'
     elif tot=='howareyou':
+        negate='false'
         for x in words:
             if x=='you':
                 andme=1
             else:
                 andme=0
+            if x=='not':
+                negate='true'
+        for x in words:
             for n in positive:
                 if x==n or yn_check(words)==1:
-                userstate='good'
-                message="I'm glad."
-                if andme==1:
-                    message+=" And I'm doing pretty well, thanks."
-                else:
-                    newtopic='true'
-                    assign=random.randint(1,2)
-            elif x=='bad' or x=='awful' or x=='terrible' or x=='lame' or x=='boring' or yn_check(words)==-1:
-                userstate='bad'
-                message="Oh no! What's wrong?"
-                tot='userstate'
-            elif rep=='fine' or rep=='okay' or rep=='alright' or rep=='ok' or rep=='enough':
-                userstate='neutral'
-                message=""
-                if andme==1:
-                    message+=" And I'm doing pretty well, thanks."
-                else:
-                    newtopic='true'
-                    assign=random.randint(1,2)
-        else:
-            for x in words:
-                if x=='well' or x=='cool' or x=='good' or x=='great':
-                    message='Nice.'
-                    tot='none'
-                if x=='bad' or x=='not':
-                    message="Oh... that's too bad. How come?"
-                    tot='userstate'
+                    if negate=='false':
+                        userstate='good'
+                        message="I'm glad."
+                        if andme==1:
+                            message+=" And I'm doing pretty well, thanks."
+                            tot='none'
+                        else:
+                            newtopic='true'
+                            assign=random.randint(1,2)
+                    else:
+                        userstate='bad'
+                        message="Oh no! What's wrong?"
+                        tot='userstate'
                 else:
                     message=random.choice(neutrals)
                     tot='none'
+        for x in words:
+            for n in negative:
+                if x=='bad' or x=='awful' or x=='terrible' or x=='lame' or x=='boring' or x==n or yn_check(words)==-1:
+                    if negate=='false':
+                        userstate='bad'
+                        message="Oh no! What's wrong?"
+                        tot='userstate'
+                    else:
+                        userstate='neutral'
+                        message=""
+                        if andme==1:
+                            message+="Yeah, I'm about the same."
+                            tot='none'
+                        else:
+                            newtopic='true'
+                            assign=random.randint(1,2)
+                else:
+                    message=random.choice(neutrals)
+                    tot='none'
+        for x in words:
+            if x=='fine' or x=='okay' or x=='alright' or x=='ok' or x=='enough':
+                if negate=='false':
+                    userstate='neutral'
+                    message=""
+                    if andme==1:
+                        message+="Yeah, I'm about the same."
+                        tot='none'
+                    else:
+                        newtopic='true'
+                        assign=random.randint(1,2)
+                else:
+                    userstate='bad'
+                    message="Oh no! What's wrong?"
+                    tot='userstate'
     elif tot=='chocolate':
         for x in words:
             if x=='favorite' or x=='favourite':
