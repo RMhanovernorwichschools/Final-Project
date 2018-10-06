@@ -38,7 +38,7 @@ for x in range(6):
     print_b=''
     
     for x in range(0,sl):
-        if string[x]!='.' and string[x]!=',' and string[x]!=':'and string[x]!="'" and string[x]!='"' and string[x]!='?':
+        if string[x]!='.' and string[x]!=',' and string[x]!=':'and string[x]!="'" and string[x]!='"' and string[x]!='?' and string[x]!='!':
             characters.append(string[x])
         elif string[x]=='?':
             sl-=1
