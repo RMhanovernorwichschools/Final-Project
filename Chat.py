@@ -7,6 +7,7 @@ agrees=['Yeah.', "That's what I'd thought.", 'Uh huh.', 'Yeah... good.']
 
 adverbs=['pretty', 'fairly', 'very', 'extremely', 'sorta', 'kinda', 'mostly', 'rather', 'really']
 positive=['good', 'great', 'awesome', 'cool', 'amazing', 'superb']
+negative=['bad', 'terrible', 'awful', 'lame', 'horrible', 'poorly', 'badly']
 
 message='Hey! My name is January.'
 tot='none'
