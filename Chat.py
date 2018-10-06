@@ -118,6 +118,11 @@ for x in range(6):
                 tot='howareyou'
     elif tot=='howareyou':
         global rep
+        for x in words:
+            if x=='you':
+                andme=1
+            else:
+                andme=0
         if len(words)==1:
             rep=words[0]
         elif len(words)==2:
@@ -131,13 +136,19 @@ for x in range(6):
         if rep=='good' or rep=='great' or rep=='yeah' or rep=='yes' or rep=='yup' or rep=='yep' or yn_check(words)==1:
             userstate='good'
             message="I'm glad."
-            newtopic='true'
-            assign=random.randint(1,2)
+            if andme==1:
+                message+=" And I'm doing pretty well, thanks."
+            else:
+                newtopic='true'
+                assign=random.randint(1,2)
         elif rep=='fine' or rep=='okay' or rep=='alright' or rep=='ok' or rep=='enough':
             userstate='neutral'
             message=""
-            newtopic='true'
-            assign=random.randint(1,2)
+            if andme==1:
+                message+=" And I'm doing pretty well, thanks."
+            else:
+                newtopic='true'
+                assign=random.randint(1,2)
         elif rep=='bad' or rep=='awful' or rep=='terrible' or rep=='lame' or rep=='boring' or yn_check(words)==-1:
             userstate='bad'
             message="Oh no! What's wrong?"
