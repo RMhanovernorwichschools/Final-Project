@@ -38,7 +38,7 @@ for x in range(6):
     print_b=''
     
     for x in range(0,sl):
-        if string[x]!='.' and string[x]!=',' and string[x]!=':'and string[x]!="'" and string[x]!='"' and string[x]!='?' and string[x]!='!' and string[x]!='/' and string[x]!="\":
+        if string[x]!='.' and string[x]!=',' and string[x]!=':'and string[x]!="'" and string[x]!='"' and string[x]!='?' and string[x]!='!' and string[x]!='/':
             characters.append(string[x])
         elif string[x]=='?':
             sl-=1
@@ -88,8 +88,6 @@ for x in range(6):
         if words[1]=='okay' or words[1]=='fine' or words[1]=='cool':
             message='Yeah. Okay.'
             tot='none'
-            newtopic='true'
-            assign=random.randint(1,2)
         else:
             for x in positive:
                 if words[1]==x:
