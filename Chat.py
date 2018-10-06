@@ -6,7 +6,7 @@ neutrals=['Oh. Okay.', 'Huh.', 'Okay.', 'Hm.']
 agrees=['Yeah.', "That's what I'd thought.", 'Uh huh.', 'Yeah... good.']
 
 adverbs=['pretty', 'fairly', 'very', 'extremely', 'sorta', 'kinda', 'mostly', 'rather', 'really']
-psotive=['good', 'great', 'awesome', 'cool', 'amazing', 'superb']
+positive=['good', 'great', 'awesome', 'cool', 'amazing', 'superb']
 
 message='Hey! My name is January.'
 tot='none'
@@ -121,42 +121,32 @@ for x in range(6):
                 message+=' How about you?'
                 tot='howareyou'
     elif tot=='howareyou':
-        global rep
         for x in words:
             if x=='you':
                 andme=1
             else:
                 andme=0
-        if len(words)==1:
-            rep=words[0]
-        elif len(words)==2:
-            for x in adverbs:
-                if words[0]=='im' or words[0]==adverbs:
-                    rep=words[1]
-        elif len(words)==3:
-            for x in adverbs:
-                if words[0]=='im' and words[1]==x:
-                    rep=words[2]
-        if rep=='good' or rep=='great' or rep=='yeah' or rep=='yes' or rep=='yup' or rep=='yep' or yn_check(words)==1:
-            userstate='good'
-            message="I'm glad."
-            if andme==1:
-                message+=" And I'm doing pretty well, thanks."
-            else:
-                newtopic='true'
-                assign=random.randint(1,2)
-        elif rep=='fine' or rep=='okay' or rep=='alright' or rep=='ok' or rep=='enough':
-            userstate='neutral'
-            message=""
-            if andme==1:
-                message+=" And I'm doing pretty well, thanks."
-            else:
-                newtopic='true'
-                assign=random.randint(1,2)
-        elif rep=='bad' or rep=='awful' or rep=='terrible' or rep=='lame' or rep=='boring' or yn_check(words)==-1:
-            userstate='bad'
-            message="Oh no! What's wrong?"
-            tot='userstate'
+            for n in positive:
+                if x==n or yn_check(words)==1:
+                userstate='good'
+                message="I'm glad."
+                if andme==1:
+                    message+=" And I'm doing pretty well, thanks."
+                else:
+                    newtopic='true'
+                    assign=random.randint(1,2)
+            elif x=='bad' or x=='awful' or x=='terrible' or x=='lame' or x=='boring' or yn_check(words)==-1:
+                userstate='bad'
+                message="Oh no! What's wrong?"
+                tot='userstate'
+            elif rep=='fine' or rep=='okay' or rep=='alright' or rep=='ok' or rep=='enough':
+                userstate='neutral'
+                message=""
+                if andme==1:
+                    message+=" And I'm doing pretty well, thanks."
+                else:
+                    newtopic='true'
+                    assign=random.randint(1,2)
         else:
             for x in words:
                 if x=='well' or x=='cool' or x=='good' or x=='great':
