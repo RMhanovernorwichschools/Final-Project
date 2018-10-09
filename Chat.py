@@ -102,6 +102,12 @@ for x in range(6):
         else:
             message='Oh.'
     elif tot=='none':
+        if len(words)==1 and yn_check(words)==1:
+            messages=['Right.', '...', 'So...', 'Uh huh.']
+            message=random.choice(messages)
+        elif len(words)==1 and yn_check(words)==0:
+            messages=['No?', 'Uh... hm.', 'So... am I wrong then?', 'Huh. I guess not. Maybe.']
+            message=random.choice(messages)
         if words[0]=='hi' or words[0]=='hello' or words[0]=='greetings' or words[0]=='heya' or words[0]=='hiya' or words[0]=='howdy' or words[0]=='hey':
             message=random.choice(greetings)
             if random.randint(1,2)==1:
@@ -218,6 +224,22 @@ for x in range(6):
             message='Um... Can we maybe change the subject? Uh...'
             newtopic='true'
             assign=random.randint(1,2)
+    elif tot=='ghostworld':
+        unsure='false'
+        for x+1 in len(words)-1:
+            if words[x-1]=='dont' and words[x]=='know':
+                unsure='true'
+            elif words[x-1]=='not' and words[x]=='sure':
+                unsure='true'
+            elif words[x-1]=='no' and words[x]=='idea':
+                unsure='true'
+            elif words[x-1]=='dunno' or words[x-1]=='confused':
+                unsure='true'
+        if unsure='true':
+            messages=["I guess it's hard to imagine, isn't it?", "I guess I wouldn't really know how I would act either.", "That makes sense. It's a weird scenario."]
+            message=random.choice(messages)
+            tot='none'
+                
     else:
         message="Sorry... I'm confused."
         tot='none'
