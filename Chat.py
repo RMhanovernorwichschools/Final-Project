@@ -77,6 +77,7 @@ for x in range(6):
         words.append(word)
         
     print(words)
+    message1=message
     
     if len(words)==1 and words[0]=='ugh':
         message="Wait, what's wrong?"
@@ -239,7 +240,6 @@ for x in range(6):
             messages=["I guess it's hard to imagine, isn't it?", "I guess I wouldn't really know how I would act either.", "That makes sense. It's a weird scenario."]
             message=random.choice(messages)
             tot='none'
-                
     else:
         message="Sorry... I'm confused."
         tot='none'
@@ -251,6 +251,9 @@ for x in range(6):
             message=message+' Can I ask a random question? If everyone on earth disappeared except for you, what would you do?'
             tot='ghostworld'
         newtopic='false'
+
+    if message==message1:
+        print('topic check')
         
                 
 print(message)
