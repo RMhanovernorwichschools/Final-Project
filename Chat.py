@@ -80,11 +80,11 @@ for x in range(6):
     
     if len(words)==1 and words[0]=='ugh':
         message="Wait, what's wrong?"
-    if len(words)==1 and words[0]=='what':
+    elif len(words)==1 and words[0]=='what':
         messages=['Did I say something weird?', 'Was that strange of me to say?', 'Sorry, did I just say something off?']
         message=random.choice(messages)
         tot='self_failure'
-    if len(words)>1 and words[0]=='its':
+    elif len(words)>1 and words[0]=='its':
         if words[1]=='okay' or words[1]=='fine' or words[1]=='cool':
             message='Yeah. Okay.'
             tot='none'
@@ -94,31 +94,36 @@ for x in range(6):
                     message=random.choice(agrees)
                 else:
                     message='Hm... {0}?'.format(words[1])
-    if words[0]=='wait' or words[0]=='stop':
+    elif len(words)=1:
+        if words[0]=='okay' or words[0]=='fine' or words[0]=='sure' or words[0]=='right':
+            messages=['Yeah. Okay.', 'M-hm.', 'Right.', '...yeah.']
+            message=random.choice(messages)
+            tot='none'
+    elif words[0]=='wait' or words[0]=='stop':
         message="Sorry. I'm stopped."
         tot='none'
-    if tot=='confirmation':
+    elif tot=='confirmation':
         if yn_check(words)==1:
             message=random.choice(agrees)
         elif yn_check(words)==0:
             message=random.choice(neutrals)
         else:
             message='Oh.'
-    if len(words)==1 and yn_check(words)==1:
+    elif len(words)==1 and yn_check(words)==1:
         messages=['Right.', '...', 'So...', 'Uh huh.']
         message=random.choice(messages)
     elif len(words)==1 and yn_check(words)==-1:
         messages=['No?', 'Uh... hm.', 'So... am I wrong then?', 'Huh. I guess not. Maybe.']
         message=random.choice(messages)
-    if words[0]=='hi' or words[0]=='hello' or words[0]=='greetings' or words[0]=='heya' or words[0]=='hiya' or words[0]=='howdy' or words[0]=='hey':
+    elif words[0]=='hi' or words[0]=='hello' or words[0]=='greetings' or words[0]=='heya' or words[0]=='hiya' or words[0]=='howdy' or words[0]=='hey':
         message=random.choice(greetings)
         if random.randint(1,2)==1:
             tot="howareyou"
             message+=' '+random.choice(howyou)
-    if words[0]=='cool' or words[0]=='awesome' or words[0]=='great' or words[0]=='nice':
+    elif words[0]=='cool' or words[0]=='awesome' or words[0]=='great' or words[0]=='nice':
         agreement=['Probably.', 'Pretty {0}.'.format(words[0]), 'Fairly {0}.'.format(words[0]), 'Yeah, pretty {0}.'.format(words[0])]
         message=random.choice(agreement)
-    if words[0]=='how' or words[0]=='hows' and len(words)>2:
+    elif words[0]=='how' or words[0]=='hows' and len(words)>2:
         mash=words[1]+words[2]
         if mash=='areyou' or mash=='areya' or mash=='ru' or mash=='areu':
             message="I'm fine, thanks."
