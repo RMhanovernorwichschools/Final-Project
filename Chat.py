@@ -94,6 +94,9 @@ for x in range(6):
                     message=random.choice(agrees)
                 else:
                     message='Hm... {0}?'.format(words[1])
+    if words[0]=='wait' or words[0]=='stop':
+        message="Sorry. I'm stopped."
+        tot='none'
     elif tot=='confirmation':
         if yn_check(words)==1:
             message=random.choice(agrees)
@@ -105,7 +108,7 @@ for x in range(6):
         if len(words)==1 and yn_check(words)==1:
             messages=['Right.', '...', 'So...', 'Uh huh.']
             message=random.choice(messages)
-        elif len(words)==1 and yn_check(words)==0:
+        elif len(words)==1 and yn_check(words)==-1:
             messages=['No?', 'Uh... hm.', 'So... am I wrong then?', 'Huh. I guess not. Maybe.']
             message=random.choice(messages)
         if words[0]=='hi' or words[0]=='hello' or words[0]=='greetings' or words[0]=='heya' or words[0]=='hiya' or words[0]=='howdy' or words[0]=='hey':
@@ -205,6 +208,7 @@ for x in range(6):
                     tot='confirmation'
             elif yn_check(words)==1:
                 message='Good. I like chocolate, too.'
+                tot='none'
             elif yn_check(words)==0:
                 message=random.choice(neutrals)
                 tot='none'
@@ -226,16 +230,16 @@ for x in range(6):
             assign=random.randint(1,2)
     elif tot=='ghostworld':
         unsure='false'
-        for x+1 in range(len(words)-1):
-            if words[x-1]=='dont' and words[x]=='know':
+        for x in range(len(words)-1):
+            if words[x]=='dont' and words[x+1]=='know':
                 unsure='true'
-            elif words[x-1]=='not' and words[x]=='sure':
+            elif words[x]=='not' and words[x+1]=='sure':
                 unsure='true'
-            elif words[x-1]=='no' and words[x]=='idea':
+            elif words[x]=='no' and words[x+1]=='idea':
                 unsure='true'
-            elif words[x-1]=='dunno' or words[x-1]=='confused':
+            elif words[x]=='dunno' or words[x+1]=='confused':
                 unsure='true'
-        if unsure='true':
+        if unsure=='true':
             messages=["I guess it's hard to imagine, isn't it?", "I guess I wouldn't really know how I would act either.", "That makes sense. It's a weird scenario."]
             message=random.choice(messages)
             tot='none'
