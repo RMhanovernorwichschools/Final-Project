@@ -218,9 +218,9 @@ for x in range(6):
         for x in words:
             if x=='favorite' or x=='favourite':
                 message='My favorite kind is probably white chocolate.'
-            if x=='vanilla':
+            elif x=='vanilla':
                 message='I mean... vanilla is good too. Just not as good as chocolate.'
-            if x=='why':
+            elif x=='why':
                 y=random.randint(1,3)
                 if y==1:
                     message="I think I like white best because... I don't know. It's creamy?"
