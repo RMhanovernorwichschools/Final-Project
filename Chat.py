@@ -94,11 +94,10 @@ for x in range(6):
                     message=random.choice(agrees)
                 else:
                     message='Hm... {0}?'.format(words[1])
-    elif len(words)=1:
-        if words[0]=='okay' or words[0]=='fine' or words[0]=='sure' or words[0]=='right':
-            messages=['Yeah. Okay.', 'M-hm.', 'Right.', '...yeah.']
-            message=random.choice(messages)
-            tot='none'
+    elif tot=='none' and len(words)==1 and words[0]=='okay' or words[0]=='fine' or words[0]=='sure' or words[0]=='right':
+        messages=['Yeah. Okay.', 'M-hm.', 'Right.', '...yeah.']
+        message=random.choice(messages)
+        tot='none'
     elif words[0]=='wait' or words[0]=='stop':
         message="Sorry. I'm stopped."
         tot='none'
