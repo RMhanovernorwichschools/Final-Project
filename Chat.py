@@ -48,6 +48,7 @@ def topic_check(response):
         elif arp=='tired' or arp=='exhausted' or arp=='sleepy' or arp=='fatigued':
             mood='tired'
             mtw=arp
+    return (topic, ttw, mood, mtw)
 
 for x in range(6):
     question=0
@@ -278,7 +279,7 @@ for x in range(6):
         newtopic='false'
 
     if message==message1:
-        print('topic check')
+        print(topic_check(words))
         
                 
 print(message)
