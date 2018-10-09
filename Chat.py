@@ -226,7 +226,7 @@ for x in range(6):
             assign=random.randint(1,2)
     elif tot=='ghostworld':
         unsure='false'
-        for x+1 in len(words)-1:
+        for x+1 in range(len(words)-1):
             if words[x-1]=='dont' and words[x]=='know':
                 unsure='true'
             elif words[x-1]=='not' and words[x]=='sure':
