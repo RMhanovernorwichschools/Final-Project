@@ -24,6 +24,13 @@ def yn_check(response):
         else:
             return 0
 
+def topic_check(response):
+    for arp in response:
+        if arp=='school' or arp=='schoolwork' or arp=='homework':
+            topic='school'
+        elif arp=='dog' or arp=='dogs' or arp=='puppy':
+            topic='dog'
+
 for x in range(6):
     question=0
     string=list(input(message+'''
