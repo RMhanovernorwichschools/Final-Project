@@ -94,7 +94,7 @@ for x in range(6):
                     message=random.choice(agrees)
                 else:
                     message='Hm... {0}?'.format(words[1])
-    elif tot=='none' and len(words)==1 and words[0]=='okay' or words[0]=='fine' or words[0]=='sure' or words[0]=='right':
+    elif tot=='none' and len(words)==1 and (words[0]=='okay' or words[0]=='fine' or words[0]=='sure' or words[0]=='right'):
         messages=['Yeah. Okay.', 'M-hm.', 'Right.', '...yeah.']
         message=random.choice(messages)
         tot='none'
@@ -156,9 +156,6 @@ for x in range(6):
                         userstate='bad'
                         message="Oh no! What's wrong?"
                         tot='userstate'
-                else:
-                    message=random.choice(neutrals)
-                    tot='none'
         for x in words:
             for n in negative:
                 if x=='bad' or x=='awful' or x=='terrible' or x=='lame' or x=='boring' or x==n or yn_check(words)==-1:
@@ -175,9 +172,6 @@ for x in range(6):
                         else:
                             newtopic='true'
                             assign=random.randint(1,2)
-                else:
-                    message=random.choice(neutrals)
-                    tot='none'
         for x in words:
             if x=='fine' or x=='okay' or x=='alright' or x=='ok' or x=='enough':
                 if negate=='false':
