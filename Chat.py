@@ -28,8 +28,26 @@ def topic_check(response):
     for arp in response:
         if arp=='school' or arp=='schoolwork' or arp=='homework':
             topic='school'
+            ttw=arp
         elif arp=='dog' or arp=='dogs' or arp=='puppy':
             topic='dog'
+            ttw=arp
+        elif arp=='sunny' or arp=='cloudy' or arp=='windy' or arp=='wind' or arp=='winds' or arp=='rain' or arp=='rainy' or arp=='cloud' or arp=='clouds' or arp=='weather' or arp=='fog' or arp=='foggy' or arp=='mist' or arp=='misty':
+            topic='weather'
+            ttw=arp
+    for arp in response:
+        if question==1 and arp=='you':
+            mood='ques_jan'
+            mtw=''
+        elif arp=='awful' or arp=='stress' or arp=='stressful' or arp=='terrible' or arp=='miserable':
+            mood='unhappy'
+            mtw=arp
+        elif arp=='sad' or arp=='cry' or arp=='lonely':
+            mood='sad'
+            mtw=arp
+        elif arp=='tired' or arp=='exhausted' or arp=='sleepy' or arp=='fatigued':
+            mood='tired'
+            mtw=arp
 
 for x in range(6):
     question=0
