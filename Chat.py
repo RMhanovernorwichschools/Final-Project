@@ -120,7 +120,7 @@ for x in range(6):
         if random.randint(1,2)==1:
             tot="howareyou"
             message+=' '+random.choice(howyou)
-    elif words[0]=='cool' or words[0]=='awesome' or words[0]=='great' or words[0]=='nice':
+    elif tot='none' and (words[0]=='cool' or words[0]=='awesome' or words[0]=='great' or words[0]=='nice'):
         agreement=['Probably.', 'Pretty {0}.'.format(words[0]), 'Fairly {0}.'.format(words[0]), 'Yeah, pretty {0}.'.format(words[0])]
         message=random.choice(agreement)
     elif words[0]=='how' or words[0]=='hows' and len(words)>2:
