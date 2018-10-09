@@ -206,15 +206,14 @@ for x in range(6):
                 elif y==3:
                     message="Uh... Well, haven't you ever had any?"
                     tot='confirmation'
+            elif x=='you' and question==1:
+                message='I like chocolate. I really like chocolate.'
             elif yn_check(words)==1:
                 message='Good. I like chocolate, too.'
-                tot='none'
             elif yn_check(words)==0:
                 message=random.choice(neutrals)
-                tot='none'
             elif yn_check(words)==-1:
                 message='...oh.'
-                tot='none'
     elif tot=='self_failure':
         if yn_check(words)==1:
             messages=["Oh. I'm so sorry.", "Sorry, I didn't mean to.", "Okay. I'll try to not do it again."]
