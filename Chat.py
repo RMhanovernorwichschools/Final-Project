@@ -214,6 +214,9 @@ for x in range(6):
                     userstate='bad'
                     message="Oh no! What's wrong?"
                     tot='userstate'
+        if len(words)==1 and message==message1:
+            message='{0}, huh? How come?'.format(words[0])
+            tot='userstate'
     elif tot=='chocolate':
         for x in words:
             if x=='favorite' or x=='favourite':
