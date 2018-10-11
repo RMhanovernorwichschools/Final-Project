@@ -35,20 +35,31 @@ def topic_check(response):
         elif arp=='sunny' or arp=='cloudy' or arp=='windy' or arp=='wind' or arp=='winds' or arp=='rain' or arp=='rainy' or arp=='cloud' or arp=='clouds' or arp=='weather' or arp=='fog' or arp=='foggy' or arp=='mist' or arp=='misty':
             topic='weather'
             ttw=arp
+        else:
+            topic='none'
+            ttw=''
     for arp in response:
         if question==1 and arp=='you':
             mood='ques_jan'
+            tone='ques'
             mtw=''
         elif arp=='awful' or arp=='stress' or arp=='stressful' or arp=='terrible' or arp=='miserable':
             mood='unhappy'
+            tone='neg'
             mtw=arp
         elif arp=='sad' or arp=='cry' or arp=='lonely':
             mood='sad'
+            tone='neg'
             mtw=arp
         elif arp=='tired' or arp=='exhausted' or arp=='sleepy' or arp=='fatigued':
             mood='tired'
+            tone='neg'
             mtw=arp
-    return (topic, ttw, mood, mtw)
+        else:
+            mood='neutral'
+            tone='neutral'
+            mtw=''
+    return (topic, ttw, mood, tone, mtw)
 
 for x in range(6):
     question=0
@@ -158,6 +169,20 @@ for x in range(6):
         if userstate=='unknown':
             message+=' How about you?'
             tot='howareyou'
+    elif (len(words)>1 and words[0]=='im') or (len(words)>2 and words[0]=='i' and (words[1]=='feel' or words[1]=='am')):
+        for x in words:
+            for n in emotions:
+                if x==n:
+                    tot='userstate'
+                    if topic_check(words)[3]=='neg':
+                        messages=['{0}. That really sucks.'.format(n), 'Oh no, why {0}?'.format(n)]
+                        message=random.choice(messages)
+                    elif topic_check(words)[3]=='pos':
+                        messages=['{0}, huh? Well, good.'.format(n), 'Nice to hear.']
+                        message=random.choice(messages)
+                    else:
+                        messages=['{0}, huh?'.format(n), 'Why {0}?'.format(n)]
+                        message=random.choice(messages)
     elif tot=='howareyou':
         negate='false'
         for x in words:
