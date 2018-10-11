@@ -119,7 +119,7 @@ for x in range(6):
         words.append(word)
     
     for x in words:
-        if x=='huh' or x=='um' or x=='january':
+        if x=='huh' or x=='um' or x=='january' or x=='m' or x=='hm' or x=='jan' or x=='uh':
             words.remove(x)
         
     print(words)
