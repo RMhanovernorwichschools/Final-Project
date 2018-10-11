@@ -56,6 +56,10 @@ def topic_check(response):
             mood='tired'
             tone='neg'
             mtw=arp
+        elif arp=='excited' or arp=='anticipate' or arp=='forward' or arp=='anticipating' or arp=='eager':
+            mood='excited'
+            tone='pos'
+            mtw=arp
         else:
             mood='neutral'
             tone='neutral'
