@@ -123,7 +123,7 @@ for x in range(6):
         messages=['Did I say something weird?', 'Was that strange of me to say?', 'Sorry, did I just say something off?']
         message=random.choice(messages)
         tot='self_failure'
-    elif len(words)>1 and words[0]=='its':
+    elif len(words)>1 and (words[0]=='its' or words[0]=='thats'):
         if words[1]=='okay' or words[1]=='fine' or words[1]=='cool':
             message='Yeah. Okay.'
             tot='none'
