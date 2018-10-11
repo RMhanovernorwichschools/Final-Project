@@ -117,6 +117,10 @@ for x in range(6):
         for n in range(start, fin):
             word+=(characters[n])
         words.append(word)
+    
+    for x in words:
+        if x=='huh' or x=='um' or x=='january':
+            words.remove(x)
         
     print(words)
     message1=message
