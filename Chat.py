@@ -307,7 +307,7 @@ for x in range(6):
             elif words[x]=='no' and words[x+1]=='idea':
                 unsure='true'
         for x in words:
-            if words[x]=='dunno' or words[x]=='confused':
+            if x=='dunno' or x=='confused':
                 unsure='true'
         if unsure=='true':
             messages=["I guess it's hard to imagine, isn't it?", "I guess I wouldn't really know how I would act either.", "That makes sense. It's a weird scenario."]
