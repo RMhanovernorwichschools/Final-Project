@@ -208,7 +208,7 @@ for x in range(6):
                     else:
                         messages=['{0}, huh?'.format(n), 'Why {0}?'.format(n)]
                         message=random.choice(messages)
-    elif question=1:
+    elif question==1 and tot=='none':
         for n in words:
             for x in emotions:
                 if n==x:
