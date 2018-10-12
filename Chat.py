@@ -71,6 +71,16 @@ def subjectcheck(response):
         elif arp=='me' or arp=='my' or arp=='i' or arp=='im' or arp=='mine':
             return 'user'
 
+def capitalize(word):
+    final=''
+    work=list(word)
+    for x in len(lowercase):
+        if work[0]==lowercase[x]:
+            work[0]=uppercase[x]
+    for x in len(word):
+        final+=work[x]
+    return final
+
 for x in range(6):
     question=0
     string=list(input(message+'''
