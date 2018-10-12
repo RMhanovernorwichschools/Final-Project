@@ -209,7 +209,7 @@ for x in range(6):
             for n in emotions:
                 if x==n:
                     tot='userstate'
-                    capn==capitalize(n)
+                    capn=capitalize(n)
                     if topic_check(words)[3]=='neg':
                         messages=['{0}. That really sucks.'.format(capn), 'Oh no, why {0}?'.format(n)]
                         message=random.choice(messages)
