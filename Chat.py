@@ -128,7 +128,7 @@ for x in range(6):
     
     if len(words)==1 and words[0]=='a4424b':
         messages=['''Wait, I don't understand.''', 'Huh?', 'Yep.']
-        message=random.choice(message)
+        message=random.choice(messages)
     elif len(words)==1 and words[0]=='ugh':
         message="Wait, what's wrong?"
     elif len(words)>1 and words[0]=='you' or words[0]=='youre':
