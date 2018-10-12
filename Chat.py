@@ -62,6 +62,10 @@ def topic_check(response):
             mood='excited'
             tone='pos'
             mtw=arp
+        elif arp=='happy' or arp=='happiness' or arp=='joy' or arp=='joyous' or arp=='joyful' or arp=='pleasing' or arp=='pleasant':
+            mood='happy'
+            tone='pos'
+            mtw=arp
     return (topic, ttw, mood, tone, mtw)
     
 def subjectcheck(response):
