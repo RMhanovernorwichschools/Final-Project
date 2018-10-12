@@ -1,7 +1,7 @@
 import random
 
 greetings=['Hey.', 'Hi!']
-howyou=['How are you?', "How's it going", "Is everything going well?"]
+howyou=['How are you?', "How's it going?", "Is everything going well?"]
 neutrals=['Oh. Okay.', 'Huh.', 'Okay.', 'Hm.']
 agrees=['Yeah.', "That's what I'd thought.", 'Uh huh.', 'Yeah... good.']
 
@@ -18,7 +18,7 @@ newtopic='false'
 
 def yn_check(response):
     for arp in response:
-        if arp=='yes' or arp=='yeah' or arp=='yup' or arp=='yep' or arp=='ya' or arp=='uh-huh' or arp=='of':
+        if arp=='yes' or arp=='yeah' or arp=='yup' or arp=='yep' or arp=='ya' or arp=='uh-huh' or arp=='of' or arp=='quite':
             return 1
         elif arp=='no' or arp=='nah' or arp=='nope'or arp=='not':
             return -1
@@ -297,8 +297,9 @@ for x in range(6):
                 unsure='true'
             elif words[x]=='no' and words[x+1]=='idea':
                 unsure='true'
-            elif words[x]=='dunno' or words[x+1]=='confused':
-                unsure='true'
+        for x in words:
+            if words[x]=='dunno' or words[x]=='confused':
+            unsure='true'
         if unsure=='true':
             messages=["I guess it's hard to imagine, isn't it?", "I guess I wouldn't really know how I would act either.", "That makes sense. It's a weird scenario."]
             message=random.choice(messages)
