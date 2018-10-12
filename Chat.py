@@ -343,7 +343,7 @@ for x in range(6):
             messages=["I guess it's hard to imagine, isn't it?", "I guess I wouldn't really know how I would act either.", "That makes sense. It's a weird scenario."]
             message=random.choice(messages)
             tot='none'
-    elif topic_check[3]=='neg':
+    elif topic_check(words)[3]=='neg':
         messages=["I don't think it's so bad.","Is there any way I could help?", "I wish things were easier.", "I guess we should be optimistic, right?"]
         message=random.choice(messages)
     else:
