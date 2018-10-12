@@ -63,6 +63,13 @@ def topic_check(response):
             tone='pos'
             mtw=arp
     return (topic, ttw, mood, tone, mtw)
+    
+def subjectcheck(response):
+    for arp in response:
+        if arp=='you' or arp=='your' or arp=='youre' or arp=='u' or arp=='yur':
+            return 'jan'
+        elif arp=='me' or arp=='my' or arp=='i' or arp=='im' or arp=='mine':
+            return 'user'
 
 for x in range(6):
     question=0
