@@ -209,14 +209,15 @@ for x in range(6):
             for n in emotions:
                 if x==n:
                     tot='userstate'
+                    capn==capitalize(n)
                     if topic_check(words)[3]=='neg':
-                        messages=['{0}. That really sucks.'.format(n), 'Oh no, why {0}?'.format(n)]
+                        messages=['{0}. That really sucks.'.format(capn), 'Oh no, why {0}?'.format(n)]
                         message=random.choice(messages)
                     elif topic_check(words)[3]=='pos':
-                        messages=['{0}, huh? Well, good.'.format(n), 'Nice to hear.']
+                        messages=['{0}, huh? Well, good.'.format(capn), 'Nice to hear.']
                         message=random.choice(messages)
                     else:
-                        messages=['{0}, huh?'.format(n), 'Why {0}?'.format(n)]
+                        messages=['{0}, huh?'.format(capn), 'Why {0}?'.format(n)]
                         message=random.choice(messages)
     elif question==1 and tot=='none':
         for n in words:
