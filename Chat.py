@@ -125,7 +125,7 @@ for x in range(6):
     
     if len(words)==1 and words[0]=='ugh':
         message="Wait, what's wrong?"
-    elif len(words)>1 and words[0]=='you':
+    elif len(words)>1 and words[0]=='you' or words[0]=='youre':
         for x in words:
             for n in positive:
                 if x==n:
