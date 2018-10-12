@@ -26,6 +26,11 @@ def yn_check(response):
             return 0
 
 def topic_check(response):
+    topic='none'
+    ttw=''
+    mood='neutral'
+    tone='neutral'
+    mtw=''
     for arp in response:
         if arp=='school' or arp=='schoolwork' or arp=='homework':
             topic='school'
@@ -36,9 +41,6 @@ def topic_check(response):
         elif arp=='sunny' or arp=='cloudy' or arp=='windy' or arp=='wind' or arp=='winds' or arp=='rain' or arp=='rainy' or arp=='cloud' or arp=='clouds' or arp=='weather' or arp=='fog' or arp=='foggy' or arp=='mist' or arp=='misty':
             topic='weather'
             ttw=arp
-        else:
-            topic='none'
-            ttw=''
     for arp in response:
         if question==1 and arp=='you':
             mood='ques_jan'
@@ -60,10 +62,6 @@ def topic_check(response):
             mood='excited'
             tone='pos'
             mtw=arp
-        else:
-            mood='neutral'
-            tone='neutral'
-            mtw=''
     return (topic, ttw, mood, tone, mtw)
 
 for x in range(6):
