@@ -74,10 +74,10 @@ def subjectcheck(response):
 def capitalize(word):
     final=''
     work=list(word)
-    for x in len(lowercase):
+    for x in range(len(lowercase)):
         if work[0]==lowercase[x]:
             work[0]=uppercase[x]
-    for x in len(word):
+    for x in range(len(word)):
         final+=work[x]
     return final
 
