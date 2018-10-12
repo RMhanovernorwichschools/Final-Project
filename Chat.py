@@ -297,7 +297,7 @@ for x in range(6):
                 unsure='true'
         for x in words:
             if words[x]=='dunno' or words[x]=='confused':
-            unsure='true'
+                unsure='true'
         if unsure=='true':
             messages=["I guess it's hard to imagine, isn't it?", "I guess I wouldn't really know how I would act either.", "That makes sense. It's a weird scenario."]
             message=random.choice(messages)
