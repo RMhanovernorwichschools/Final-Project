@@ -119,11 +119,17 @@ for x in range(6):
     for x in words:
         if x=='huh' or x=='um' or x=='january' or x=='m' or x=='hm' or x=='jan' or x=='uh':
             words.remove(x)
+            
+    if len(words)==0:
+        words.append('a4424b')
         
     print(words)
     message1=message
     
-    if len(words)==1 and words[0]=='ugh':
+    if len(words)==1 and words[0]=='a4424b':
+        messages=['''Wait, I don't understand.''', 'Huh?', 'Yep.']
+        message=random.choice(message)
+    elif len(words)==1 and words[0]=='ugh':
         message="Wait, what's wrong?"
     elif len(words)>1 and words[0]=='you' or words[0]=='youre':
         for x in words:
