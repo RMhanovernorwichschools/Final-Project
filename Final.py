@@ -71,7 +71,7 @@ class Member(Sprite):
     def hit(self, dam):
         self.hp-=dam
         if self.hp<=0:
-            self.state='Dead'
+            self.state='dead'
         print(self.hp)
         
     def step(self):
@@ -83,10 +83,8 @@ class Member(Sprite):
                 self.state='idle'
             elif self.enemy!="None" and self.x<self.targetx+30 and self.x>self.targetx-30 and self.y<self.targety+30 and self.y>self.targety-30:
                 self.v=0
+                print('ready')
                 self.state='ready'
-            elif self.x<self.targetx+28 and self.x>self.targetx-28 and self.y<self.targety+28 and self.y>self.targety-28:
-                self.v=3
-                self.state='motion'
             else:
                 self.state='motion'
                 self.v+=0.3
