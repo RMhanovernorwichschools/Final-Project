@@ -84,6 +84,7 @@ class Member(Sprite):
             elif self.enemy!="None" and self.x<self.targetx+60 and self.x>self.targetx-60 and self.y<self.targety+60 and self.y>self.targety-60:
                 self.v=0
                 self.state='ready'
+                print(self.state)
             else:
                 self.state='motion'
                 self.select_enemy()
@@ -115,15 +116,14 @@ class Member(Sprite):
                 if d1<d2:
                     self.targetx=spot.x +5
                     self.targety=spot.y +5
-                    d2=d1
-                    print(self.targetx)
-                    print(self.targety)
             self.state='attackmodemotion'
         elif self.state=='attackmodemotion':
             if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
                 self.v=0
                 self.state='attackmodefire'
             else: 
+                self.x=self.targetx
+                self.y=self.targety
                 self.v+=0.3
                 if self.v>3:
                     self.v=3
@@ -146,7 +146,7 @@ class Member(Sprite):
         
     def select_enemy(self):
         self.enemy="None"
-        d2=66**2
+        d2=100**2
         for enemy in myapp.getSpritesbyClass(Enemy):
             y=enemy.y-self.y
             x=enemy.x-self.x
