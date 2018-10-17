@@ -115,6 +115,7 @@ class Member(Sprite):
                 if d1<d2:
                     self.targetx=spot.x +5
                     self.targety=spot.y +5
+                    print('found one')
             self.state='attackmodemotion'
         elif self.state=='attackmodemotion':
             if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
