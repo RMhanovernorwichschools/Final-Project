@@ -87,6 +87,7 @@ class Member(Sprite):
                 self.state='ready'
             else:
                 self.state='motion'
+                self.select_enemy
                 self.v+=0.3
                 if self.v>3:
                     self.v=3
