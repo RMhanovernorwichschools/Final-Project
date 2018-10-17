@@ -7,10 +7,11 @@ noline = LineStyle(0, black)
 white = Color(0xFFFFFF, 1)
 
 class Cover(Sprite):
-    asset=ImageAsset('images/Rocks.png', Frame(0,0,190,180), 3, 'vertical')
-    def __init__(self, position):
-        super().__init__(Cover.asset, position, frame)
-        self.frame=frame
+    asset=ImageAsset('images/Rocks.png', Frame(0,0,195,190), 3, 'vertical')
+    def __init__(self, position, frame):
+        super().__init__(Cover.asset, position)
+        self.setImage(frame)
+        self.scale=0.4
 
 class Bullet(Sprite):
     asset=CircleAsset(3, noline, white)
@@ -107,6 +108,38 @@ class Member(Sprite):
                 else:
                     self.f=6
             self.setImage(self.f)
+        elif self.state=='ready':
+            d2=999999999999999999999999
+            for spot in myapp.getSpritesbyClass(Cover):
+                y=spot.y-self.y
+                x=spot.x-self.x
+                d1=x**2+y**2
+                if d1<d2:
+                    self.targetx=spot.x +5
+                    self.targety=spot.y +5
+            self.state='attackmodemotion'
+        elif self.state=='attackmodemotion':
+            if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
+                self.v=0
+                self.state='attackmodefire'
+            else: 
+                self.x+=(self.v*cos(self.turn))
+                self.y+=(self.v*sin(self.turn))
+                self.v+=0.3
+                if self.v>3:
+                    self.v=3
+                if cos(self.turn)>=0:
+                    self.f+=1
+                    if self.f>1:
+                        self.f=0
+                elif cos(self.turn)<0:
+                    if self.f==6:
+                        self.f=7
+                    else:
+                        self.f=6
+                self.setImage(self.f)
+        elif self.state=='attackmodefire':
+            print('BANG!')
         elif self.state=='dead':
             self.setImage(3)
         
@@ -212,7 +245,8 @@ class Game(App):
         am.scale=2.2
         b=Enemy()
         a=Member(1,1,1,1,200, (500,0))
-        c=Cover((100,100))
+        c=Cover((100,100), 0)
+        c1=Cover((500,200), 1)
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
