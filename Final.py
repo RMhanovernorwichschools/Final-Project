@@ -117,7 +117,7 @@ class Member(Sprite):
                     self.targety=spot.y +5
             self.state='attackmodemotion'
         elif self.state=='attackmodemotion':
-            if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
+            if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
                 self.v=0
                 self.state='attackmodefire'
             else: 
