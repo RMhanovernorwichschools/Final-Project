@@ -6,8 +6,8 @@ black = Color(0, 0.3)
 noline = LineStyle(0, black)
 white = Color(0xFFFFFF, 1)
 
-class Cove(Sprite):
-    asset=ImageAsset('images/Rocks.png', Frame(0,0,100,180), 3, 'vertical')
+class Cover(Sprite):
+    asset=ImageAsset('images/Rocks.png', Frame(0,0,180,180), 3, 'vertical')
     def __init__(self, position):
         super().__init__(Cove.asset, position)
 
@@ -211,7 +211,7 @@ class Game(App):
         am.scale=2.2
         b=Enemy()
         a=Member(1,1,1,1,200, (500,0))
-        c=Cove((100,100))
+        c=Cover((100,100))
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
