@@ -81,7 +81,7 @@ class Member(Sprite):
             if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
                 self.v=0
                 self.state='idle'
-            elif self.enemy!="None" and self.x<self.targetx+30 and self.x>self.targetx-30 and self.y<self.targety+30 and self.y>self.targety-30:
+            elif self.enemy!="None" and self.x<self.targetx+60 and self.x>self.targetx-60 and self.y<self.targety+60 and self.y>self.targety-60:
                 self.v=0
                 print('ready')
                 self.state='ready'
