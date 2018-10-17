@@ -121,8 +121,6 @@ class Member(Sprite):
                 self.v=0
                 self.state='attackmodefire'
             else: 
-                self.x+=(self.v*cos(self.turn))
-                self.y+=(self.v*sin(self.turn))
                 self.v+=0.3
                 if self.v>3:
                     self.v=3
@@ -135,6 +133,8 @@ class Member(Sprite):
                         self.f=7
                     else:
                         self.f=6
+                self.x+=(self.v*cos(self.turn))
+                self.y+=(self.v*sin(self.turn))
                 self.setImage(self.f)
         elif self.state=='attackmodefire':
             print('BANG!')
