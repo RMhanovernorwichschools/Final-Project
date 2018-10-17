@@ -62,8 +62,8 @@ class Member(Sprite):
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
         
     def direct(self, event):
-        self.targetx=event.x-30
-        self.targety=event.y-30
+        self.targetx=event.x-35
+        self.targety=event.y-28
         self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
         if self.targetx<self.x+20:
             self.turn+=radians(180)
@@ -119,6 +119,7 @@ class Member(Sprite):
                     self.targety=spot.y +5
             self.state='attackmodemotion'
         elif self.state=='attackmodemotion':
+            print(self.state)
             if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
                 self.v=0
                 self.state='attackmodefire'
