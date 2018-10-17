@@ -75,8 +75,6 @@ class Member(Sprite):
         print(self.hp)
         
     def step(self):
-        if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
-            self.v=0
         if self.state=="idle" or self.state=='motion':
             self.x+=(self.v*cos(self.turn))
             self.y+=(self.v*sin(self.turn))
