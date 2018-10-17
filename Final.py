@@ -83,11 +83,10 @@ class Member(Sprite):
                 self.state='idle'
             elif self.enemy!="None" and self.x<self.targetx+60 and self.x>self.targetx-60 and self.y<self.targety+60 and self.y>self.targety-60:
                 self.v=0
-                print('ready')
                 self.state='ready'
             else:
                 self.state='motion'
-                self.select_enemy
+                self.select_enemy()
                 self.v+=0.3
                 if self.v>3:
                     self.v=3
@@ -118,7 +117,6 @@ class Member(Sprite):
                     self.targety=spot.y +5
             self.state='attackmodemotion'
         elif self.state=='attackmodemotion':
-            print(self.state)
             if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
                 self.v=0
                 self.state='attackmodefire'
