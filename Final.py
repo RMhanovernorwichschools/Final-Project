@@ -116,14 +116,10 @@ class Member(Sprite):
                 if d1<d2:
                     self.targetx=spot.x +5
                     self.targety=spot.y +5
-            self.state='attackmodemotion'
-        elif self.state=='attackmodemotion':
             if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
                 self.v=0
                 self.state='attackmodefire'
             else: 
-                self.x=self.targetx
-                self.y=self.targety
                 self.v+=0.3
                 if self.v>3:
                     self.v=3
