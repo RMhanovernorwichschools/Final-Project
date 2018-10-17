@@ -116,6 +116,8 @@ class Member(Sprite):
                     self.targetx=spot.x +5
                     self.targety=spot.y +5
                     d2=d1
+                    print(self.targetx)
+                    print(self.targety)
             self.state='attackmodemotion'
         elif self.state=='attackmodemotion':
             if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
