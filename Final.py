@@ -7,9 +7,10 @@ noline = LineStyle(0, black)
 white = Color(0xFFFFFF, 1)
 
 class Cover(Sprite):
-    asset=ImageAsset('images/Rocks.png', Frame(0,0,180,180), 3, 'vertical')
+    asset=ImageAsset('images/Rocks.png', Frame(0,0,190,180), 3, 'vertical')
     def __init__(self, position):
-        super().__init__(Cove.asset, position)
+        super().__init__(Cover.asset, position, frame)
+        self.frame=frame
 
 class Bullet(Sprite):
     asset=CircleAsset(3, noline, white)
