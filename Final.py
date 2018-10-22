@@ -33,6 +33,11 @@ class Bullet(Sprite):
                 if self.x>char.x+21 and self.x<char.x+57 and self.y>char.y+6 and self.y<char.y+63:
                     char.hit(self.damage)
                     self.source='None'
+        elif self.source=='M':
+            for char in myapp.getSpritesbyClass(Enemy):
+                if self.x>char.x+21 and self.x<char.x+36 and self.y>char.y+6 and self.y<char.y+57:
+                    char.hit(self.damage)
+                    self.source='None'
         if self.x<myapp.width and self.y<myapp.height and self.y>0 and self.x>0:
             self.x+=(6*cos(self.rotation))
             self.y+=(6*sin(self.rotation))
@@ -58,6 +63,7 @@ class Member(Sprite):
         self.f=0
         self.enemy="None"
         self.state='unprep'
+        self.wait=time.time()
         Game.listenMouseEvent('click', self.direct)
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
         
@@ -65,7 +71,7 @@ class Member(Sprite):
         self.targetx=event.x-35
         self.targety=event.y-28
         self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
-        if self.targetx<self.x+10:
+        if self.targetx<self.x:
             self.turn+=radians(180)
             
     def hit(self, dam):
@@ -77,7 +83,7 @@ class Member(Sprite):
     def step(self):
         if self.targetx!=self.x:
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
-            if self.targetx<self.x+10:
+            if self.targetx<self.x:
                 self.turn+=radians(180)
         self.x+=(self.v*cos(self.turn))
         self.y+=(self.v*sin(self.turn))
@@ -88,13 +94,28 @@ class Member(Sprite):
         elif self.x<self.targetx+3 and self.x>self.targetx-3 and self.y<self.targety+3 and self.y>self.targety-3 and self.state=='hiding':
             self.v=0
             self.state='hidden'
+            self.wait=time.time()
         elif self.state=="attackmode" and self.x<self.targetx+60 and self.x>self.targetx-60 and self.y<self.targety+60 and self.y>self.targety-60:
             self.v=0
             self.state='ready'
         elif self.state=='hidden':
             self.v=0
             self.f=4
-            print('BANG!')
+            self.select_enemy()
+            if self.enemy=='None':
+                self.state='unprep'
+            else:
+                if self.targetx!=self.x:
+                    self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
+                    if self.targetx<self.x:
+                    self.turn+=radians(180)
+                if time.time()>self.wait:
+                    Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'M')
+                    self.wait=time.time()+self.caution
+                if sin(self.turn)<0:
+                    self.f=2
+                else:
+                    self.f=5
         else:
             if self.state=='unprep':
                 self.select_enemy()
@@ -224,6 +245,12 @@ class Enemy(Sprite):
                     self.targety=enemy.y
                     d2=d1
                     self.v=1
+                    
+    def hit(self, dam):
+        self.hp-=dam
+        if self.hp<=0:
+            self.state='dead'
+        print('Enemy {0}.'.format(self.hp))
 
 class Game(App):
     def __init__(self):
@@ -234,7 +261,7 @@ class Game(App):
         c=Cover((100,100), 0)
         c1=Cover((500,200), 1)
         b=Enemy()
-        a=Member(1,1,1,1,200, (500,0))
+        a=Member(1,1.5,1,1,200, (500,0))
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
