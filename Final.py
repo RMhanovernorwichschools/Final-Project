@@ -79,11 +79,6 @@ class Member(Sprite):
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
             if self.targetx<self.x+20:
                 self.turn+=radians(180)
-        else:
-            if self.targety>self.y:
-                self.turn=radians(90)
-            else:
-                self.turn=radians(270)
         self.x+=(self.v*cos(self.turn))
         self.y+=(self.v*sin(self.turn))
         if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
@@ -92,11 +87,11 @@ class Member(Sprite):
             self.select_enemy()
         elif self.x<self.targetx+3 and self.x>self.targetx-3 and self.y<self.targety+3 and self.y>self.targety-3 and self.state=='ready':
             self.v=0
-            self.state='fire'
+            self.state='hidden'
         elif self.state=="attackmode" and self.x<self.targetx+60 and self.x>self.targetx-60 and self.y<self.targety+60 and self.y>self.targety-60:
             self.v=0
             self.state='ready'
-        elif self.state=='fire':
+        elif self.state=='hidden':
             self.v=0
             self.f=4
             print('BANG!')
@@ -222,7 +217,7 @@ class Enemy(Sprite):
                 y=enemy.y-self.y
                 x=enemy.x-self.x
                 d1=x**2+y**2
-                if d1<d2:
+                if d1<d2 and enemy.state!='hidden':
                     self.enemy=enemy
                     self.targetx=enemy.x
                     self.targety=enemy.y
