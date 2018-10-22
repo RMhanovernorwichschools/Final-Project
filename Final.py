@@ -110,12 +110,19 @@ class Member(Sprite):
                     if self.targetx<self.x:
                         self.turn+=radians(180)
                 if time.time()>self.wait:
-                    Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'M')
-                    self.wait=time.time()+self.caution
+                    self.state='firing'
+        elif self.state=='firing':
+            if time.time()>self.wait:
+                Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'M')
+                self.wait=time.time()+self.caution
                 if sin(self.turn)<0:
                     self.f=2
                 else:
                     self.f=5
+            else:
+                self.state='hidden'
+        elif self.state=='dead':
+            self.f=3
         else:
             if self.state=='unprep':
                 self.select_enemy()
@@ -138,9 +145,7 @@ class Member(Sprite):
                     self.targety=spot.y +5
                 d2=d1
             self.state='hiding'
-        if self.state=='dead':
-            self.f=3
-        elif self.v>0 and cos(self.turn)>=0:
+        if self.v>0 and cos(self.turn)>=0:
             self.f+=1
             if self.f>1:
                 self.f=0
@@ -160,8 +165,9 @@ class Member(Sprite):
             d1=x**2+y**2
             if d1<d2:
                 self.enemy=enemy
-            if self.enemy!="None" and self.state=='unprep':
-                self.state='attackmode'
+            if self.enemy!="None":
+                if self.state=='unprep':
+                    self.state='attackmode'
                 self.targetx=enemy.x 
                 self.targety=enemy.y
 
@@ -239,7 +245,7 @@ class Enemy(Sprite):
                 y=enemy.y-self.y
                 x=enemy.x-self.x
                 d1=x**2+y**2
-                if d1<d2 and enemy.state!='hidden':
+                if d1<d2 and enemy.state!='hidden' and enemy.state!='dead':
                     self.enemy=enemy
                     self.targetx=enemy.x
                     self.targety=enemy.y
