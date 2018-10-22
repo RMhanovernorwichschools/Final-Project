@@ -65,7 +65,7 @@ class Member(Sprite):
         self.targetx=event.x-35
         self.targety=event.y-28
         self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
-        if self.targetx<self.x+20:
+        if self.targetx<self.x+10:
             self.turn+=radians(180)
             
     def hit(self, dam):
@@ -77,7 +77,7 @@ class Member(Sprite):
     def step(self):
         if self.targetx!=self.x:
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
-            if self.targetx<self.x+20:
+            if self.targetx<self.x+10:
                 self.turn+=radians(180)
         self.x+=(self.v*cos(self.turn))
         self.y+=(self.v*sin(self.turn))
@@ -85,7 +85,7 @@ class Member(Sprite):
             self.v=0
             self.state='unprep'
             self.select_enemy()
-        elif self.x<self.targetx+3 and self.x>self.targetx-3 and self.y<self.targety+3 and self.y>self.targety-3 and self.state=='ready':
+        elif self.x<self.targetx+3 and self.x>self.targetx-3 and self.y<self.targety+3 and self.y>self.targety-3 and self.state=='hiding':
             self.v=0
             self.state='hidden'
         elif self.state=="attackmode" and self.x<self.targetx+60 and self.x>self.targetx-60 and self.y<self.targety+60 and self.y>self.targety-60:
@@ -116,6 +116,7 @@ class Member(Sprite):
                     self.targetx=spot.x +5
                     self.targety=spot.y +5
                 d2=d1
+            self.state='hiding'
         if self.state=='dead':
             self.f=3
         elif self.v>0 and cos(self.turn)>=0:
