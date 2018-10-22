@@ -163,7 +163,7 @@ class Member(Sprite):
             y=enemy.y-self.y
             x=enemy.x-self.x
             d1=x**2+y**2
-            if d1<d2:
+            if d1<d2 and enemy.state!='dead':
                 self.enemy=enemy
             if self.enemy!="None":
                 if self.state=='unprep':
@@ -198,7 +198,7 @@ class Enemy(Sprite):
                 self.state='Seeking'
             else:
                 self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
-                if time.time()>self.wait:
+                if time.time()>self.wait and self.enemy.state!='hidden':
                     Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'E')
                     self.wait=time.time()+2
                 if sin(self.turn)<0:
@@ -245,7 +245,7 @@ class Enemy(Sprite):
                 y=enemy.y-self.y
                 x=enemy.x-self.x
                 d1=x**2+y**2
-                if d1<d2 and enemy.state!='hidden' and enemy.state!='dead':
+                if d1<d2 and enemy.state!='dead':
                     self.enemy=enemy
                     self.targetx=enemy.x
                     self.targety=enemy.y
