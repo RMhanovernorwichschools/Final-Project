@@ -108,7 +108,7 @@ class Member(Sprite):
                 if self.targetx!=self.x:
                     self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
                     if self.targetx<self.x:
-                    self.turn+=radians(180)
+                        self.turn+=radians(180)
                 if time.time()>self.wait:
                     Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'M')
                     self.wait=time.time()+self.caution
@@ -160,7 +160,7 @@ class Member(Sprite):
             d1=x**2+y**2
             if d1<d2:
                 self.enemy=enemy
-            if self.enemy!="None":
+            if self.enemy!="None" and self.state=='unprep':
                 self.state='attackmode'
                 self.targetx=enemy.x 
                 self.targety=enemy.y
@@ -261,7 +261,7 @@ class Game(App):
         c=Cover((100,100), 0)
         c1=Cover((500,200), 1)
         b=Enemy()
-        a=Member(1,1.5,1,1,200, (500,0))
+        a=Member(10,1.5,1,1,200, (500,0))
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
