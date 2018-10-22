@@ -79,18 +79,27 @@ class Member(Sprite):
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
             if self.targetx<self.x+20:
                 self.turn+=radians(180)
+        else:
+            if self.targety>self.y:
+                self.turn=radians(90)
+            else:
+                self.turn=radians(270)
         self.x+=(self.v*cos(self.turn))
         self.y+=(self.v*sin(self.turn))
         if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
             self.v=0
             self.state='unprep'
-        elif self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.state=='ready':
+            self.select_enemy()
+        elif self.x<self.targetx+3 and self.x>self.targetx-3 and self.y<self.targety+3 and self.y>self.targety-3 and self.state=='ready':
             self.v=0
-            self.state='attackmodefire'
+            self.state='fire'
         elif self.state=="attackmode" and self.x<self.targetx+60 and self.x>self.targetx-60 and self.y<self.targety+60 and self.y>self.targety-60:
             self.v=0
             self.state='ready'
-            print(self.state)
+        elif self.state=='fire':
+            self.v=0
+            self.f=4
+            print('BANG!')
         else:
             if self.state=='unprep':
                 self.select_enemy()
@@ -111,8 +120,7 @@ class Member(Sprite):
                 if d1<d2:
                     self.targetx=spot.x +5
                     self.targety=spot.y +5
-        elif self.state=='attackmodefire':
-            print('BANG!')
+                d2=d1
         if self.state=='dead':
             self.f=3
         elif self.v>0 and cos(self.turn)>=0:
@@ -227,10 +235,10 @@ class Game(App):
         m = ImageAsset("images/map_base.jpg")
         am=Sprite(m)
         am.scale=2.2
-        b=Enemy()
-        a=Member(1,1,1,1,200, (500,0))
         c=Cover((100,100), 0)
         c1=Cover((500,200), 1)
+        b=Enemy()
+        a=Member(1,1,1,1,200, (500,0))
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
