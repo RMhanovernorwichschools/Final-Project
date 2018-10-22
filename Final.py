@@ -57,7 +57,7 @@ class Member(Sprite):
         self.v=1
         self.f=0
         self.enemy="None"
-        self.state='idle'
+        self.state='unprep'
         Game.listenMouseEvent('click', self.direct)
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
         
@@ -75,39 +75,34 @@ class Member(Sprite):
         print(self.hp)
         
     def step(self):
-        if self.state=="idle" or self.state=='motion':
-            self.x+=(self.v*cos(self.turn))
-            self.y+=(self.v*sin(self.turn))
-            if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
+        if self.targetx!=self.x:
+            self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
+            if self.targetx<self.x+20:
+                self.turn+=radians(180)
+        self.x+=(self.v*cos(self.turn))
+        self.y+=(self.v*sin(self.turn))
+        if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
+            self.v=0
+            self.state='unprep'
+        elif self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.state=='ready':
+            self.v=0
+            self.state='attackmodefire'
+        elif self.state=="attackmode" and self.x<self.targetx+60 and self.x>self.targetx-60 and self.y<self.targety+60 and self.y>self.targety-60:
+            self.v=0
+            self.state='ready'
+            print(self.state)
+        else:
+            if self.state=='unprep':
+                self.select_enemy()
+            self.v+=0.3
+            if self.v>3:
+                self.v=3
+            elif self.v<0 and self.enemy=="None":
                 self.v=0
-                self.state='idle'
-            elif self.enemy!="None" and self.x<self.targetx+60 and self.x>self.targetx-60 and self.y<self.targety+60 and self.y>self.targety-60:
+            elif self.v<0 and self.enemy!="None":
                 self.v=0
                 self.state='ready'
-                print(self.state)
-            else:
-                self.state='motion'
-                self.select_enemy()
-                self.v+=0.3
-                if self.v>3:
-                    self.v=3
-                elif self.v<0 and self.enemy=="None":
-                    self.v=0
-                    self.state='idle'
-                elif self.v>0 and self.enemy!="None":
-                    self.v=0
-                    self.state='ready'
-            if self.state=='motion' and cos(self.turn)>=0:
-                self.f+=1
-                if self.f>1:
-                    self.f=0
-            elif self.state=='motion' and cos(self.turn)<0:
-                if self.f==6:
-                    self.f=7
-                else:
-                    self.f=6
-            self.setImage(self.f)
-        elif self.state=='ready':
+        if self.state=='ready':
             d2=999999999999999999999999
             for spot in myapp.getSpritesbyClass(Cover):
                 y=spot.y-self.y
@@ -116,29 +111,20 @@ class Member(Sprite):
                 if d1<d2:
                     self.targetx=spot.x +5
                     self.targety=spot.y +5
-            if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2:
-                self.v=0
-                self.state='attackmodefire'
-            else: 
-                self.v+=0.3
-                if self.v>3:
-                    self.v=3
-                if cos(self.turn)>=0:
-                    self.f+=1
-                    if self.f>1:
-                        self.f=0
-                elif cos(self.turn)<0:
-                    if self.f==6:
-                        self.f=7
-                    else:
-                        self.f=6
-                self.x+=(self.v*cos(self.turn))
-                self.y+=(self.v*sin(self.turn))
-                self.setImage(self.f)
         elif self.state=='attackmodefire':
             print('BANG!')
-        elif self.state=='dead':
-            self.setImage(3)
+        if self.state=='dead':
+            self.f=3
+        elif self.v>0 and cos(self.turn)>=0:
+            self.f+=1
+            if self.f>1:
+                self.f=0
+        elif self.v>0 and cos(self.turn)<0:
+            if self.f==6:
+                self.f=7
+            else:
+                self.f=6
+        self.setImage(self.f)
         
     def select_enemy(self):
         self.enemy="None"
@@ -150,6 +136,7 @@ class Member(Sprite):
             if d1<d2:
                 self.enemy=enemy
             if self.enemy!="None":
+                self.state='attackmode'
                 self.targetx=enemy.x 
                 self.targety=enemy.y
 
