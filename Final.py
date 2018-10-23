@@ -116,7 +116,7 @@ class Member(Sprite):
                 Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'M')
                 self.wait=time.time()+self.dodge
                 self.state='delay'
-                if sin(self.turn)<0:
+                if cos(self.turn)<0:
                     self.f=5
                 else:
                     self.f=2
@@ -194,6 +194,8 @@ class Enemy(Sprite):
     def step(self):
         if self.state=='Seeking':
             self.pick_target(250)
+            if self.enemy=='None':
+                self.v=1
         elif self.state=='Firing':
             self.pick_target(100)
             self.v=0
@@ -220,9 +222,12 @@ class Enemy(Sprite):
                     self.f=5
             if self.f==2:
                 self.f=0
-            self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
+            if self.x!=self.targetx:
+                self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
             if self.targetx<self.x:
                 self.turn+=radians(180)
+            if self.enemy=='None':
+                self.turn=radians(random.randint(0,360))
             self.x+=(self.v*cos(self.turn))
             self.y+=(self.v*sin(self.turn))
             if self.x<self.targetx+70 and self.x>self.targetx-70 and self.y<self.targety+70 and self.y>self.targety-70 and self.state=='Seeking':
