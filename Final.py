@@ -117,7 +117,7 @@ class Member(Sprite):
                 self.wait=time.time()+self.dodge
                 self.state='delay'
                 if sin(self.turn)<0:
-                    self.f=2
+                    self.f=5
                 else:
                     self.f=5
         elif self.state=='delay':
