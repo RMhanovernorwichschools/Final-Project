@@ -30,7 +30,7 @@ class Bullet(Sprite):
     def step(self):
         if self.source=='E':
             for char in myapp.getSpritesbyClass(Member):
-                if self.x>char.x+21 and self.x<char.x+57 and self.y>char.y+6 and self.y<char.y+63:
+                if self.x>char.x+21 and self.x<char.x+57 and self.y>char.y+6 and self.y<char.y+63 and char.state!='hidden':
                     char.hit(self.damage)
                     self.source='None'
         elif self.source=='M':
@@ -114,13 +114,16 @@ class Member(Sprite):
         elif self.state=='firing':
             if time.time()>self.wait:
                 Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'M')
-                self.wait=time.time()+self.caution
+                self.wait=time.time()+self.dodge
+                self.state='delay'
                 if sin(self.turn)<0:
                     self.f=2
                 else:
                     self.f=5
-            else:
+        elif self.state=='delay':
+            if time.time()>self.wait:
                 self.state='hidden'
+                self.wait=time.time()+self.caution
         elif self.state=='dead':
             self.f=3
         else:
