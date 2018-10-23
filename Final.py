@@ -1,6 +1,6 @@
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame, CircleAsset
 from math import radians, sin, cos, atan, degrees
-import time
+import time, random
 
 black = Color(0, 0.3)
 noline = LineStyle(0, black)
@@ -119,7 +119,7 @@ class Member(Sprite):
                 if sin(self.turn)<0:
                     self.f=5
                 else:
-                    self.f=5
+                    self.f=2
         elif self.state=='delay':
             if time.time()>self.wait:
                 self.state='hidden'
@@ -270,7 +270,7 @@ class Game(App):
         c=Cover((100,100), 0)
         c1=Cover((500,200), 1)
         b=Enemy()
-        a=Member(10,1.5,1,1,200, (500,0))
+        a=Member(10,1.5,0.6,1,200, (500,0))
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
