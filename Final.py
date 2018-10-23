@@ -196,8 +196,10 @@ class Enemy(Sprite):
             self.pick_target(250)
             if self.enemy=='None':
                 self.v=1
-                if self.wait==0:
+                if self.wait==0 or time.time()>self.wait:
                     self.wait=time.time()+4
+                    m=radians(random.randint(0,360))
+                    self.state='moving'
         elif self.state=='Firing':
             self.pick_target(100)
             self.v=0
@@ -228,9 +230,10 @@ class Enemy(Sprite):
                 self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
             if self.targetx<self.x:
                 self.turn+=radians(180)
-            if self.enemy=='None' and time.time()>self.wait:
-                self.turn=radians(random.randint(0,360))
-                self.wait=time.time()+5
+            if self.state=='moving':
+                self.turn=m
+                if time.time()>self.wait:
+                    self.state='Seeking'
             self.x+=(self.v*cos(self.turn))
             self.y+=(self.v*sin(self.turn))
             if self.x<self.targetx+70 and self.x>self.targetx-70 and self.y<self.targety+70 and self.y>self.targety-70 and self.state=='Seeking':
