@@ -39,12 +39,12 @@ class Bullet(Sprite):
     def step(self):
         if self.source=='E':
             for char in myapp.getSpritesbyClass(Member):
-                if self.x>char.x+21 and self.x<char.x+57 and self.y>char.y+6 and self.y<char.y+63 and char.state!='hidden':
+                if self.x>char.x+21 and self.x<char.x+57 and self.y>char.y+6 and self.y<char.y+63 and char.state!='hidden' and char.state!='dead':
                     char.hit(self.damage)
                     self.source='None'
         elif self.source=='M':
             for char in myapp.getSpritesbyClass(Enemy):
-                if self.x>char.x+21 and self.x<char.x+36 and self.y>char.y+6 and self.y<char.y+57:
+                if self.x>char.x+21 and self.x<char.x+36 and self.y>char.y+6 and self.y<char.y+57 and char.state!='dead':
                     char.hit(self.damage)
                     self.source='None'
         if self.x<myapp.width and self.y<myapp.height and self.y>0 and self.x>0:
@@ -124,6 +124,7 @@ class Member(Sprite):
                 if time.time()>self.wait:
                     self.state='firing'
         elif self.state=='firing':
+            self.select_enemy()
             if time.time()>self.wait:
                 Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'M')
                 self.wait=time.time()+self.dodge
@@ -193,11 +194,12 @@ class Member(Sprite):
             d1=x**2+y**2
             if d1<d2 and enemy.state!='dead':
                 self.enemy=enemy
-            if self.enemy!="None":
-                if self.state=='unprep':
-                    self.state='attackmode'
-                self.targetx=enemy.x 
-                self.targety=enemy.y
+                d2=d1
+        if self.enemy!="None":
+            if self.state=='unprep':
+                self.state='attackmode'
+            self.targetx=enemy.x 
+            self.targety=enemy.y
 
 class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,158,133), 7, 'horizontal')
@@ -306,7 +308,8 @@ class Enemy(Sprite):
         self.hp-=dam
         if self.hp<=0:
             self.state='dead'
-        print('Enemy {0}.'.format(self.hp))
+        if self.hp<0:
+            self.hp=0
 
 class Game(App):
     def __init__(self):
