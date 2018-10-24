@@ -235,6 +235,9 @@ class Enemy(Sprite):
                 self.turn=self.m
                 if time.time()>self.wait:
                     self.state='Seeking'
+            if self.x+(self.v*cos(self.turn))>myapp.width or self.x+(self.v*cos(self.turn))<0 or self.y+(self.v*sin(self.turn))>myapp.height or self.y+(self.v*sin(self.turn))<0:
+                self.turn*=-1
+                self.m*=-1
             self.x+=(self.v*cos(self.turn))
             self.y+=(self.v*sin(self.turn))
             if self.x<self.targetx+70 and self.x>self.targetx-70 and self.y<self.targety+70 and self.y>self.targety-70 and self.state=='Seeking':
