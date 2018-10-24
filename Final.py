@@ -190,6 +190,7 @@ class Enemy(Sprite):
         self.damage=10
         self.wait=0
         self.m=0
+        self.c=0
         #Member hitbox is as follows: Starts 25.5 to right of and 6 below spawn point. Stretches 29 wide and 50 tall
     
     def step(self):
@@ -235,9 +236,14 @@ class Enemy(Sprite):
                 self.turn=self.m
                 if time.time()>self.wait:
                     self.state='Seeking'
-            if self.x+(self.v*cos(self.turn))>myapp.width or self.x+(self.v*cos(self.turn))<0 or self.y+(self.v*sin(self.turn))>myapp.height or self.y+(self.v*sin(self.turn))<0:
-                self.turn*=-1
-                self.m*=-1
+            if self.x+(self.v*cos(self.turn))>myapp.width-50 or self.x+(self.v*cos(self.turn))<-21 or self.y+(self.v*sin(self.turn))>myapp.height-50 or self.y+(self.v*sin(self.turn))<-15:
+                if self.c==0:
+                    self.turn+=radians(180)
+                    self.m+=radians(180)
+                    print(self.m)
+                    self.c=1
+            else:
+                self.c=0
             self.x+=(self.v*cos(self.turn))
             self.y+=(self.v*sin(self.turn))
             if self.x<self.targetx+70 and self.x>self.targetx-70 and self.y<self.targety+70 and self.y>self.targety-70 and self.state=='Seeking':
