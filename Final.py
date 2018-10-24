@@ -13,10 +13,11 @@ class Cover(Sprite):
         self.setImage(frame)
         self.scale=0.4
         self.state='free'
+        self.claimed=0
     
     def step(self):
         for m in myapp.getSpritesbyClass(Member):
-            if m.x>self.x-3 and m.x<self.x+3 and m.y>self.y-3 and m.y<self.y+3:
+            if m.x>self.x-4 and m.x<self.x+4 and m.y>self.y-4 and m.y<self.y+4 or self.claimed==1:
                 self.state='taken'
             else:
                 self.state='free'
@@ -72,6 +73,7 @@ class Member(Sprite):
         self.enemy="None"
         self.state='unprep'
         self.prog='b'
+        self.spot=''
         self.wait=time.time()
         Game.listenMouseEvent('click', self.direct)
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
@@ -113,6 +115,7 @@ class Member(Sprite):
             self.select_enemy()
             if self.enemy=='None':
                 self.state='unprep'
+                self.spot.claimed=0
             else:
                 if self.targetx!=self.x:
                     self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
@@ -151,7 +154,7 @@ class Member(Sprite):
                 self.state='ready'
         if self.state=='ready':
             sp=0
-            d2=5000
+            d2=200**2
             for spot in myapp.getSpritesbyClass(Cover):
                 y=spot.y-self.y
                 x=spot.x-self.x
@@ -160,6 +163,8 @@ class Member(Sprite):
                     self.targetx=spot.x +5
                     self.targety=spot.y +5
                     sp=1
+                    self.spot=spot
+                    spot.claimed=1
                 d2=d1
             print(sp)
             if sp==1:
@@ -181,7 +186,7 @@ class Member(Sprite):
         
     def select_enemy(self):
         self.enemy="None"
-        d2=100**2
+        d2=160**2
         for enemy in myapp.getSpritesbyClass(Enemy):
             y=enemy.y-self.y
             x=enemy.x-self.x
@@ -196,8 +201,8 @@ class Member(Sprite):
 
 class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,158,133), 7, 'horizontal')
-    def __init__(self):
-        super().__init__(Enemy.asset)
+    def __init__(self, position):
+        super().__init__(Enemy.asset, position)
         self.hp=200
         self.turn=0
         self.f=0
@@ -279,8 +284,8 @@ class Enemy(Sprite):
                     self.v=1.8
                 elif self.v<0:
                     self.v=0
-            if self.state=='dead':
-                self.f=3
+        if self.state=='dead':
+            self.f=3
         self.setImage(self.f)
                 
     def pick_target(self, d):
@@ -311,7 +316,8 @@ class Game(App):
         am.scale=2.2
         c=Cover((100,100), 0)
         c1=Cover((500,200), 1)
-        b=Enemy()
+        b=Enemy((0,0))
+        e=Enemy((300,300))
         a=Member(10,1.5,0.6,1,200, (500,0))
         d=Member(7,1,0.3,1,200, (500,200))
         
