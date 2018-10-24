@@ -12,6 +12,14 @@ class Cover(Sprite):
         super().__init__(Cover.asset, position)
         self.setImage(frame)
         self.scale=0.4
+        self.state='free'
+    
+    def step(self):
+        for m in myapp.getSpritesbyClass(Member):
+            if m.x>self.x-3 and m.x<self.x+3 and m.y>self.y-3 and m.y<self.y+3:
+                self.state='taken'
+            else:
+                self.state='free'
 
 class Bullet(Sprite):
     asset=CircleAsset(3, noline, white)
@@ -63,6 +71,7 @@ class Member(Sprite):
         self.f=0
         self.enemy="None"
         self.state='unprep'
+        self.prog='b'
         self.wait=time.time()
         Game.listenMouseEvent('click', self.direct)
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
@@ -122,8 +131,11 @@ class Member(Sprite):
                     self.f=2
         elif self.state=='delay':
             if time.time()>self.wait:
-                self.state='hidden'
-                self.wait=time.time()+self.caution
+                if self.prog=='b': 
+                    self.state='hidden'
+                    self.wait=time.time()+self.caution
+                else:
+                    self.state='unprep'
         elif self.state=='dead':
             self.f=3
         else:
@@ -138,16 +150,24 @@ class Member(Sprite):
                 self.v=0
                 self.state='ready'
         if self.state=='ready':
-            d2=999999999999999999999999
+            sp=0
+            d2=5000
             for spot in myapp.getSpritesbyClass(Cover):
                 y=spot.y-self.y
                 x=spot.x-self.x
                 d1=x**2+y**2
-                if d1<d2:
+                if d1<d2 and spot.state=='free':
                     self.targetx=spot.x +5
                     self.targety=spot.y +5
+                    sp=1
                 d2=d1
-            self.state='hiding'
+            print(sp)
+            if sp==1:
+                self.state='hiding'
+                self.prog='b'
+            else:
+                self.state='firing'
+                self.prog='a'
         if self.v>0 and cos(self.turn)>=0:
             self.f+=1
             if self.f>1:
@@ -259,6 +279,8 @@ class Enemy(Sprite):
                     self.v=1.8
                 elif self.v<0:
                     self.v=0
+            if self.state=='dead':
+                self.f=3
         self.setImage(self.f)
                 
     def pick_target(self, d):
@@ -291,6 +313,7 @@ class Game(App):
         c1=Cover((500,200), 1)
         b=Enemy()
         a=Member(10,1.5,0.6,1,200, (500,0))
+        d=Member(7,1,0.3,1,200, (500,200))
         
     def step(self):
         for char in self.getSpritesbyClass(Member):
@@ -298,6 +321,8 @@ class Game(App):
         for char in self.getSpritesbyClass(Enemy):
             char.step()
         for x in self.getSpritesbyClass(Bullet):
+            x.step()
+        for x in self.getSpritesbyClass(Cover):
             x.step()
 
 myapp=Game()
