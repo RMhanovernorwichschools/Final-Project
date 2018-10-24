@@ -193,13 +193,13 @@ class Member(Sprite):
             x=enemy.x-self.x
             d1=x**2+y**2
             if d1<d2 and enemy.state!='dead':
+                self.targetx=enemy.x 
+                self.targety=enemy.y
                 self.enemy=enemy
                 d2=d1
         if self.enemy!="None":
             if self.state=='unprep':
                 self.state='attackmode'
-            self.targetx=enemy.x 
-            self.targety=enemy.y
 
 class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,158,133), 7, 'horizontal')
