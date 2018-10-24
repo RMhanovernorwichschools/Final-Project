@@ -240,7 +240,6 @@ class Enemy(Sprite):
                 if self.c==0:
                     self.turn+=radians(180)
                     self.m+=radians(180)
-                    print(self.m)
                     self.c=1
             else:
                 self.c=0
