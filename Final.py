@@ -128,6 +128,8 @@ class Member(Sprite):
             if time.time()>self.wait:
                 Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'M')
                 self.wait=time.time()+self.dodge
+                if self.prog!='b':
+                    self.wait+=0.8
                 self.state='delay'
                 if cos(self.turn)<0:
                     self.f=5
@@ -239,7 +241,7 @@ class Enemy(Sprite):
                 if time.time()>self.wait and self.enemy.state!='hidden':
                     Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'E')
                     self.wait=time.time()+2
-                if sin(self.turn)<0:
+                if cos(self.turn)<0:
                     self.f=4
                 else:
                     self.f=2
