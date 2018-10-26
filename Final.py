@@ -89,7 +89,8 @@ class Member(Sprite):
         self.hp-=dam
         if self.hp<=0:
             self.state='dead'
-        print(self.hp)
+        elif self.hp<35:
+            print('Warning: hp={0}'.format(self.hp))
         
     def step(self):
         for m in myapp.getSpritesbyClass(Member):
@@ -314,6 +315,8 @@ class Enemy(Sprite):
         self.hp-=dam
         if self.hp<=0:
             self.state='dead'
+        elif self.hp<30:
+            print('Close: enemy hp={0}'.format(self.hp))
         if self.hp<0:
             self.hp=0
 
