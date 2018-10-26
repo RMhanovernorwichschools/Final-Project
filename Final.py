@@ -93,9 +93,9 @@ class Member(Sprite):
         
     def step(self):
         for m in myapp.getSpritesbyClass(Member):
-            while m.targetx>self.targetx-2 and m.targetx<self.targetx+2 and m.targety>self.targety-2 and m.targety<self.targety+2:
-                self.targetx+=(random.randint(-5,5))/2.5
-                self.targety+=(random.randint(-5,5))/2.5
+            while m.targetx>self.targetx-5 and m.targetx<self.targetx+5 and m.targety>self.targety-5 and m.targety<self.targety+5 and self.x!=m.x:
+                self.targetx+=(random.randint(-5,5))
+                self.targety+=(random.randint(-5,5))
         if self.targetx!=self.x:
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
             if self.targetx<self.x:
@@ -331,14 +331,28 @@ class Game(App):
         d=Member(7,1,0.3,1,200, (500,200))
         
     def step(self):
+        mems=0
+        memdeath=0
+        enems=0
+        enemdeath=0
         for char in self.getSpritesbyClass(Member):
+            mems+=1
             char.step()
+            if char.state=='dead':
+                memdeath+=1
         for char in self.getSpritesbyClass(Enemy):
+            enems+=1
             char.step()
+            if char.state=='dead':
+                enemdeath+=1
         for x in self.getSpritesbyClass(Bullet):
             x.step()
         for x in self.getSpritesbyClass(Cover):
             x.step()
+        if memdeath==mems:
+            print('You lose.')
+        elif enemdeath==enems:
+            print('You win!')
 
 myapp=Game()
 myapp.run()
