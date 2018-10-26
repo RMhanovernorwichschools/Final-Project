@@ -93,7 +93,7 @@ class Member(Sprite):
         
     def step(self):
         for m in myapp.getSpritesbyClass(Member):
-            while m.targetx>self.targetx-5 and m.targetx<self.targetx+5 and m.targety>self.targety-5 and m.targety<self.targety+5 and self.x!=m.x:
+            while m.targetx>self.targetx-15 and m.targetx<self.targetx+15 and m.targety>self.targety-15 and m.targety<self.targety+15 and self.x!=m.x:
                 self.targetx+=(random.randint(-5,5))
                 self.targety+=(random.randint(-5,5))
         if self.targetx!=self.x:
