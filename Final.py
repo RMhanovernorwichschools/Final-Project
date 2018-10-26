@@ -323,6 +323,7 @@ class Game(App):
         m = ImageAsset("images/map_base.jpg")
         am=Sprite(m)
         am.scale=2.2
+        self.state='none'
         c=Cover((100,100), 0)
         c1=Cover((500,200), 1)
         b=Enemy((0,0))
@@ -349,10 +350,13 @@ class Game(App):
             x.step()
         for x in self.getSpritesbyClass(Cover):
             x.step()
-        if memdeath==mems:
-            print('You lose.')
-        elif enemdeath==enems:
-            print('You win!')
+        if self.state=='none':
+            if memdeath==mems:
+                print('You lose.')
+                self.state='loss'
+            elif enemdeath==enems:
+                print('You win!')
+                self.state='win'
 
 myapp=Game()
 myapp.run()
