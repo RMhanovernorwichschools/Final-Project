@@ -56,10 +56,9 @@ class Bullet(Sprite):
             self.destroy()
 
 class Member(Sprite):
-    asset=ImageAsset("images/Member_A.png", Frame(0,0,127,115), 8, 'horizontal')
-    def __init__(self, damage, caution, evasion, talk, health, position):
-        super().__init__(Member.asset, position)
-        self.scale=0.6
+    def __init__(self, damage, caution, evasion, talk, health, position, nam):
+        super().__init__(nam, position)
+        self.scale=0.65
         self.hp=health
         self.damage=damage
         self.dodge=evasion
@@ -79,11 +78,12 @@ class Member(Sprite):
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
         
     def direct(self, event):
-        self.targetx=event.x-35
-        self.targety=event.y-28
-        self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
-        if self.targetx<self.x:
-            self.turn+=radians(180)
+        if self.state!='ready' and self.state!='hiding':
+            self.targetx=event.x-35
+            self.targety=event.y-28
+            self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
+            if self.targetx<self.x:
+                self.turn+=radians(180)
             
     def hit(self, dam):
         self.hp-=dam
@@ -174,7 +174,6 @@ class Member(Sprite):
                     self.spot=spot
                     spot.claimed=1
                 d2=d1
-            print(sp)
             if sp==1:
                 self.state='hiding'
                 self.prog='b'
@@ -217,7 +216,7 @@ class Enemy(Sprite):
         self.f=0
         self.targetx=self.x
         self.targety=self.y
-        self.scale=0.5
+        self.scale=0.55
         self.v=0
         self.enemy="None"
         self.state='Seeking'
@@ -323,6 +322,9 @@ class Enemy(Sprite):
 class Game(App):
     def __init__(self):
         super().__init__()
+        Aasset=ImageAsset("images/Member_A.png", Frame(0,0,127,115), 8, 'horizontal')
+        Basset=ImageAsset("images/Member_B.png", Frame(0,0,127,115), 8, 'horizontal')
+        Casset=ImageAsset("images/Member_C.png", Frame(0,0,127,115), 8, 'horizontal')
         m = ImageAsset("images/map_base.jpg")
         am=Sprite(m)
         am.scale=2.2
@@ -331,8 +333,8 @@ class Game(App):
         c1=Cover((500,200), 1)
         b=Enemy((0,0))
         e=Enemy((300,300))
-        a=Member(10,1.5,0.6,1,200, (500,0))
-        d=Member(7,1,0.3,1,200, (500,200))
+        a=Member(10,1.5,0.6,1,200, (500,0), Basset)
+        d=Member(7,1,0.3,1,200, (500,200), Casset)
         
     def step(self):
         mems=0
