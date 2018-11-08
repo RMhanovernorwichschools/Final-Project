@@ -132,7 +132,6 @@ class Member(Sprite):
             if time.time()>self.wait:
                 Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'M')
                 wait=(self.dodge)*(1.2**(random.randint(-4,4)/3.8))
-                print(wait)
                 self.wait=time.time()+wait
                 if self.prog!='b':
                     self.wait+=0.8
@@ -367,8 +366,6 @@ class Game(App):
             elif enemdeath==enems:
                 print('You win!')
                 self.state='win'
-                for x in self.getSpritesbyClass(Member):
-                    print(x.hp)
 
 myapp=Game()
 myapp.run()
