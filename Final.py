@@ -131,7 +131,9 @@ class Member(Sprite):
             self.select_enemy()
             if time.time()>self.wait:
                 Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'M')
-                self.wait=time.time()+self.dodge
+                wait=(self.dodge*1.2**(random.randint(-4,4))/3.8)
+                print(wait)
+                self.wait=time.time()+wait
                 if self.prog!='b':
                     self.wait+=0.8
                 self.state='delay'
