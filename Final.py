@@ -96,7 +96,6 @@ class Member(Sprite):
         for m in myapp.getSpritesbyClass(Member):
             while m.targetx>self.targetx-15 and m.targetx<self.targetx+15 and m.targety>self.targety-15 and m.targety<self.targety+15 and self.x!=m.x:
                 self.targetx+=(random.randint(-5,5))
-                self.targety+=(random.randint(-5,5))
         if self.targetx!=self.x:
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
             if self.targetx<self.x:
