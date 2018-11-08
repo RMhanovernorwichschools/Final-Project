@@ -242,7 +242,7 @@ class Enemy(Sprite):
             else:
                 self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
                 if time.time()>self.wait and self.enemy.state!='hidden':
-                    Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'E')
+                    Bullet(self.x, self.y, self.targetx, self.targety, (self.damage+random.randint(-3,3)), 'E')
                     self.wait=time.time()+2
                 if cos(self.turn)<0:
                     self.f=4
@@ -332,10 +332,11 @@ class Game(App):
         c1=Cover((500,200), 1)
         b=Enemy((0,0))
         e=Enemy((300,300))
-        a=Member(20,0.5,3.5,1,190, (500,0), Basset)
-        d=Member(20,0.5,3.5,1,190, (500,200), Basset)
+        a=Member(20,0.5,3,1,180, (500,0), Basset)
+        d=Member(8,2,0.31,1,180, (500,200), Casset)
         #Aasset attributes are as follows: (11,1.5,0.7,1,200)
-        #Basset attributes are as follows: (
+        #Basset attributes are as follows: (20,0.5,3,1,180)
+        #Casset attributes are as folloes: (8,2,0,31,1,180)
         
     def step(self):
         mems=0
