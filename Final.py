@@ -348,6 +348,8 @@ class Game(App):
             mems+=1
             if char.state!='dead':
                 char.step()
+            else:
+                char.setFrame(3)
             if char.state=='dead':
                 memdeath+=1
         for char in self.getSpritesbyClass(Enemy):
