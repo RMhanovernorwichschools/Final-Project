@@ -94,7 +94,7 @@ class Member(Sprite):
         
     def step(self):
         for m in myapp.getSpritesbyClass(Member):
-            while m.targetx>self.targetx-15 and m.targetx<self.targetx+15 and m.targety>self.targety-15 and m.targety<self.targety+15 and self.x!=m.x:
+            while m.targetx>self.targetx-20 and m.targetx<self.targetx+20 and m.targety>self.targety-15 and m.targety<self.targety+15 and self.x!=m.x:
                 self.targetx+=(random.randint(-5,5))
         if self.targetx!=self.x:
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
