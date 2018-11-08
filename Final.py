@@ -29,7 +29,7 @@ class Bullet(Sprite):
         self.x=x+45
         self.y=y+30
         self.source=source
-        self.targetx=targetx+20
+        self.targetx=targetx+35
         self.targety=targety+30
         self.rotation=atan((self.targety-self.y)/(self.targetx-self.x))
         if self.targetx<self.x:
@@ -332,8 +332,10 @@ class Game(App):
         c1=Cover((500,200), 1)
         b=Enemy((0,0))
         e=Enemy((300,300))
-        a=Member(10,1.5,0.6,1,200, (500,0), Basset)
-        d=Member(7,1,0.3,1,200, (500,200), Casset)
+        a=Member(20,0.5,3.5,1,190, (500,0), Basset)
+        d=Member(20,0.5,3.5,1,190, (500,200), Basset)
+        #Aasset attributes are as follows: (11,1.5,0.7,1,200)
+        #Basset attributes are as follows: (
         
     def step(self):
         mems=0
@@ -361,6 +363,8 @@ class Game(App):
             elif enemdeath==enems:
                 print('You win!')
                 self.state='win'
+                for x in self.getSpritesbyClass(Member):
+                    print(x.hp)
 
 myapp=Game()
 myapp.run()
