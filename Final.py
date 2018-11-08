@@ -131,7 +131,7 @@ class Member(Sprite):
             self.select_enemy()
             if time.time()>self.wait:
                 Bullet(self.x, self.y, self.targetx, self.targety, self.damage, 'M')
-                wait=(self.dodge)*(1.15**(random.randint(-4,4))/3.8)
+                wait=(self.dodge)*(1.2**(random.randint(-4,4)/3.8))
                 print(wait)
                 self.wait=time.time()+wait
                 if self.prog!='b':
@@ -334,11 +334,11 @@ class Game(App):
         c1=Cover((500,200), 1)
         b=Enemy((0,0))
         e=Enemy((300,300))
-        a=Member(20,0.5,3,1,180, (500,0), Basset)
-        d=Member(8,2,0.31,1,180, (500,200), Casset)
+        a=Member(20,0.5,2.5,1,180, (500,0), Basset)
+        d=Member(7,2,0.31,1,180, (500,200), Casset)
         #Aasset attributes are as follows: (11,1.5,0.7,1,200)
-        #Basset attributes are as follows: (20,0.5,3,1,180)
-        #Casset attributes are as folloes: (8,2,0,31,1,180)
+        #Basset attributes are as follows: (20,0.5,2.5,1,180)
+        #Casset attributes are as folloes: (7,2,0,31,1,180)
         
     def step(self):
         mems=0
