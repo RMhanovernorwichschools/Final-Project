@@ -11,7 +11,7 @@ class Cover(Sprite):
     def __init__(self, position, frame):
         super().__init__(Cover.asset, position)
         self.setImage(frame)
-        self.scale=0.4
+        self.scale=0.45
         self.state='free'
         self.claimed=0
     
@@ -39,12 +39,12 @@ class Bullet(Sprite):
     def step(self):
         if self.source=='E':
             for char in myapp.getSpritesbyClass(Member):
-                if self.x>char.x+21 and self.x<char.x+57 and self.y>char.y+6 and self.y<char.y+63 and char.state!='hidden' and char.state!='dead':
+                if self.x>char.x+30 and self.x<char.x+62 and self.y>char.y+5 and self.y<char.y+75 and char.state!='hidden' and char.state!='dead':
                     char.hit(self.damage)
                     self.source='None'
         elif self.source=='M':
             for char in myapp.getSpritesbyClass(Enemy):
-                if self.x>char.x+21 and self.x<char.x+36 and self.y>char.y+6 and self.y<char.y+57 and char.state!='dead':
+                if self.x>char.x+30 and self.x<char.x+75 and self.y>char.y+5 and self.y<char.y+80 and char.state!='dead':
                     char.hit(self.damage)
                     self.source='None'
         if self.x<myapp.width and self.y<myapp.height and self.y>0 and self.x>0:
@@ -58,7 +58,7 @@ class Bullet(Sprite):
 class Member(Sprite):
     def __init__(self, damage, caution, evasion, talk, health, position, nam):
         super().__init__(nam, position)
-        self.scale=0.65
+        self.scale=0.75
         self.hp=health
         self.damage=damage
         self.dodge=evasion
@@ -216,7 +216,7 @@ class Enemy(Sprite):
         self.f=0
         self.targetx=self.x
         self.targety=self.y
-        self.scale=0.55
+        self.scale=0.64
         self.v=0
         self.enemy="None"
         self.state='Seeking'
@@ -329,7 +329,7 @@ class Game(App):
         am=Sprite(m)
         am.scale=2.2
         self.state='none'
-        c=Cover((100,100), 0)
+        c=Cover((100,100), 2)
         c1=Cover((500,200), 1)
         b=Enemy((0,0))
         e=Enemy((300,300))
