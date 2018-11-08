@@ -212,7 +212,7 @@ class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,158,133), 7, 'horizontal')
     def __init__(self, position):
         super().__init__(Enemy.asset, position)
-        self.hp=200
+        self.hp=210
         self.turn=0
         self.f=0
         self.targetx=self.x
@@ -347,7 +347,8 @@ class Game(App):
         enemdeath=0
         for char in self.getSpritesbyClass(Member):
             mems+=1
-            char.step()
+            if char.state!='dead':
+                char.step()
             if char.state=='dead':
                 memdeath+=1
         for char in self.getSpritesbyClass(Enemy):
