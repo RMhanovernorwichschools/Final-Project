@@ -211,7 +211,7 @@ class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,158,133), 7, 'horizontal')
     def __init__(self, position):
         super().__init__(Enemy.asset, position)
-        self.hp=210
+        self.hp=200
         self.turn=0
         self.f=0
         self.targetx=self.x
