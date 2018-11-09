@@ -329,11 +329,31 @@ class Game(App):
         am=Sprite(m)
         am.scale=2.2
         self.state='none'
-        c=Cover((100,100), 2)
-        c1=Cover((500,200), 1)
-        b=Enemy((0,0))
-        e=Enemy((300,300))
-        a=Member(20,0.5,2.5,1,180, (500,0), Basset)
+        select=0
+        while select=0:
+            stage=input('''Select your level. 
+                Enter t for tutorial
+                1 for level 1
+                2 for level 2
+                or 3 for level 3 '''
+            if stage=='t':
+                select=1
+                c=Cover((100,100), 2)
+                c1=Cover((500,200), 1)
+                b=Enemy((0,0))
+                e=Enemy((300,300))
+            elif stage=='1':
+                print('In progress')
+                select=1
+            elif stage=='2':
+                print('Working on it')
+                select=1
+            elif stage=='3':
+                print('Soon')
+                select=1
+            else:
+                print("Sorry, didn't understand. Try again.")
+        a=Member(11,1.5,0.7,1,200, (500,0), Aasset)
         d=Member(7,2,0.31,1,180, (500,200), Casset)
         #Aasset attributes are as follows: (11,1.5,0.7,1,200)
         #Basset attributes are as follows: (20,0.5,2.5,1,180)
