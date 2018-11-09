@@ -330,12 +330,12 @@ class Game(App):
         am.scale=2.2
         self.state='none'
         select=0
-        while select=0:
+        while select==0:
             stage=input('''Select your level. 
                 Enter t for tutorial
                 1 for level 1
                 2 for level 2
-                or 3 for level 3 '''
+                or 3 for level 3 ''')
             if stage=='t':
                 select=1
                 c=Cover((100,100), 2)
