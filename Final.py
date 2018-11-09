@@ -11,7 +11,7 @@ class Cover(Sprite):
     def __init__(self, position, frame):
         super().__init__(Cover.asset, position)
         self.setImage(frame)
-        self.scale=0.45
+        self.scale=0.5
         self.state='free'
         self.claimed=0
     
@@ -211,7 +211,7 @@ class Enemy(Sprite):
     asset=ImageAsset("images/enemy_wheels.png", Frame(0,0,158,133), 7, 'horizontal')
     def __init__(self, position):
         super().__init__(Enemy.asset, position)
-        self.hp=200
+        self.hp=190
         self.turn=0
         self.f=0
         self.targetx=self.x
@@ -337,7 +337,7 @@ class Game(App):
                 select=1
                 m = ImageAsset("images/map_base.jpg")
                 am=Sprite(m)
-                am.scale=2.2
+                am.scale=1.2
                 c=Cover((100,100), 2)
                 c1=Cover((500,200), 1)
                 b=Enemy((0,0))
@@ -356,7 +356,7 @@ class Game(App):
         a=Member(11,1.5,0.7,1,200, (500,0), Aasset)
         d=Member(7,2,0.31,1,180, (500,200), Casset)
         #Aasset attributes are as follows: (11,1.5,0.7,1,200)
-        #Basset attributes are as follows: (20,0.5,2.5,1,180)
+        #Basset attributes are as follows: (20,0.5,2.5,1,170)
         #Casset attributes are as folloes: (7,2,0,31,1,180)
         
     def step(self):
