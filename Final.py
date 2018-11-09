@@ -325,9 +325,6 @@ class Game(App):
         Aasset=ImageAsset("images/Member_A.png", Frame(0,0,127,115), 8, 'horizontal')
         Basset=ImageAsset("images/Member_B.png", Frame(0,0,127,115), 8, 'horizontal')
         Casset=ImageAsset("images/Member_C.png", Frame(0,0,127,115), 8, 'horizontal')
-        m = ImageAsset("images/map_base.jpg")
-        am=Sprite(m)
-        am.scale=2.2
         self.state='none'
         select=0
         while select==0:
@@ -338,6 +335,9 @@ class Game(App):
                 or 3 for level 3 ''')
             if stage=='t':
                 select=1
+                m = ImageAsset("images/map_base.jpg")
+                am=Sprite(m)
+                am.scale=2.2
                 c=Cover((100,100), 2)
                 c1=Cover((500,200), 1)
                 b=Enemy((0,0))
