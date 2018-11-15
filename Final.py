@@ -339,9 +339,12 @@ class Game(App):
                 am=Sprite(m)
                 am.scale=1.2
                 c=Cover((100,100), 2)
-                c1=Cover((500,200), 1)
+                c1=Cover((500,200), 0)
                 b=Enemy((0,0))
                 e=Enemy((300,300))
+                coor_a=(500,0)
+                coor_b=(500,200)
+                coor_c=(500,400)
             elif stage=='1':
                 print('In progress')
                 select=1
@@ -353,11 +356,12 @@ class Game(App):
                 select=1
             else:
                 print("Sorry, didn't understand. Try again.")
-        a=Member(11,1.5,0.7,1,200, (500,0), Aasset)
-        d=Member(7,2,0.31,1,180, (500,200), Casset)
+        a=Member(11,1.5,0.7,1,200, coor_a, Aasset)
+        d=Member(7,2,0.3,1,180, coor_b, Casset)
+        f=Member(20,0.5,2.5,1,170, coor_c, Basset)
         #Aasset attributes are as follows: (11,1.5,0.7,1,200)
         #Basset attributes are as follows: (20,0.5,2.5,1,170)
-        #Casset attributes are as folloes: (7,2,0,31,1,180)
+        #Casset attributes are as folloes: (7,2,0,3,1,180)
         
     def step(self):
         mems=0
