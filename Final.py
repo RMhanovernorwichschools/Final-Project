@@ -352,6 +352,9 @@ class Game(App):
             elif stage=='1':
                 print('In progress')
                 select=1
+                m = ImageAsset("images/map_base2.png")
+                am=Sprite(m)
+                am.scale=1.2
             elif stage=='2':
                 print('Working on it')
                 select=1
