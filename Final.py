@@ -356,12 +356,23 @@ class Game(App):
                 select=1
             else:
                 print("Sorry, didn't understand. Try again.")
+        akey='False'
+        bkey='False'
+        ckey='False'
         a=Member(11,1.5,0.7,1,200, coor_a, Aasset)
         d=Member(7,2,0.3,1,180, coor_b, Casset)
         f=Member(20,0.5,2.5,1,170, coor_c, Basset)
         #Aasset attributes are as follows: (11,1.5,0.7,1,200)
         #Basset attributes are as follows: (20,0.5,2.5,1,170)
         #Casset attributes are as folloes: (7,2,0,3,1,180)
+        
+        Game.listenKeyEvent('a', 'keydown', self.a_down)
+        Game.listenKeyEvent('a', 'keyup', self.a_up)
+    
+    def a_down(self, event):
+        akey='True'
+    def a_up(self, event):
+        akey='False'
         
     def step(self):
         mems=0
