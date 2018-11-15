@@ -353,6 +353,7 @@ class Game(App):
                 print('In progress')
                 select=1
                 m = ImageAsset("images/map_base2.jpg")
+                Cover((50,150), 2)
                 am=Sprite(m)
                 am.scale=1.2
                 coor_a=(0,0)
