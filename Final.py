@@ -355,6 +355,9 @@ class Game(App):
                 m = ImageAsset("images/map_base2.png")
                 am=Sprite(m)
                 am.scale=1.2
+                coor_a=(0,0)
+                coor_b=(0,0)
+                coor_c=(0,0)
             elif stage=='2':
                 print('Working on it')
                 select=1
