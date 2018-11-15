@@ -56,9 +56,10 @@ class Bullet(Sprite):
             self.destroy()
 
 class Member(Sprite):
-    def __init__(self, damage, caution, evasion, talk, health, position, nam):
+    def __init__(self, damage, caution, evasion, talk, health, position, nam, t):
         super().__init__(nam, position)
         self.scale=0.75
+        self.title=t
         self.hp=health
         self.damage=damage
         self.dodge=evasion
@@ -78,7 +79,7 @@ class Member(Sprite):
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
         
     def direct(self, event):
-        if self.state!='ready' and self.state!='hiding':
+        if (self.state!='ready' and self.state!='hiding') or self.comm==0:
             self.targetx=event.x-35
             self.targety=event.y-28
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
@@ -93,6 +94,9 @@ class Member(Sprite):
             print('Warning: hp={0}'.format(self.hp))
         
     def step(self):
+        if self.comm==0:
+            self.state='unprep'
+            self.enemy='None'
         for m in myapp.getSpritesbyClass(Member):
             while m.targetx>self.targetx-20 and m.targetx<self.targetx+20 and m.targety>self.targety-15 and m.targety<self.targety+15 and self.x!=m.x:
                 self.targetx+=(random.randint(-5,5))
@@ -102,7 +106,7 @@ class Member(Sprite):
                 self.turn+=radians(180)
         self.x+=(self.v*cos(self.turn))
         self.y+=(self.v*sin(self.turn))
-        if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
+        if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None" and self.comm!=0:
             self.v=0
             self.state='unprep'
             self.select_enemy()
@@ -125,7 +129,7 @@ class Member(Sprite):
                     self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
                     if self.targetx<self.x:
                         self.turn+=radians(180)
-                if time.time()>self.wait:
+                if time.time()>self.wait and self.comm!=0:
                     self.state='firing'
         elif self.state=='firing':
             self.select_enemy()
@@ -150,14 +154,14 @@ class Member(Sprite):
         elif self.state=='dead':
             self.f=3
         else:
-            if self.state=='unprep':
+            if self.state=='unprep' and self.comm!=0:
                 self.select_enemy()
             self.v+=0.3
             if self.v>3:
                 self.v=3
             elif self.v<0 and self.enemy=="None":
                 self.v=0
-            elif self.v<0 and self.enemy!="None":
+            elif self.v<0 and self.enemy!="None" and self.comm!=0:
                 self.v=0
                 self.state='ready'
         if self.state=='ready':
@@ -356,23 +360,35 @@ class Game(App):
                 select=1
             else:
                 print("Sorry, didn't understand. Try again.")
-        akey='False'
-        bkey='False'
-        ckey='False'
-        a=Member(11,1.5,0.7,1,200, coor_a, Aasset)
-        d=Member(7,2,0.3,1,180, coor_b, Casset)
-        f=Member(20,0.5,2.5,1,170, coor_c, Basset)
+        self.akey='False'
+        self.bkey='False'
+        self.ckey='False'
+        a=Member(11,1.5,0.7,1,200, coor_a, Aasset, 'a')
+        d=Member(7,2,0.3,1,180, coor_b, Casset, 'b')
+        f=Member(20,0.5,2.5,1,170, coor_c, Basset, 'c')
         #Aasset attributes are as follows: (11,1.5,0.7,1,200)
         #Basset attributes are as follows: (20,0.5,2.5,1,170)
         #Casset attributes are as folloes: (7,2,0,3,1,180)
         
-        Game.listenKeyEvent('a', 'keydown', self.a_down)
-        Game.listenKeyEvent('a', 'keyup', self.a_up)
+        Game.listenKeyEvent('keydown', 'a', self.a_down)
+        Game.listenKeyEvent('keyup', 'a', self.a_up)
+        Game.listenKeyEvent('keydown', 'b', self.b_down)
+        Game.listenKeyEvent('keyup', 'b', self.b_up)
+        Game.listenKeyEvent('keydown', 'c', self.c_down)
+        Game.listenKeyEvent('keyup', 'c', self.c_up)
     
     def a_down(self, event):
-        akey='True'
+        self.akey='True'
     def a_up(self, event):
-        akey='False'
+        self.akey='False'
+    def b_down(self, event):
+        self.bkey='True'
+    def b_up(self, event):
+        self.bkey='False'
+    def c_down(self, event):
+        self.ckey='True'
+    def c_up(self, event):
+        self.ckey='False'
         
     def step(self):
         mems=0
@@ -380,6 +396,10 @@ class Game(App):
         enems=0
         enemdeath=0
         for char in self.getSpritesbyClass(Member):
+            if (char.title=='a' and self.akey=='True') or (char.title=='b' and self.bkey=='True') or (char.title=='c' and self.ckey=='True'):
+                char.comm=0
+            else:
+                char.comm=1
             mems+=1
             if char.state!='dead':
                 char.step()
