@@ -373,9 +373,10 @@ class Game(App):
         select=0
         while select==0:
             char=input('''Select a type for the first position:
-              a is generally balanced
-              b is slow but powerful
-              c is quick with light damage''')
+  a is generally balanced
+  b is slow but powerful
+  c is quick with light damage
+  ''')
             if char=='a':
                 Member(11,1.5,0.7,1,200, coor_a, Aasset, 'a')
                 select=1
@@ -389,9 +390,7 @@ class Game(App):
                 print("Sorry, I don't understand.")
         while select==1:
             char=input('''Select a type for the second position:
-              a is generally balanced
-              b is slow but powerful
-              c is quick with light damage''')
+ (see desc above) ''')
             if char=='a':
                 Member(11,1.5,0.7,1,200, coor_b, Aasset, 'b')
                 select=2
@@ -405,9 +404,7 @@ class Game(App):
                 print("Sorry, I don't understand.")
         while select==2:
             char=input('''Select a type for the third (and final) position:
-              a is generally balanced
-              b is slow but powerful
-              c is quick with light damage''')
+ (see desc. above) ''')
             if char=='a':
                 a=Member(11,1.5,0.7,1,200, coor_c, Aasset, 'c')
                 select=0
