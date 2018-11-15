@@ -361,18 +361,64 @@ class Game(App):
                 coor_c=(0,0)
             elif stage=='2':
                 print('Working on it')
-                select=1
+                select=0
             elif stage=='3':
                 print('Soon')
-                select=1
+                select=0
             else:
                 print("Sorry, didn't understand. Try again.")
         self.akey='False'
         self.bkey='False'
         self.ckey='False'
-        a=Member(11,1.5,0.7,1,200, coor_a, Aasset, 'a')
-        d=Member(7,2,0.3,1,180, coor_b, Casset, 'b')
-        f=Member(20,0.5,2.5,1,170, coor_c, Basset, 'c')
+        select=0
+        while select==0:
+            char=input('''Select a type for the first position:
+              a is generally balanced
+              b is slow but powerful
+              c is quick with light damage''')
+            if char=='a':
+                Member(11,1.5,0.7,1,200, coor_a, Aasset, 'a')
+                select=1
+            elif char=='b':
+                Member(20,0.5,2.5,1,170, coor_a, Basset, 'a')
+                select=1
+            elif char=='c':
+                Member(7,2,0.3,1,180, coor_a, Casset, 'a')
+                select=1
+            else:
+                print("Sorry, I don't understand.")
+        while select==1:
+            char=input('''Select a type for the second position:
+              a is generally balanced
+              b is slow but powerful
+              c is quick with light damage''')
+            if char=='a':
+                Member(11,1.5,0.7,1,200, coor_b, Aasset, 'b')
+                select=2
+            elif char=='b':
+                Member(20,0.5,2.5,1,170, coor_b, Basset, 'b')
+                select=2
+            elif char=='c':
+                Member(7,2,0.3,1,180, coor_b, Casset, 'b')
+                select=2
+            else:
+                print("Sorry, I don't understand.")
+        while select==2:
+            char=input('''Select a type for the third (and final) position:
+              a is generally balanced
+              b is slow but powerful
+              c is quick with light damage''')
+            if char=='a':
+                a=Member(11,1.5,0.7,1,200, coor_c, Aasset, 'c')
+                select=0
+            elif char=='b':
+                a=Member(20,0.5,2.5,1,170, coor_c, Basset, 'c')
+                select=0
+            elif char=='c':
+                a=Member(7,2,0.3,1,180, coor_c, Casset, 'c')
+                select=0
+            else:
+                print("Sorry, I don't understand.")
         #Aasset attributes are as follows: (11,1.5,0.7,1,200)
         #Basset attributes are as follows: (20,0.5,2.5,1,170)
         #Casset attributes are as folloes: (7,2,0,3,1,180)
