@@ -11,7 +11,7 @@ class Cover(Sprite):
     def __init__(self, position, frame):
         super().__init__(Cover.asset, position)
         self.setImage(frame)
-        self.scale=0.5
+        self.scale=0.55
         self.state='free'
         self.claimed=0
     
@@ -356,9 +356,17 @@ class Game(App):
                 Cover((50,150), 2)
                 am=Sprite(m)
                 am.scale=1.2
+                c=Cover((100,280), 1)
+                c1=Cover((700,340), 1)
+                c2=Cover((304, 370), 0)
+                c3=Cover((500, 30), 2)
+                e=Enemy((800,0))
+                e1=Enemy((782,15))
+                e2=Enemy((802,30))
+                e3=Enemy((790, 200))
                 coor_a=(0,0)
-                coor_b=(0,0)
-                coor_c=(0,0)
+                coor_b=(0,10)
+                coor_c=(0,21)
             elif stage=='2':
                 print('Working on it')
                 select=0
