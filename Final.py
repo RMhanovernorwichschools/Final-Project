@@ -124,9 +124,7 @@ class Member(Sprite):
             self.f=4
             self.select_enemy()
             if self.enemy=='None':
-                print(self.enemy)
                 self.state='unprep'
-                self.spot.claimed=0
             else:
                 if self.targetx!=self.x:
                     self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
@@ -169,7 +167,7 @@ class Member(Sprite):
                 self.state='ready'
         if self.state=='ready':
             sp=0
-            d2=160**2
+            d2=180**2
             for spot in myapp.getSpritesbyClass(Cover):
                 y=(spot.y+5)-self.y
                 x=(spot.x+5)-self.x
@@ -200,7 +198,7 @@ class Member(Sprite):
         
     def select_enemy(self):
         self.enemy="None"
-        d2=160**2
+        d2=180**2
         for enemy in myapp.getSpritesbyClass(Enemy):
             y=enemy.y-self.y
             x=enemy.x-self.x
