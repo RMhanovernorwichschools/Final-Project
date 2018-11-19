@@ -122,6 +122,7 @@ class Member(Sprite):
             self.f=4
             self.select_enemy()
             if self.enemy=='None':
+                print(self.enemy)
                 self.state='unprep'
                 self.spot.claimed=0
             else:
@@ -166,7 +167,7 @@ class Member(Sprite):
                 self.state='ready'
         if self.state=='ready':
             sp=0
-            d2=200**2
+            d2=150**2
             for spot in myapp.getSpritesbyClass(Cover):
                 y=spot.y-self.y
                 x=spot.x-self.x
@@ -363,7 +364,6 @@ class Game(App):
                 e=Enemy((800,0))
                 e1=Enemy((782,15))
                 e2=Enemy((802,30))
-                e3=Enemy((790, 200))
                 coor_a=(0,0)
                 coor_b=(0,10)
                 coor_c=(0,21)
