@@ -180,6 +180,7 @@ class Member(Sprite):
                     d2=d1
             if sp==1:
                 self.spot.claimed=1
+                self.spot.state='taken'
                 self.state='hiding'
                 self.prog='b'
             else:
@@ -357,9 +358,9 @@ class Game(App):
                 Cover((50,150), 2)
                 am=Sprite(m)
                 am.scale=1.2
-                c=Cover((100,280), 1)
-                c1=Cover((700,340), 1)
-                c2=Cover((304, 370), 0)
+                c=Cover((100,290), 1)
+                c1=Cover((700,360), 1)
+                c2=Cover((304, 390), 0)
                 c3=Cover((500, 30), 2)
                 e=Enemy((800,0))
                 e1=Enemy((782,15))
