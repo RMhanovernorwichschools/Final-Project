@@ -87,8 +87,6 @@ class Member(Sprite):
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
             if self.targetx<self.x:
                 self.turn+=radians(180)
-        else:
-            print("I'm busy!")
             
     def hit(self, dam):
         self.hp-=dam
