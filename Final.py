@@ -169,10 +169,10 @@ class Member(Sprite):
                 self.state='ready'
         if self.state=='ready':
             sp=0
-            d2=150**2
+            d2=160**2
             for spot in myapp.getSpritesbyClass(Cover):
-                y=spot.y-self.y
-                x=spot.x-self.x
+                y=(spot.y+5)-self.y
+                x=(spot.x+5)-self.x
                 d1=x**2+y**2
                 if d1<d2 and spot.state=='free':
                     self.targetx=spot.x +5
