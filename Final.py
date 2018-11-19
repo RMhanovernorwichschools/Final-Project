@@ -79,7 +79,7 @@ class Member(Sprite):
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
         
     def direct(self, event):
-        if (self.state!='ready' and self.state!='hiding') or self.comm==0:
+        if (self.state!='ready' and self.state!='hiding' and self.state!='hidden') or self.comm==0:
             if self.spot!='':
                 self.spot.claimed=0
             self.targetx=event.x-35
@@ -87,6 +87,8 @@ class Member(Sprite):
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
             if self.targetx<self.x:
                 self.turn+=radians(180)
+        else:
+            print("I'm busy!")
             
     def hit(self, dam):
         self.hp-=dam
