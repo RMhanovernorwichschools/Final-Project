@@ -80,7 +80,7 @@ class Member(Sprite):
         
     def direct(self, event):
         if (self.state!='ready' and self.state!='hiding' and self.state!='hidden') or self.comm==0:
-            if self.spot!='':
+            if self.spot!='' and self.state!='firing':
                 self.spot.claimed=0
             self.targetx=event.x-35
             self.targety=event.y-28
@@ -465,6 +465,7 @@ class Game(App):
                 char.step()
             else:
                 char.setImage(3)
+                char.spot.claimed=0
                 memdeath+=1
         for char in self.getSpritesbyClass(Enemy):
             enems+=1
