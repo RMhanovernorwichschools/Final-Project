@@ -178,7 +178,7 @@ class Member(Sprite):
                     sp=1
                     self.spot=spot
                     spot.claimed=1
-                d2=d1
+                    d2=d1
             if sp==1:
                 self.state='hiding'
                 self.prog='b'
