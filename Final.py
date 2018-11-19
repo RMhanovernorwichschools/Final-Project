@@ -80,6 +80,8 @@ class Member(Sprite):
         
     def direct(self, event):
         if (self.state!='ready' and self.state!='hiding') or self.comm==0:
+            if self.spot!='':
+                self.spot.claimed=0
             self.targetx=event.x-35
             self.targety=event.y-28
             self.turn=atan((self.targety-self.y)/(self.targetx-self.x))
