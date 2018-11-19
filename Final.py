@@ -79,8 +79,8 @@ class Member(Sprite):
         #Enemy hitbox is as follows: Starts 21 to right of and 6 below spawn point. Stretches 36 wide and 57 tall
         
     def direct(self, event):
-        if (self.state!='ready' and self.state!='hiding' and self.state!='hidden') or self.comm==0:
-            if self.spot!='' and self.state!='firing':
+        if (self.state=='unprep' or self.state=='attackmode' or (self.state=='firing'and self.prog!='b')) or self.comm==0:
+            if self.spot!='' and (self.x>self.spot.x+4 or self.x<self.spot.x-4) and (self.x>self.spot.x+4 or self.x<self.spot.x-4):
                 self.spot.claimed=0
             self.targetx=event.x-35
             self.targety=event.y-28
