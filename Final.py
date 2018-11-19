@@ -17,7 +17,7 @@ class Cover(Sprite):
     
     def step(self):
         for m in myapp.getSpritesbyClass(Member):
-            if m.x>self.x-4 and m.x<self.x+4 and m.y>self.y-4 and m.y<self.y+4 or self.claimed==1:
+            if (m.x>self.x-4 and m.x<self.x+4 and m.y>self.y-4 and m.y<self.y+4) or self.claimed==1:
                 self.state='taken'
             else:
                 self.state='free'
@@ -179,9 +179,9 @@ class Member(Sprite):
                     self.targety=spot.y +5
                     sp=1
                     self.spot=spot
-                    spot.claimed=1
                     d2=d1
             if sp==1:
+                self.spot.claimed=1
                 self.state='hiding'
                 self.prog='b'
             else:
