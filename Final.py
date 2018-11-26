@@ -402,7 +402,7 @@ class Game(App):
   c is quick with light damage
   ''')
             if char=='a':
-                Member(11,1.5,0.7,1,200, coor_a, Aasset, 'a')
+                Member(10,1.5,1,1,190, coor_a, Aasset, 'a')
                 select=1
             elif char=='b':
                 Member(20,0.5,2.5,1,170, coor_a, Basset, 'a')
@@ -416,7 +416,7 @@ class Game(App):
             char=input('''Select a type for the second position:
  (see desc above) ''')
             if char=='a':
-                Member(11,1.5,0.7,1,200, coor_b, Aasset, 'b')
+                Member(10,1.5,1,1,190, coor_b, Aasset, 'b')
                 select=2
             elif char=='b':
                 Member(20,0.5,2.5,1,170, coor_b, Basset, 'b')
@@ -430,7 +430,7 @@ class Game(App):
             char=input('''Select a type for the third (and final) position:
  (see desc. above) ''')
             if char=='a':
-                a=Member(11,1.5,0.7,1,200, coor_c, Aasset, 'c')
+                a=Member(10,1.5,1,1,190, coor_c, Aasset, 'c')
                 select=0
             elif char=='b':
                 a=Member(20,0.5,2.5,1,170, coor_c, Basset, 'c')
