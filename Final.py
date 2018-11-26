@@ -386,6 +386,8 @@ class Game(App):
                 e=Enemy((800,0))
                 e1=Enemy((10,250))
                 e2=Enemy((400,300))
+                e3=Enemy((800,400))
+                e3.hp=40
             elif stage=='3':
                 print('Soon')
                 select=0
@@ -486,6 +488,7 @@ class Game(App):
             char.step()
             if char.state=='dead':
                 enemdeath+=1
+                char.v=0
         for x in self.getSpritesbyClass(Bullet):
             x.step()
         for x in self.getSpritesbyClass(Cover):
