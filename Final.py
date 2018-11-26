@@ -379,7 +379,7 @@ class Game(App):
                 c=Cover((10,100), 0, pillar)
                 c1=Cover((120,105), 1, pillar)
                 c2=Cover((600, 50), 0, pillar)
-                c3=Cover((800, 300), 1, box)
+                c3=Cover((800, 300), 2, box)
                 coor_a=(500,0)
                 coor_b=(550,0)
                 coor_c=(450,50)
