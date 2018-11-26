@@ -330,7 +330,9 @@ class Game(App):
         Aasset=ImageAsset("images/Member_A.png", Frame(0,0,127,115), 8, 'horizontal')
         Basset=ImageAsset("images/Member_B.png", Frame(0,0,127,115), 8, 'horizontal')
         Casset=ImageAsset("images/Member_C.png", Frame(0,0,127,115), 8, 'horizontal')
-        rock=ImageAsset('images/Cover.jpg', Frame(0,0,195,190), 3, 'vertical')
+        #Cover images is 812 wide and 191*4 down)
+        rock=ImageAsset('images/Cover.png', Frame(0,0,203,191), 3, 'vertical')
+        pillar=ImageAsset('images/Cover.png', Frame(203,0,203,191), 3, 'vertical')
         self.state='none'
         select=0
         while select==0:
@@ -344,8 +346,8 @@ class Game(App):
                 m = ImageAsset("images/map_base.jpg")
                 am=Sprite(m)
                 am.scale=1.2
-                c=Cover((100,100), 2, rock)
-                c1=Cover((500,200), 0, rock)
+                c=Cover((100,100), 2, pillar)
+                c1=Cover((500,200), 0, pillar)
                 b=Enemy((0,0))
                 e=Enemy((300,300))
                 coor_a=(500,0)
