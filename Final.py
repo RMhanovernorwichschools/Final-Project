@@ -488,6 +488,7 @@ class Game(App):
             if char.state=='dead':
                 enemdeath+=1
                 char.v=0
+                char.setImage(3)
             else:
                 char.step()
         for x in self.getSpritesbyClass(Bullet):
