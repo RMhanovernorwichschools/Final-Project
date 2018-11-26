@@ -485,10 +485,11 @@ class Game(App):
                 memdeath+=1
         for char in self.getSpritesbyClass(Enemy):
             enems+=1
-            char.step()
             if char.state=='dead':
                 enemdeath+=1
                 char.v=0
+            else:
+                char.step()
         for x in self.getSpritesbyClass(Bullet):
             x.step()
         for x in self.getSpritesbyClass(Cover):
