@@ -7,9 +7,8 @@ noline = LineStyle(0, black)
 white = Color(0xFFFFFF, 1)
 
 class Cover(Sprite):
-    asset=ImageAsset('images/Rocks.png', Frame(0,0,195,190), 3, 'vertical')
-    def __init__(self, position, frame):
-        super().__init__(Cover.asset, position)
+    def __init__(self, position, frame, asset):
+        super().__init__(asset, position)
         self.setImage(frame)
         self.scale=0.55
         self.state='free'
@@ -331,6 +330,7 @@ class Game(App):
         Aasset=ImageAsset("images/Member_A.png", Frame(0,0,127,115), 8, 'horizontal')
         Basset=ImageAsset("images/Member_B.png", Frame(0,0,127,115), 8, 'horizontal')
         Casset=ImageAsset("images/Member_C.png", Frame(0,0,127,115), 8, 'horizontal')
+        rock=ImageAsset('images/Cover.jpg', Frame(0,0,195,190), 3, 'vertical')
         self.state='none'
         select=0
         while select==0:
@@ -344,15 +344,14 @@ class Game(App):
                 m = ImageAsset("images/map_base.jpg")
                 am=Sprite(m)
                 am.scale=1.2
-                c=Cover((100,100), 2)
-                c1=Cover((500,200), 0)
+                c=Cover((100,100), 2, rock)
+                c1=Cover((500,200), 0, rock)
                 b=Enemy((0,0))
                 e=Enemy((300,300))
                 coor_a=(500,0)
                 coor_b=(500,200)
                 coor_c=(500,400)
             elif stage=='1':
-                print('In progress')
                 select=1
                 m = ImageAsset("images/map_base2.jpg")
                 Cover((50,150), 2)
@@ -370,7 +369,14 @@ class Game(App):
                 coor_c=(0,21)
             elif stage=='2':
                 print('Working on it')
-                select=0
+                select=1
+                m = ImageAsset("images/map_base3.jpg")
+                Cover((50,150), 2)
+                am=Sprite(m)
+                am.scale=1.1
+                coor_a=(0,0)
+                coor_b=(0,10)
+                coor_c=(0,21)
             elif stage=='3':
                 print('Soon')
                 select=0
