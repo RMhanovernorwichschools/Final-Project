@@ -10,7 +10,7 @@ class Cover(Sprite):
     def __init__(self, position, frame, asset):
         super().__init__(asset, position)
         self.setImage(frame)
-        self.scale=0.45
+        self.scale=0.5
         self.state='free'
         self.claimed=0
     
@@ -333,6 +333,8 @@ class Game(App):
         #Cover images is 812 wide and 191*4 down)
         rock=ImageAsset('images/Cover.png', Frame(0,0,203,191), 3, 'vertical')
         pillar=ImageAsset('images/Cover.png', Frame(203,0,203,191), 3, 'vertical')
+        box=ImageAsset('images/Cover.png', Frame(406,0,203,191), 3, 'vertical')
+        etc=ImageAsset('images/Cover.png', Frame(609,0,203,191), 3, 'vertical')
         self.state='none'
         select=0
         while select==0:
@@ -346,8 +348,8 @@ class Game(App):
                 m = ImageAsset("images/map_base.jpg")
                 am=Sprite(m)
                 am.scale=1.2
-                c=Cover((100,100), 2, pillar)
-                c1=Cover((500,200), 0, pillar)
+                c=Cover((100,100), 2, etc)
+                c1=Cover((500,200), 0, rock)
                 b=Enemy((0,0))
                 e=Enemy((300,300))
                 coor_a=(500,0)
