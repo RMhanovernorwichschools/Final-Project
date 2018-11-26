@@ -358,13 +358,12 @@ class Game(App):
             elif stage=='1':
                 select=1
                 m = ImageAsset("images/map_base2.jpg")
-                Cover((50,150), 2)
                 am=Sprite(m)
                 am.scale=1.2
-                c=Cover((100,290), 1)
-                c1=Cover((700,360), 1)
-                c2=Cover((304, 390), 0)
-                c3=Cover((500, 30), 2)
+                c=Cover((100,290), 2, etc)
+                c1=Cover((700,360), 1, rock)
+                c2=Cover((304, 390), 0, rock)
+                c3=Cover((500, 30), 2, rock)
                 e=Enemy((800,0))
                 e1=Enemy((782,15))
                 e2=Enemy((802,30))
