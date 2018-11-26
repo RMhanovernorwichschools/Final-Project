@@ -10,7 +10,7 @@ class Cover(Sprite):
     def __init__(self, position, frame, asset):
         super().__init__(asset, position)
         self.setImage(frame)
-        self.scale=0.5
+        self.scale=0.51
         self.state='free'
         self.claimed=0
     
