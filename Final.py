@@ -374,12 +374,18 @@ class Game(App):
                 print('Working on it')
                 select=1
                 m = ImageAsset("images/map_base3.jpg")
-                Cover((50,150), 2)
                 am=Sprite(m)
                 am.scale=1.1
-                coor_a=(0,0)
-                coor_b=(0,10)
-                coor_c=(0,21)
+                c=Cover((10,100), 0, pillar)
+                c1=Cover((120,105), 1, pillar)
+                c2=Cover((600, 50), 0, pillar)
+                c3=Cover((800, 300), 1, box)
+                coor_a=(500,0)
+                coor_b=(550,0)
+                coor_c=(450,50)
+                e=Enemy((800,0))
+                e1=Enemy((10,250))
+                e2=Enemy((400,300))
             elif stage=='3':
                 print('Soon')
                 select=0
