@@ -10,16 +10,15 @@ class Cover(Sprite):
     def __init__(self, position, frame, asset):
         super().__init__(asset, position)
         self.setImage(frame)
-        self.scale=0.51
+        self.scale=0.52
         self.state='free'
         self.claimed=0
     
     def step(self):
-        for m in myapp.getSpritesbyClass(Member):
-            if (m.x>self.x-4 and m.x<self.x+4 and m.y>self.y-4 and m.y<self.y+4) or self.claimed==1:
-                self.state='taken'
-            else:
-                self.state='free'
+        if self.claimed==1:
+            self.state='taken'
+        else:
+            self.state='free'
 
 class Bullet(Sprite):
     asset=CircleAsset(3, noline, white)
@@ -173,7 +172,7 @@ class Member(Sprite):
                 d1=x**2+y**2
                 if d1<d2 and spot.state=='free':
                     self.targetx=spot.x +5
-                    self.targety=spot.y +5
+                    self.targety=spot.y +12
                     sp=1
                     self.spot=spot
                     d2=d1
