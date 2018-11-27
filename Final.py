@@ -388,15 +388,24 @@ class Game(App):
                 e2=Enemy((400,300))
                 e3=Enemy((800,400))
                 e3.hp=40
+                e3.scale=0.58
             elif stage=='3':
-                print('Soon')
                 select=1
                 m = ImageAsset("images/map_base4.jpg")
                 am=Sprite(m)
                 am.scale=1.1
-                coor_a=(500,0)
-                coor_b=(550,0)
-                coor_c=(450,50)
+                c=Cover((10,0), 0, etc)
+                c1=Cover((550,300), 1, rock)
+                c2=Cover((480, 320), 1, etc)
+                c2.scale=0.47
+                e1=Enemy((400,50))
+                e2=Enemy((500,50))
+                e=Enemy((450, 20))
+                e.hp=200
+                e.scale=0.8
+                coor_a=(0,251)
+                coor_b=(400,252)
+                coor_c=(800,253)
             else:
                 print("Sorry, didn't understand. Try again.")
         self.akey='False'
@@ -437,7 +446,7 @@ class Game(App):
                 Member(7,2,0.3,1,180, coor_b, Casset, 'b')
                 select=2
             elif char=='d':
-                Member(33,1.1,0.8,1,40, coor_a, Dasset, 'b')
+                Member(33,1.1,0.8,1,40, coor_b, Dasset, 'b')
                 select=2
             else:
                 print("Sorry, I don't understand.")
@@ -454,7 +463,7 @@ class Game(App):
                 a=Member(7,2,0.3,1,180, coor_c, Casset, 'c')
                 select=0
             elif char=='d':
-                Member(33,1.1,0.8,1,40, coor_a, Dasset, 'c')
+                Member(33,1.1,0.8,1,40, coor_c, Dasset, 'c')
                 select=0
             else:
                 print("Sorry, I don't understand.")
