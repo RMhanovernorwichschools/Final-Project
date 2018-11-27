@@ -249,7 +249,7 @@ class Enemy(Sprite):
                 if time.time()>self.wait and self.enemy.state!='hidden':
                     Bullet(self.x, self.y, self.targetx, self.targety, (self.damage+random.randint(-3,3)), 'E')
                     self.wait=time.time()+2
-                if cos(self.turn)<0:
+                if self.targetx<self.x:
                     self.f=4
                 else:
                     self.f=2
