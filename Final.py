@@ -330,6 +330,7 @@ class Game(App):
         Aasset=ImageAsset("images/Member_A.png", Frame(0,0,127,115), 8, 'horizontal')
         Basset=ImageAsset("images/Member_B.png", Frame(0,0,127,115), 8, 'horizontal')
         Casset=ImageAsset("images/Member_C.png", Frame(0,0,127,115), 8, 'horizontal')
+        Dasset=ImageAsset("images/Member_D.png", Frame(0,0,127,115), 8, 'horizontal')
         #Cover images is 812 wide and 191*4 down)
         rock=ImageAsset('images/Cover.png', Frame(0,0,203,191), 3, 'vertical')
         pillar=ImageAsset('images/Cover.png', Frame(203,0,203,191), 3, 'vertical')
@@ -411,6 +412,9 @@ class Game(App):
                 select=1
             elif char=='c':
                 Member(7,2,0.3,1,180, coor_a, Casset, 'a')
+                select=1
+            elif char=='d':
+                Member(33,1,0.8,1,80, coor_a, Dasset, 'a')
                 select=1
             else:
                 print("Sorry, I don't understand.")
