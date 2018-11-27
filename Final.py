@@ -372,7 +372,6 @@ class Game(App):
                 coor_b=(0,10)
                 coor_c=(0,21)
             elif stage=='2':
-                print('Working on it')
                 select=1
                 m = ImageAsset("images/map_base3.jpg")
                 am=Sprite(m)
@@ -391,7 +390,13 @@ class Game(App):
                 e3.hp=40
             elif stage=='3':
                 print('Soon')
-                select=0
+                select=1
+                m = ImageAsset("images/map_base4.jpg")
+                am=Sprite(m)
+                am.scale=1.1
+                coor_a=(500,0)
+                coor_b=(550,0)
+                coor_c=(450,50)
             else:
                 print("Sorry, didn't understand. Try again.")
         self.akey='False'
