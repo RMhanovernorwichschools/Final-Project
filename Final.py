@@ -403,6 +403,7 @@ class Game(App):
   a is generally balanced
   b is slow but powerful
   c is quick with light damage
+  d has high damage and low hp
   ''')
             if char=='a':
                 Member(10,1.5,1,1,190, coor_a, Aasset, 'a')
