@@ -414,7 +414,7 @@ class Game(App):
                 Member(7,2,0.3,1,180, coor_a, Casset, 'a')
                 select=1
             elif char=='d':
-                Member(33,1,0.8,1,80, coor_a, Dasset, 'a')
+                Member(33,1.1,0.8,1,40, coor_a, Dasset, 'a')
                 select=1
             else:
                 print("Sorry, I don't understand.")
@@ -430,6 +430,9 @@ class Game(App):
             elif char=='c':
                 Member(7,2,0.3,1,180, coor_b, Casset, 'b')
                 select=2
+            elif char=='d':
+                Member(33,1.1,0.8,1,40, coor_a, Dasset, 'b')
+                select=2
             else:
                 print("Sorry, I don't understand.")
         while select==2:
@@ -443,6 +446,9 @@ class Game(App):
                 select=0
             elif char=='c':
                 a=Member(7,2,0.3,1,180, coor_c, Casset, 'c')
+                select=0
+            elif char=='d':
+                Member(33,1.1,0.8,1,40, coor_a, Dasset, 'c')
                 select=0
             else:
                 print("Sorry, I don't understand.")
