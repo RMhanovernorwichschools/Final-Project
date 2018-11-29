@@ -336,6 +336,10 @@ class Game(App):
         box=ImageAsset('images/Cover.png', Frame(406,0,203,191), 3, 'vertical')
         etc=ImageAsset('images/Cover.png', Frame(609,0,203,191), 3, 'vertical')
         self.state='none'
+        instructions=['These are the instructions. Press enter to continue.', 'If, at any point, you want to skip the instructions, type "s" then press enter.', 'This game allows you to control three characters and use them to defeat enemies in various levels.', 'To control the characters, click any location on the map. They will go to that location.', 'If they are busy-hiding, shooting at any enemy, etc.-then they will not respond.', 'If you want them to respond even while they are busy, use your "control keys".', 'There is a different control key for each character. The first uses the control key "a", the second uses "b", and the third uses "c".', 'To use the control key, merely hold it down. While you are holding it, the character will ignore nearby enemies and focus only on your instructions.', 'When you release the key, they will resume paying attention to enemies nearby.', 'Have fun!']
+        for a in instructions:
+            if input(a)=='s':
+                break
         select=0
         while select==0:
             stage=input('''Select your level. 
