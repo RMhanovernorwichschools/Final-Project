@@ -1,6 +1,6 @@
 import random
 
-Names=['Willow', 'Lisbet', 'Cameron', 'Mariette', 'Annie', 'Luna']
+Names=['Willow', 'Lisbet', 'Cameron', 'Mariette', 'Annie', 'Luna', 'Celia']
 Scents=['pine', 'lavender', 'lemon', 'soap', 'fish']
 Shoes=['hiking shoes', 'worn sneakers', 'winter boots', 'rainboots', 'trail-runners']
 BirthMons=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -26,6 +26,9 @@ trait_list=list(input('''Now carefully enter the traits of the items using the f
   -do not repeat traits
   -separate each trait with a /
   -choose from the following traits: color, coat, scent, shoe, name, month'''))
+for x in trait_list:
+    if x=='?' or x=='!' or x=='.' or x==' ':
+        trait_list.remove(x)
   
 traits=[]
 split_loci=[]
@@ -60,4 +63,5 @@ class item():
 
 for x in range(item_num):
     a=item(x,x)
-    print([a.loci, a.color, a.shoe])
+    b=([a.loci, a.name, a.scent, a.shoe, a.birthmon, a.coat, a.color])
+    print(b)
