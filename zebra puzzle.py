@@ -125,7 +125,7 @@ def generate_clue(x,fac,sep):
             b=random.randint(0,1)*2
         if b==0:
             p2=' is next to'
-            if random.randint(0,1)==0:
+            if random.randint(0,1)==0 or x!=items[1].loci:
                 partner=x-1
             else:
                 partner=x+1
@@ -139,7 +139,7 @@ def generate_clue(x,fac,sep):
         if a[0]=='name':
             p3=a[1][partner]
         elif a[0]=='month':
-            p3=' the girl born in {0}'.format(a[1][partner])
+            p3='the girl born in {0}'.format(a[1][partner])
         elif a[0]=='shoe' or a[0]=='color':
             p3=' the girl wearing {0}'.format(a[1][partner])
         elif a[0]=='scent':
@@ -161,6 +161,6 @@ for x in traits_fin:
     
 print(options)
     
-generate_clue(items[0].loci, traits_fin[0], 2)
+generate_clue(items[0].loci, random.choice(traits_fin), 2)
 generate_clue(items[1].loci, traits_fin[-1], 1)
-generate_clue(items[-1].loci, traits_fin[1], 1)
+generate_clue(items[-1].loci, random.choice(traits_fin), 1)
