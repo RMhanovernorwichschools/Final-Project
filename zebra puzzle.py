@@ -63,6 +63,7 @@ for x in range(len(traits)):
         traits_fin.append([traits[x], Names])
     elif traits[x]=='month':
         traits_fin.append([traits[x], BirthMons])
+        
 items=[]
 class item():
     def __init__(self, n, title):
@@ -75,22 +76,11 @@ class item():
         self.color=Colors[n]
         items.append(self)
         
-options=[]
-for x in traits_fin:
-    option=[]
-    ref=x[1]
-    for a in items:
-        option.append(ref[a.loci])
-    options.append(option)
-    
-print(options)
-        
-        
-def return_list(self):
-    message=[self.loci]
-    for x in traits_fin:
-        message.append(x[1][self.loci])
-    return message
+    def return_list(self):
+        message=[self.loci]
+        for x in traits_fin:
+            message.append(x[1][self.loci])
+        return message
 
 for x in range(item_num):
     a=item(x,x)
@@ -101,7 +91,7 @@ clues=[]
 def generate_clue(x,fac,sep):
     clue=[]
     if sep==0:
-        p_1='The girl in the {0} position'.format(x)
+        p1='The girl in the {0} position'.format(x)
     elif sep==1:
         a=random.choice(traits_fin)
         while a==fac:
@@ -116,23 +106,61 @@ def generate_clue(x,fac,sep):
             p1='The girl who smells of {0}'.format(a[1][x])
         elif a[0]=='coat':
             p1='The girl wearing the {0}'.format(a[1][x])
-    if fac[0]=='name':
-        p2=" is "+fac[1][x]
-    elif fac[0]=='month':
-        p2=' was born in {0}'.format(fac[1][x])
-    elif fac[0]=='shoe' or fac[0]=='color':
-        p2=' wears {0}'.format(fac[1][x])
-    elif fac[0]=='scent':
-        p2=' sort of smells like {0}'.format(fac[1][x])
-    elif fac[0]=='coat':
-        p2=' is wearing a {0}'.format(fac[1][x])
+    if sep==1 or sep==2:
+        if fac[0]=='name':
+            p2=" is "+fac[1][x]
+        elif fac[0]=='month':
+            p2=' was born in {0}'.format(fac[1][x])
+        elif fac[0]=='shoe' or fac[0]=='color':
+            p2=' wears {0}'.format(fac[1][x])
+        elif fac[0]=='scent':
+            p2=' sort of smells like {0}'.format(fac[1][x])
+        elif fac[0]=='coat':
+            p2=' is wearing a {0}'.format(fac[1][x])
+    elif sep==3:
+        b=random.randint(0,2)
+        if x==items[-1][0]:
+            b=2
+        elif x==items[1][0]:
+            b=1
+        if b==0:
+            p2=' is next to'
+            if random.randint(0,1)==0:
+                partner=x-1
+            else:
+                partner=x+1
+            a=random.choice(traits_fin)
+            while a==fac:
+                a=random.choice(traits_fin)
+            if a[0]=='name':
+                p3=a[1][partner]
+            elif 3[0]=='month':
+                p3='The girl born in {0}'.format(a[1][partner])
+            elif a[0]=='shoe' or a[0]=='color':
+                p3='The girl wearing {0}'.format(a[1][partner])
+            elif a[0]=='scent':
+                p3='The girl who smells of {0}'.format(a[1][partner])
+            elif a[0]=='coat':
+                p3='The girl wearing the {0}'.format(a[1][partner])
+            p2+=' '+p3
+        elif b==1:
+            p2=' is to the right of'
+        else:
+            p2=' is to the left of'
+        
     clue.append(p1+p2)
     print(clue)
     clues.append(clue)
-    
-def test(cl):
-    
-    for x in cl:
         
+options=[]
+for x in traits_fin:
+    option=[]
+    ref=x[1]
+    for a in items:
+        option.append(ref[a.loci])
+    options.append(option)
     
-generate_clue(a.loci, traits_fin[0], 1)
+print(options)
+    
+generate_clue(items[0].loci, traits_fin[0], 1)
+generate_clue(items[1].loci, traits_fin[-1], 1)
