@@ -90,7 +90,7 @@ clues=[]
     
 def generate_clue(x,fac,sep):
     clue=[]
-    if sep==0:
+    if sep==0:i
         p1='The girl in the {0} position'.format(x)
     elif sep==1:
         a=random.choice(traits_fin)
@@ -119,9 +119,9 @@ def generate_clue(x,fac,sep):
             p2=' is wearing a {0}'.format(fac[1][x])
     elif sep==3:
         b=random.randint(0,2)
-        if x==items[-1][0]:
+        if x==items[-1].loci:
             b=2
-        elif x==items[1][0]:
+        elif x==items[1].loci:
             b=1
         if b==0:
             p2=' is next to'
@@ -130,11 +130,9 @@ def generate_clue(x,fac,sep):
             else:
                 partner=x+1
             a=random.choice(traits_fin)
-            while a==fac:
-                a=random.choice(traits_fin)
             if a[0]=='name':
                 p3=a[1][partner]
-            elif 3[0]=='month':
+            elif a[0]=='month':
                 p3='The girl born in {0}'.format(a[1][partner])
             elif a[0]=='shoe' or a[0]=='color':
                 p3='The girl wearing {0}'.format(a[1][partner])
@@ -147,7 +145,6 @@ def generate_clue(x,fac,sep):
             p2=' is to the right of'
         else:
             p2=' is to the left of'
-        
     clue.append(p1+p2)
     print(clue)
     clues.append(clue)
@@ -162,5 +159,5 @@ for x in traits_fin:
     
 print(options)
     
-generate_clue(items[0].loci, traits_fin[0], 1)
+generate_clue(items[0].loci, traits_fin[0], 3)
 generate_clue(items[1].loci, traits_fin[-1], 1)
