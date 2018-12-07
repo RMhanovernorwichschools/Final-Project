@@ -162,5 +162,5 @@ for x in traits_fin:
 print(options)
     
 generate_clue(items[0].loci, random.choice(traits_fin), 2)
-generate_clue(items[1].loci, traits_fin[-1], 1)
+generate_clue(random.choice(items).loci, traits_fin[-1], 1)
 generate_clue(items[-1].loci, random.choice(traits_fin), 1)
