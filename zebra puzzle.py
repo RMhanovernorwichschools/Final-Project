@@ -119,32 +119,34 @@ def generate_clue(x,fac,sep):
             p2=' is wearing a {0}'.format(fac[1][x])
     elif sep==2:
         b=random.randint(0,2)
-        if x==items[-1].loci:
-            b=2
-        elif x==items[1].loci:
-            b=1
+        if x==items[-1].loci and b==2:
+            b=random.randint(0,1)
+        elif x==items[1].loci and b==1:
+            b=random.randint(0,1)*2
         if b==0:
             p2=' is next to'
             if random.randint(0,1)==0:
                 partner=x-1
             else:
                 partner=x+1
-            a=random.choice(traits_fin)
-            if a[0]=='name':
-                p3=a[1][partner]
-            elif a[0]=='month':
-                p3='The girl born in {0}'.format(a[1][partner])
-            elif a[0]=='shoe' or a[0]=='color':
-                p3='The girl wearing {0}'.format(a[1][partner])
-            elif a[0]=='scent':
-                p3='The girl who smells of {0}'.format(a[1][partner])
-            elif a[0]=='coat':
-                p3='The girl wearing the {0}'.format(a[1][partner])
-            p2=p2+' '+p3
         elif b==1:
-            p2=' is to the right of'
-        else:
             p2=' is to the left of'
+            partner=x+1
+        else:
+            p2=' is to the right of'
+            partner=x-1
+        a=random.choice(traits_fin)
+        if a[0]=='name':
+            p3=a[1][partner]
+        elif a[0]=='month':
+            p3=' the girl born in {0}'.format(a[1][partner])
+        elif a[0]=='shoe' or a[0]=='color':
+            p3=' the girl wearing {0}'.format(a[1][partner])
+        elif a[0]=='scent':
+            p3='the girl who smells of {0}'.format(a[1][partner])
+        elif a[0]=='coat':
+            p3='the girl wearing the {0}'.format(a[1][partner])
+        p2=p2+' '+p3
     clue.append(p1+p2)
     print(clue)
     clues.append(clue)
@@ -159,5 +161,6 @@ for x in traits_fin:
     
 print(options)
     
-generate_clue(items[0].loci, traits_fin[0], 3)
+generate_clue(items[0].loci, traits_fin[0], 2)
 generate_clue(items[1].loci, traits_fin[-1], 1)
+generate_clue(items[-1].loci, traits_fin[1], 1)
