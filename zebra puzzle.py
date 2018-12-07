@@ -119,13 +119,13 @@ def generate_clue(x,fac,sep):
             p2=' is wearing a {0}'.format(fac[1][x])
     elif sep==2:
         b=random.randint(0,2)
-        if x==items[-1].loci and b==2:
-            b=random.randint(0,1)
-        elif x==items[1].loci and b==1:
+        if x==items[-1].loci and b==1:
             b=random.randint(0,1)*2
+        elif x==items[0].loci and b==2:
+            b=random.randint(0,1)
         if b==0:
             p2=' is next to'
-            if random.randint(0,1)==0 or x!=items[1].loci:
+            if random.randint(0,1)==0 or x!=items[0].loci:
                 partner=x-1
             else:
                 partner=x+1
