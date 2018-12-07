@@ -90,9 +90,9 @@ clues=[]
     
 def generate_clue(x,fac,sep):
     clue=[]
-    if sep==0:i
+    if sep==0:
         p1='The girl in the {0} position'.format(x)
-    elif sep==1:
+    elif sep==1 or sep==2:
         a=random.choice(traits_fin)
         while a==fac:
             a=random.choice(traits_fin)
@@ -106,7 +106,7 @@ def generate_clue(x,fac,sep):
             p1='The girl who smells of {0}'.format(a[1][x])
         elif a[0]=='coat':
             p1='The girl wearing the {0}'.format(a[1][x])
-    if sep==1 or sep==2:
+    if sep==1 or sep==0:
         if fac[0]=='name':
             p2=" is "+fac[1][x]
         elif fac[0]=='month':
@@ -117,7 +117,7 @@ def generate_clue(x,fac,sep):
             p2=' sort of smells like {0}'.format(fac[1][x])
         elif fac[0]=='coat':
             p2=' is wearing a {0}'.format(fac[1][x])
-    elif sep==3:
+    elif sep==2:
         b=random.randint(0,2)
         if x==items[-1].loci:
             b=2
