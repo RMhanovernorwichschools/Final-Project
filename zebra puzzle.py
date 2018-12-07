@@ -63,7 +63,7 @@ for x in range(len(traits)):
         traits_fin.append([traits[x], Names])
     elif traits[x]=='month':
         traits_fin.append([traits[x], BirthMons])
-
+items=[]
 class item():
     def __init__(self, n, title):
         self.loci=title
@@ -73,12 +73,24 @@ class item():
         self.birthmon=BirthMons[n]
         self.coat=Coats[n]
         self.color=Colors[n]
+        items.append(self)
         
-    def return_list(self):
-        message=[self.loci]
-        for x in traits_fin:
-            message.append(x[1][self.loci])
-        return message
+options=[]
+for x in traits_fin:
+    option=[]
+    ref=x[1]
+    for a in items:
+        option.append(ref[a.loci])
+    options.append(option)
+    
+print(options)
+        
+        
+def return_list(self):
+    message=[self.loci]
+    for x in traits_fin:
+        message.append(x[1][self.loci])
+    return message
 
 for x in range(item_num):
     a=item(x,x)
@@ -116,5 +128,11 @@ def generate_clue(x,fac,sep):
         p2=' is wearing a {0}'.format(fac[1][x])
     clue.append(p1+p2)
     print(clue)
+    clues.append(clue)
+    
+def test(cl):
+    
+    for x in cl:
+        
     
 generate_clue(a.loci, traits_fin[0], 1)
