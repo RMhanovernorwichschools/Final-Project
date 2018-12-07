@@ -140,7 +140,7 @@ def generate_clue(x,fac,sep):
                 p3='The girl who smells of {0}'.format(a[1][partner])
             elif a[0]=='coat':
                 p3='The girl wearing the {0}'.format(a[1][partner])
-            p2+=' '+p3
+            p2=p2+' '+p3
         elif b==1:
             p2=' is to the right of'
         else:
