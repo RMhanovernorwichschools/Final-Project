@@ -150,7 +150,7 @@ def generate_clue(x,fac,sep):
         elif a[0]=='month':
             p3='the girl born in {0}'.format(a[1][partner])
         elif a[0]=='shoe' or a[0]=='color':
-            p3=' the girl wearing {0}'.format(a[1][partner])
+            p3='the girl wearing {0}'.format(a[1][partner])
         elif a[0]=='scent':
             p3='the girl who smells of {0}'.format(a[1][partner])
         elif a[0]=='coat':
@@ -158,7 +158,6 @@ def generate_clue(x,fac,sep):
         f2=[a[0], a[1][partner]]
         p2=p2+' '+p3
     clue=[variety, f1, f2, f3,p1+p2]
-    print(clue[4])
     clues.append(clue)
 
 def sort_clues():
@@ -167,6 +166,11 @@ def sort_clues():
         for a in clues:
             if x[0]=='link' and a[0]=='link' and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
                 clues.remove(a)
+            if x[0]=='left' and a[0]=='right' and x[1][1]==a[2][1] and a[1][1]==x[2][1]:
+                if random.randint(0,1)==0:
+                    clues.remove(a)
+                else:
+                    clues.remove(x)
 
 options=[]
 for x in traits_fin:
@@ -177,9 +181,13 @@ for x in traits_fin:
     options.append(option)
     
 print(options)
+
+possibilities=[]
+
     
 for x in range(5):
     generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,2))
     
 sort_clues()
-print(clues)
+for a in clues:
+    print(a[4])
