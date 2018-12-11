@@ -166,6 +166,8 @@ def sort_clues():
         for a in clues:
             if x[0]=='link' and a[0]=='link' and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
                 clues.remove(a)
+            if x[0]=='side' and (a[0]=='left' or a[0]=='right') and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
+                clues.remove(x)
             if x[0]=='left' and a[0]=='right' and x[1][1]==a[2][1] and a[1][1]==x[2][1]:
                 if random.randint(0,1)==0:
                     clues.remove(a)
@@ -185,7 +187,7 @@ print(options)
 possibilities=[]
 
     
-for x in range(5):
+for x in range(10):
     generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,2))
     
 sort_clues()
