@@ -89,6 +89,7 @@ for x in range(item_num):
 clues=[]
     
 def generate_clue(x,fac,sep):
+    global clues
     clue=[]
     f3=''
     if sep==0:
@@ -157,9 +158,16 @@ def generate_clue(x,fac,sep):
         f2=[a[0], a[1][partner]]
         p2=p2+' '+p3
     clue=[variety, f1, f2, f3,p1+p2]
-    print(clue)
+    print(clue[4])
     clues.append(clue)
-        
+
+def sort_clues():
+    global clues
+    for x in clues:
+        for a in clues:
+            if x[0]=='link' and a[0]=='link' and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1]):
+                clues.remove(a)
+
 options=[]
 for x in traits_fin:
     option=[]
