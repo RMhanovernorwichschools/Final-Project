@@ -4,7 +4,7 @@ Names=['Willow', 'Lisbet', 'Cameron', 'Mariette', 'Annie', 'Luna', 'Celia']
 Scents=['pine', 'lavender', 'lemon', 'soap', 'fish']
 Shoes=['hiking shoes', 'worn sneakers', 'winter boots', 'rainboots', 'trail-runners']
 BirthMons=['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-Coats=['hoodie', 'sweater', 'raincoat', 'down jacket', 'sports coat']
+Coats=['hoodie', 'sweater', 'raincoat', 'down jacket', 'sports coat', 'denim jacket']
 Colors=['navy blue', 'pale blue', 'white', 'grey', 'black', 'beige']
 
 lists=[Names, Scents, Shoes, BirthMons, Coats, Colors]
@@ -90,8 +90,10 @@ clues=[]
     
 def generate_clue(x,fac,sep):
     clue=[]
+    f3=''
     if sep==0:
         p1='The girl in the {0} position'.format(x)
+        f1=['loci', x]
     elif sep==1 or sep==2:
         a=random.choice(traits_fin)
         while a==fac:
@@ -106,7 +108,9 @@ def generate_clue(x,fac,sep):
             p1='The girl who smells of {0}'.format(a[1][x])
         elif a[0]=='coat':
             p1='The girl wearing the {0}'.format(a[1][x])
+        f1=[a[0], a[1][x]]
     if sep==1 or sep==0:
+        variety='link'
         if fac[0]=='name':
             p2=" is "+fac[1][x]
         elif fac[0]=='month':
@@ -117,6 +121,7 @@ def generate_clue(x,fac,sep):
             p2=' sort of smells like {0}'.format(fac[1][x])
         elif fac[0]=='coat':
             p2=' is wearing a {0}'.format(fac[1][x])
+        f2=[fac[0], fac[1][x]]
     elif sep==2:
         b=random.randint(0,2)
         if x==items[-1].loci and b==1:
@@ -129,12 +134,15 @@ def generate_clue(x,fac,sep):
                 partner=x-1
             else:
                 partner=x+1
+            variety='side'
         elif b==1:
             p2=' is to the left of'
             partner=x+1
+            variety='left'
         else:
             p2=' is to the right of'
             partner=x-1
+            variety='right'
         a=random.choice(traits_fin)
         if a[0]=='name':
             p3=a[1][partner]
@@ -146,8 +154,9 @@ def generate_clue(x,fac,sep):
             p3='the girl who smells of {0}'.format(a[1][partner])
         elif a[0]=='coat':
             p3='the girl wearing the {0}'.format(a[1][partner])
+        f2=[a[0], a[1][partner]]
         p2=p2+' '+p3
-    clue.append(p1+p2)
+    clue=[variety, f1, f2, f3,p1+p2]
     print(clue)
     clues.append(clue)
         
