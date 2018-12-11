@@ -165,7 +165,7 @@ def sort_clues():
     global clues
     for x in clues:
         for a in clues:
-            if x[0]=='link' and a[0]=='link' and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1]):
+            if x[0]=='link' and a[0]=='link' and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
                 clues.remove(a)
 
 options=[]
@@ -178,6 +178,8 @@ for x in traits_fin:
     
 print(options)
     
-generate_clue(items[0].loci, random.choice(traits_fin), 2)
-generate_clue(random.choice(items).loci, traits_fin[-1], 1)
-generate_clue(items[-1].loci, random.choice(traits_fin), 1)
+for x in range(5):
+    generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,2))
+    
+sort_clues()
+print(clues)
