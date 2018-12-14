@@ -153,11 +153,11 @@ def generate_clue(x,fac,sep):
                 partner=x+1
             variety='side'
         elif b==1:
-            p2=' is to the left of'
+            p2=' is exactly to the left of'
             partner=x+1
             variety='left'
         else:
-            p2=' is to the right of'
+            p2=' is exactly to the right of'
             partner=x-1
             variety='right'
         a=random.choice(traits_fin)
@@ -209,12 +209,81 @@ for x in traits_fin:
     
 print(options)
 
-possibilities=[]
+def gen_pos():
+    possibilities=[]
+    indivposs=[]
+    for a in options[0]:
+        fa=a
+        for b in options[1]:
+            fb=b
+            if len(options)>2:
+                for c in options[2]:
+                    fc=c
+                    if len(options)>3:
+                        for d in options[3]:
+                            fd=d
+                            if len(options)>4:
+                                for e in options[4]:
+                                    fe=e
+                                    if len(options)>5:
+                                        for f in options[5]:
+                                            ff=f
+                                            indivposs.append([fa,fb,fc,fd,fe,ff])
+                                    else:
+                                        indivposs.append([fa,fb,fc,fd,fe])
+                            else:
+                                indivposs.append([fa,fb,fc,fd])
+                    else:
+                        indivposs.append([fa,fb,fc])
+            else:
+                indivposs.append([fa,fb])
+    for a in indivposs:
+        it1=[0]
+        for x in a:
+            it1.append(x)
+        for b in indivposs:
+            it2=[1]
+            for x in b:
+                it2.append(x)
+            if len(items)>2:
+                for c in indivposs:
+                    it3=[2]
+                    for x in c:
+                        it3.append(x)
+                    if len(items)>3:
+                        for d in indivposs:
+                            it4=[3]
+                            for x in d:
+                                it4.append(x)
+                            if len(items)>4:
+                                for e in indivposs:
+                                    it5=[4]
+                                    for x in e:
+                                        it5.append(x)
+                                    possibilities.append([it1, it2,it3,it4,it5])
+                            else:
+                                possibilities.append([it1, it2,it3,it4])
+                    else:
+                        possibilities.append([it1, it2,it3])
+            else:
+                possibilities.append([it1, it2])
+    for combo in possibilities:
+        m=0
+        for indiv in combo:
+            for aspect in indiv:
+                for c in possibilities:
+                    for i in c:
+                        for a in i:
+                            if a==aspect and indiv!=i and m==0:
+                                m=1
+                                possibilities.remove(combo)
+    print(possibilities)
 
-    
 for x in range(10):
     generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
     
 sort_clues()
 for a in clues:
     print(a[4])
+    
+gen_pos()
