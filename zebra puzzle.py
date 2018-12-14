@@ -176,10 +176,10 @@ def generate_clue(x,fac,sep):
     clue=[variety, f1, f2, f3,p1+p2]
     clues.append(clue)
 
-def sort_clues():
+def sort_clues(lis):
     global clues
-    for x in clues:
-        for a in clues:
+    for x in lis:
+        for a in lis:
             m=0
             if x[4]==a[4]:
                 clues.remove(a)
@@ -210,6 +210,7 @@ for x in traits_fin:
 print(options)
 
 def gen_pos():
+    global possibilities
     possibilities=[]
     indivposs=[]
     for a in options[0]:
@@ -271,18 +272,18 @@ def gen_pos():
         m=0
         for indiv in combo:
             for aspect in indiv:
-                for c in possibilities:
-                    for i in c:
-                        for a in i:
-                            if a==aspect and indiv!=i and m==0:
-                                m=1
-                                possibilities.remove(combo)
+                for i in combo:
+                    for a in i:
+                        if a==aspect and indiv[0]!=i [0] and m==0:
+                            m=1
+                            print(combo)
+                            possibilities.remove(combo)
     print(possibilities)
 
 for x in range(10):
     generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
     
-sort_clues()
+sort_clues(clues)
 for a in clues:
     print(a[4])
     
