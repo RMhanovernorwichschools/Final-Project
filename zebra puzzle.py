@@ -271,13 +271,12 @@ def gen_pos():
     for combo in possibilities:
         m=0
         for indiv in combo:
-            for aspect in indiv:
-                for i in combo:
-                    for a in i:
-                        if a==aspect and indiv[0]!=i [0] and m==0:
-                            m=1
-                            print(combo)
-                            possibilities.remove(combo)
+            for i in combo:
+                for x in range(1,(len(indiv))):
+                    if i[x]==indiv[x] and indiv[0]!=i [0] and m==0:
+                        m=1
+                        print(a)
+                        possibilities.remove(combo)
     print(possibilities)
 
 for x in range(10):
