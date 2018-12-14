@@ -147,7 +147,7 @@ def generate_clue(x,fac,sep):
             b=random.randint(0,1)
         if b==0:
             p2=' is next to'
-            if random.randint(0,1)==0 and x!=items[0].loci:
+            if (random.randint(0,1)==0 and x!=items[0].loci) or x==items[-1].loci:
                 partner=x-1
             else:
                 partner=x+1
