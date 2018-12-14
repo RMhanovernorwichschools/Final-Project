@@ -95,7 +95,7 @@ def generate_clue(x,fac,sep):
     if sep==0:
         p1='The girl in the {0} position'.format(x)
         f1=['loci', x]
-    elif sep==1 or sep==2:
+    elif sep==1 or sep==2 or sep==3:
         a=random.choice(traits_fin)
         while a==fac:
             a=random.choice(traits_fin)
@@ -123,6 +123,22 @@ def generate_clue(x,fac,sep):
         elif fac[0]=='coat':
             p2=' is wearing a {0}'.format(fac[1][x])
         f2=[fac[0], fac[1][x]]
+    elif sep==3:
+        variety='nonlink'
+        y=x
+        while y==x:
+            y=random.choice(items).loci
+        if fac[0]=='name':
+            p2=" is not "+fac[1][y]
+        elif fac[0]=='month':
+            p2=" wasn't born in {0}".format(fac[1][y])
+        elif fac[0]=='shoe' or fac[0]=='color':
+            p2=" doesn't wear {0}".format(fac[1][y])
+        elif fac[0]=='scent':
+            p2=" doesn't smell like {0}".format(fac[1][y])
+        elif fac[0]=='coat':
+            p2=' is not wearing a {0}'.format(fac[1][y])
+        f2=[fac[0], fac[1][y]]
     elif sep==2:
         b=random.randint(0,2)
         if x==items[-1].loci and b==1:
@@ -131,7 +147,7 @@ def generate_clue(x,fac,sep):
             b=random.randint(0,1)
         if b==0:
             p2=' is next to'
-            if random.randint(0,1)==0 or x!=items[0].loci:
+            if random.randint(0,1)==0 and x!=items[0].loci:
                 partner=x-1
             else:
                 partner=x+1
@@ -164,15 +180,24 @@ def sort_clues():
     global clues
     for x in clues:
         for a in clues:
-            if x[0]=='link' and a[0]=='link' and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
+            m=0
+            if x[4]==a[4]:
                 clues.remove(a)
+                m=1
+            if m==0 and x[0]=='link' and a[0]=='link' and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
+                clues.remove(a)
+                m=1
             if x[0]=='side' and (a[0]=='left' or a[0]=='right') and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
                 clues.remove(x)
-            if x[0]=='left' and a[0]=='right' and x[1][1]==a[2][1] and a[1][1]==x[2][1]:
+            if m==0 and x[0]=='left' and a[0]=='right' and x[1][1]==a[2][1] and a[1][1]==x[2][1]:
                 if random.randint(0,1)==0:
                     clues.remove(a)
+                    m=1
                 else:
                     clues.remove(x)
+            if m==0 and x[0]=='link' and a[0]=='unlink' and (x[2][0]==a[2][0] and x[1][1]==a[1][1]) or (x[2][0]==a[1][0] and x[1][1]==a[2][1]):
+                clues.remove(a)
+                m=1
 
 options=[]
 for x in traits_fin:
@@ -188,7 +213,7 @@ possibilities=[]
 
     
 for x in range(10):
-    generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,2))
+    generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
     
 sort_clues()
 for a in clues:
