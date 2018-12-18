@@ -346,7 +346,10 @@ class Game(App):
                 Enter t for tutorial
                 1 for level 1
                 2 for level 2
-                or 3 for level 3 ''')
+                or 3 for level 3 
+                
+                
+                ''')
             if stage=='t':
                 select=1
                 m = ImageAsset("images/map_base.jpg")
@@ -421,6 +424,9 @@ class Game(App):
   b is slow but powerful
   c is quick with light damage
   d has high damage and low hp
+  
+  
+  
   ''')
             if char=='a':
                 Member(10,1.5,1,1,190, coor_a, Aasset, 'a')
@@ -438,7 +444,10 @@ class Game(App):
                 print("Sorry, I don't understand.")
         while select==1:
             char=input('''Select a type for the second position:
- (see desc above) ''')
+ (see desc above) 
+ 
+ 
+ ''')
             if char=='a':
                 Member(10,1.5,1,1,190, coor_b, Aasset, 'b')
                 select=2
@@ -455,7 +464,10 @@ class Game(App):
                 print("Sorry, I don't understand.")
         while select==2:
             char=input('''Select a type for the third (and final) position:
- (see desc. above) ''')
+ (see desc. above) 
+ 
+ 
+ ''')
             if char=='a':
                 a=Member(10,1.5,1,1,190, coor_c, Aasset, 'c')
                 select=0
