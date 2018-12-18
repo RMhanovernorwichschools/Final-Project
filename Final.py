@@ -492,13 +492,13 @@ class Game(App):
             style='bold 16px Times',
             fill=Color(0x070E68, 0.9))
             pict=Sprite(pic,(x.x+33,x.y+80))
-            self.labels.append([pict, x, x.hp])
+            self.labels.append([pict, x, x.hp, 'M'])
         for x in self.getSpritesbyClass(Enemy):
             pic=TextAsset(str(x.hp),
             style='bold 16px Helvetica',
             fill=Color(0x8C2727, 0.9))
             pict=Sprite(pic,(x.x+33,x.y+80))
-            self.labels.append([pict, x, x.hp])
+            self.labels.append([pict, x, x.hp, 'E'])
         
         Game.listenKeyEvent('keydown', 'a', self.a_down)
         Game.listenKeyEvent('keyup', 'a', self.a_up)
@@ -524,12 +524,19 @@ class Game(App):
         for x in self.labels:
             if x[2]!=x[1].hp:
                 x[0].destroy()
-                self.labels.remove(x)
                 if x[1].hp>0:
-                    pic=TextAsset(str(x[1].hp), 
-                    style='bold 16px Times')
+                    if x[3]=='M':
+                        pic=TextAsset(str(x[1].hp), 
+                        style='bold 16px Times',
+                        fill=Color(0x070E68, 0.9))
+                    else:
+                        pic=TextAsset(str(x[1].hp), 
+                        style='bold 16px Times',
+                        fill=Color(0x8C2727, 0.9))
                     pict=Sprite(pic,(x[1].x+33,x[1].y+84))
-                    self.labels.append([pict, x[1], x[1].hp])
+                    a[3]=x[3]
+                    self.labels.append([pict, x[1], x[1].hp, a])
+                self.labels.remove(x)
             else:
                 x[0].x=x[1].x+33
                 x[0].y=x[1].y+84
