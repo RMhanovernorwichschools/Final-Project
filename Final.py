@@ -185,14 +185,14 @@ class Member(Sprite):
                 self.state='firing'
                 self.prog='a'
         if self.v>0 and cos(self.turn)>=0:
-            self.f+=0.5
+            self.f+=0.25
             if self.f>1.5:
                 self.f=0
         elif self.v>0 and cos(self.turn)<0:
             if self.f<6 or self.f>7:
                 self.f=6
             else:
-                self.f+=0.5
+                self.f+=0.25
         if self.f==int(self.f):
             self.setImage(self.f)
         
@@ -488,8 +488,16 @@ class Game(App):
         #Basset attributes are as follows: (20,0.5,2.5,1,170)
         #Casset attributes are as folloes: (7,2,0,3,1,180)
         for x in self.getSpritesbyClass(Member):
-            pic=TextAsset(str(x.hp))
-            pict=Sprite(pic,(x.x+50,x.y+115))
+            pic=TextAsset(str(x.hp),
+            style='bold 16px Times',
+            fill=Color(0x070E68, 0.9))
+            pict=Sprite(pic,(x.x+33,x.y+80))
+            self.labels.append([pict, x, x.hp])
+        for x in self.getSpritesbyClass(Enemy):
+            pic=TextAsset(str(x.hp),
+            style='bold 16px Helvetica',
+            fill=Color(0x8C2727, 0.9))
+            pict=Sprite(pic,(x.x+33,x.y+80))
             self.labels.append([pict, x, x.hp])
         
         Game.listenKeyEvent('keydown', 'a', self.a_down)
@@ -518,12 +526,13 @@ class Game(App):
                 x[0].destroy()
                 self.labels.remove(x)
                 if x[1].hp>0:
-                    pic=TextAsset(str(x[1].hp), style='6px Times')
-                    pict=Sprite(pic,(x[1].x+33,x[1].y+83))
+                    pic=TextAsset(str(x[1].hp), 
+                    style='bold 16px Times')
+                    pict=Sprite(pic,(x[1].x+33,x[1].y+84))
                     self.labels.append([pict, x[1], x[1].hp])
             else:
                 x[0].x=x[1].x+33
-                x[0].y=x[1].y+83
+                x[0].y=x[1].y+84
         mems=0
         memdeath=0
         enems=0
