@@ -531,14 +531,14 @@ class Game(App):
                         fill=Color(0x070E68, 0.9))
                     else:
                         pic=TextAsset(str(x[1].hp), 
-                        style='bold 16px Times',
+                        style='bold 16px Helvetica',
                         fill=Color(0x8C2727, 0.9))
                     pict=Sprite(pic,(x[1].x+33,x[1].y+84))
-                    a[3]=x[3]
+                    a=x[3]
                     self.labels.append([pict, x[1], x[1].hp, a])
                 self.labels.remove(x)
             else:
-                x[0].x=x[1].x+33
+                x[0].x=x[1].x+40
                 x[0].y=x[1].y+84
         mems=0
         memdeath=0
