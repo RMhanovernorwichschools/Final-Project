@@ -518,12 +518,12 @@ class Game(App):
                 x[0].destroy()
                 self.labels.remove(x)
                 if x[1].hp>0:
-                    pic=TextAsset(str(x[1].hp))
-                    pict=Sprite(pic,(x[1].x+33,x[1].y+90))
+                    pic=TextAsset(str(x[1].hp), style='6px Times')
+                    pict=Sprite(pic,(x[1].x+33,x[1].y+83))
                     self.labels.append([pict, x[1], x[1].hp])
             else:
                 x[0].x=x[1].x+33
-                x[0].y=x[1].y+90
+                x[0].y=x[1].y+83
         mems=0
         memdeath=0
         enems=0
