@@ -1,4 +1,4 @@
-from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame, CircleAsset
+from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame, CircleAsset, TextAsset
 from math import radians, sin, cos, atan, degrees
 import time, random
 
@@ -185,15 +185,16 @@ class Member(Sprite):
                 self.state='firing'
                 self.prog='a'
         if self.v>0 and cos(self.turn)>=0:
-            self.f+=1
-            if self.f>1:
+            self.f+=0.5
+            if self.f>1.5:
                 self.f=0
         elif self.v>0 and cos(self.turn)<0:
-            if self.f==6:
-                self.f=7
-            else:
+            if self.f<6 or self.f>7:
                 self.f=6
-        self.setImage(self.f)
+            else:
+                self.f+=0.5
+        if self.f==int(self.f):
+            self.setImage(self.f)
         
     def select_enemy(self):
         self.enemy="None"
@@ -336,6 +337,7 @@ class Game(App):
         box=ImageAsset('images/Cover.png', Frame(406,0,203,191), 3, 'vertical')
         etc=ImageAsset('images/Cover.png', Frame(609,0,203,191), 3, 'vertical')
         self.state='none'
+        self.labels=[]
         instructions=['These are the instructions. Press enter to continue.', 'If, at any point, you want to skip the instructions, type "s" then press enter.', 'This game allows you to control three characters and use them to defeat enemies in various levels.', 'To control the characters, click any location on the map. They will go to that location.', 'If they are busy (hiding, shooting at any enemy, etc.) then they will not respond.', 'If you want them to respond even while they are busy, use your "control keys".', 'There is a different control key for each character. The first uses the control key "a", the second uses "b", and the third uses "c".', 'To use the control key, merely hold it down. While you are holding it, the character will ignore nearby enemies and focus only on your instructions.', 'When you release the key, they will resume paying attention to enemies nearby.', 'Have fun! Press enter to select your level.']
         for a in instructions:
             if input(a)=='s':
@@ -485,6 +487,10 @@ class Game(App):
         #Aasset attributes are as follows: (11,1.5,0.7,1,200)
         #Basset attributes are as follows: (20,0.5,2.5,1,170)
         #Casset attributes are as folloes: (7,2,0,3,1,180)
+        for x in self.getSpritesbyClass(Member):
+            pic=TextAsset(str(x.hp))
+            pict=Sprite(pic,(x.x+50,x.y+115))
+            self.labels.append([pict, x, x.hp])
         
         Game.listenKeyEvent('keydown', 'a', self.a_down)
         Game.listenKeyEvent('keyup', 'a', self.a_up)
@@ -507,6 +513,17 @@ class Game(App):
         self.ckey='False'
         
     def step(self):
+        for x in self.labels:
+            if x[2]!=x[1].hp:
+                x[0].destroy()
+                self.labels.remove(x)
+                if x[1].hp>0:
+                    pic=TextAsset(str(x[1].hp))
+                    pict=Sprite(pic,(x[1].x+33,x[1].y+90))
+                    self.labels.append([pict, x[1], x[1].hp])
+            else:
+                x[0].x=x[1].x+33
+                x[0].y=x[1].y+90
         mems=0
         memdeath=0
         enems=0
