@@ -89,9 +89,8 @@ class Member(Sprite):
     def hit(self, dam):
         self.hp-=dam
         if self.hp<=0:
+            self.hp=0
             self.state='dead'
-        elif self.hp<35:
-            print('Warning: hp={0}'.format(self.hp))
         
     def step(self):
         if self.comm==0:
@@ -319,8 +318,6 @@ class Enemy(Sprite):
         self.hp-=dam
         if self.hp<=0:
             self.state='dead'
-        elif self.hp<30:
-            print('Close: enemy hp={0}'.format(self.hp))
         if self.hp<0:
             self.hp=0
 
