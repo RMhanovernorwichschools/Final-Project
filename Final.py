@@ -407,7 +407,7 @@ class Game(App):
                 e1=Enemy((400,50))
                 e2=Enemy((500,50))
                 e=Enemy((450, 20))
-                e.hp=200
+                e.hp=250
                 e.scale=0.8
                 coor_a=(0,251)
                 coor_b=(400,252)
