@@ -120,6 +120,7 @@ class Member(Sprite):
             self.v=0
             self.f=4
             self.select_enemy()
+            self.spot.state='taken'
             if self.enemy=='None':
                 self.state='unprep'
             else:
