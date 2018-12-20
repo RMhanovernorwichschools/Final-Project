@@ -19,6 +19,16 @@ class Cover(Sprite):
             self.state='taken'
         else:
             self.state='free'
+        m=0
+        for x in myapp.getSpritesbyClass(Member):
+            if x.spot==''or x.state=='dead' or x.state=='unprep':
+                m+=1
+            for a in myapp.getSpritesbyClass(Member):
+                if a!=x and a.spot!=''and a.spot==x.spot:
+                    a.spot=''
+                    a.state='unprep'
+        if m=3:
+            self.state='free'
 
 class Bullet(Sprite):
     asset=CircleAsset(3, noline, white)
@@ -138,6 +148,8 @@ class Member(Sprite):
                 self.wait=time.time()+wait
                 if self.prog!='b':
                     self.wait+=0.8
+                else:
+                    self.spot.state='taken'
                 self.state='delay'
                 if cos(self.turn)<0:
                     self.f=5
@@ -149,7 +161,7 @@ class Member(Sprite):
                     self.state='hidden'
                     self.wait=time.time()+self.caution
                 else:
-                    self.state='unprep'
+                    self.state='ready'
         elif self.state=='dead':
             self.f=3
         else:
@@ -432,7 +444,7 @@ class Game(App):
                 Member(10,1.5,1,1,190, coor_a, Aasset, 'a')
                 select=1
             elif char=='b':
-                Member(20,0.5,2.5,1,185, coor_a, Basset, 'a')
+                Member(18,0.5,2.5,1,185, coor_a, Basset, 'a')
                 select=1
             elif char=='c':
                 Member(7,2,0.3,1,180, coor_a, Casset, 'a')
@@ -452,7 +464,7 @@ class Game(App):
                 Member(10,1.5,1,1,190, coor_b, Aasset, 'b')
                 select=2
             elif char=='b':
-                Member(20,0.5,2.5,1,185, coor_b, Basset, 'b')
+                Member(18,0.5,2.5,1,185, coor_b, Basset, 'b')
                 select=2
             elif char=='c':
                 Member(7,2,0.3,1,180, coor_b, Casset, 'b')
@@ -472,7 +484,7 @@ class Game(App):
                 a=Member(10,1.5,1,1,190, coor_c, Aasset, 'c')
                 select=0
             elif char=='b':
-                a=Member(20,0.5,2.5,1,185, coor_c, Basset, 'c')
+                a=Member(18,0.5,2.5,1,185, coor_c, Basset, 'c')
                 select=0
             elif char=='c':
                 a=Member(7,2,0.3,1,180, coor_c, Casset, 'c')
