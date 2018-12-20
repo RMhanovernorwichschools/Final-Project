@@ -24,10 +24,10 @@ class Cover(Sprite):
             if x.spot==''or x.state=='dead' or x.state=='unprep':
                 m+=1
             for a in myapp.getSpritesbyClass(Member):
-                if a!=x and a.spot!=''and a.spot==x.spot:
+                if a!=x and a.spot!=''and a.spot==x.spot and x.prog=='b' and a.prog=='b':
                     a.spot=''
                     a.state='unprep'
-        if m=3:
+        if m==3:
             self.state='free'
 
 class Bullet(Sprite):
@@ -148,7 +148,8 @@ class Member(Sprite):
                 self.wait=time.time()+wait
                 if self.prog!='b':
                     self.wait+=0.8
-                else:
+                    self.spot.state='free'
+                elif self.prog=='b':
                     self.spot.state='taken'
                 self.state='delay'
                 if cos(self.turn)<0:
