@@ -115,7 +115,7 @@ class Member(Sprite):
                 self.turn+=radians(180)
         self.x+=(self.v*cos(self.turn))
         self.y+=(self.v*sin(self.turn))
-        if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None":
+        if self.x<self.targetx+2 and self.x>self.targetx-2 and self.y<self.targety+2 and self.y>self.targety-2 and self.enemy=="None" and self.state!='hiding':
             self.v=0
             self.state='unprep'
             self.select_enemy()
