@@ -64,7 +64,7 @@ for x in range(0,201):
         e2_wait=x/10+2
         e2_load=x/10+7
     elif e2_wait<=x/10:
-        if e2_state=='load':
+        if e2_state=='load' or e2_state=='wait':
             e2_state='fire'
             e2_wait+=0.5
         elif e2_state=='fire':
@@ -76,10 +76,12 @@ for x in range(0,201):
         e3_wait=x/10+2
         e3_load=x/10+7
     elif e3_wait<=x/10:
-        if e3_state=='load':
+        if e3_state=='load' or e3_state=='wait':
             e3_state='fire'
             e3_wait+=0.5
         elif e3_state=='fire':
             score-=5*((100-eva)/100)
             e3_wait+=0.5
+            
+print(score)
     
