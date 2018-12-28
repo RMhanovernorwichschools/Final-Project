@@ -26,6 +26,7 @@ e3_wait=1.0
 e3_load=6
 
 for x in range(0,201):
+    edps=10
     sec=x/10
     if state=='accel':
         vel+=accel
@@ -45,13 +46,14 @@ for x in range(0,201):
     if state=='wait' and x>=wait_time:
         state='analyze'
     if x/10>e1_load:
-        e1_state='wait'
+        e1_state='load'
         e1_wait=x/10+2
         e1_load=x/10+7
-    elif e1_state=='wait' and e1_wait<=x/10:
-        e1_state='fire'
-    elif e1_state=='fire' and e1_wait<=x/10:
-        score-=5*(eva/100)
-        e1_wait+=0.5
-            
+    elif e1_wait<=x/10:
+        if e1_state=='load':
+            e1_state='fire'
+        elif e1_state=='fire':
+            score-=5*((100*eva)/100)
+            e1_wait+=0.5
+    print(score)
     
