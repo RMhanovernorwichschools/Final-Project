@@ -17,7 +17,7 @@ state='accel'
 score=0
 
 def analyze(risk):
-    return((risk/mdps)**(cau/100))
+    return((risk/(2*mdps))**(cau/100))
     
 e1_state='fire'
 e1_wait=0
@@ -47,6 +47,7 @@ for x in range(0,201):
             vel=minvel
             state='jog'
     if state=='analyze':
+        print(analyze(edps))
         if analyze(edps)<=0.5:
             score+=dam*acc/100
             state='wait'
