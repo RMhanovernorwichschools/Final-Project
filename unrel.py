@@ -15,9 +15,11 @@ dist=0
 vel=0
 state='accel'
 score=0
+posscore=0
+negscore=0
 
 def analyze(risk):
-    return(((risk/hp)/(3*mdps*(acc/100)/500))**((113-cau)/30))
+    return(((risk/hp)/(mdps*(acc/100)/500))**((113-cau)/30))
 
 
 for d in [5,10,20,25,35]:
@@ -35,8 +37,6 @@ for d in [5,10,20,25,35]:
     else:
         state='analyze'
     for x in range(0,301):
-        if state=='hide':
-            print(x/10)
         edps=0
         if e1_state=='fire':
             edps+=10*d/7
@@ -63,7 +63,7 @@ for d in [5,10,20,25,35]:
                 state='jog'
         if state=='analyze' or state=='hide':
             if analyze(edps)<=0.5:
-                score+=(dam*acc/100)/500
+                posscore+=(dam*acc/100)/500
                 state='wait'
                 wait_time=(x/10)+aim
             else:
@@ -87,7 +87,7 @@ for d in [5,10,20,25,35]:
                 e1_wait+=0.5
             elif e1_state=='fire':
                 if state!='hide':
-                    score-=(d*((100-eva)/100))/hp
+                    negscore-=(d*((100-eva)/100))/hp
                 e1_wait+=0.5
         
         if x/10>=e2_load:
@@ -100,7 +100,7 @@ for d in [5,10,20,25,35]:
                 e2_wait+=0.5
             elif e2_state=='fire':
                 if state!='hide':
-                    score-=(d*((100-eva)/100))/hp
+                    negscore-=(d*((100-eva)/100))/hp
                 e2_wait+=0.5
                 
         if x/10>=e3_load:
@@ -113,7 +113,9 @@ for d in [5,10,20,25,35]:
                 e3_wait+=0.5
             elif e3_state=='fire':
                 if state!='hide':
-                    score-=(d*((100-eva)/100))/hp
+                    negscore-=(d*((100-eva)/100))/hp
                 e3_wait+=0.5
             
-print(score)
+print(posscore)
+print(negscore)
+print(posscore+negscore)
