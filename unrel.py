@@ -17,7 +17,7 @@ state='accel'
 score=0
 
 def analyze(risk):
-    return((risk/(2*mdps))**(cau/100))
+    return(((risk/hp)/(2*mdps/500))**((100-cau)/40))
     
 e1_state='fire'
 e1_wait=0
@@ -29,8 +29,15 @@ e3_state='wait'
 e3_wait=1.0
 e3_load=6
 
-for x in range(0,201):
-    edps=10
+for x in range(0,301):
+    edps=0
+    if e1_state=='fire':
+        edps+=50/7
+    if e2_state=='fire':
+        edps+=50/7
+    if e3_state=='fire':
+        edps+=50/7
+    
     sec=x/10
     if state=='accel':
         vel+=accel
