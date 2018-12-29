@@ -53,12 +53,13 @@ for x in range(0,301):
         if vel<=minvel:
             vel=minvel
             state='jog'
-    if state=='analyze':
-        print(analyze(edps))
+    if state=='analyze' or state=='hide':
         if analyze(edps)<=0.5:
-            score+=dam*acc/100
+            score+=(dam*acc/100)/500
             state='wait'
             wait_time=(x/10)+aim
+        else:
+            state='hide'
     dist+=vel
     if dist>=10 and state!='wait':
         state='wait'
@@ -76,7 +77,8 @@ for x in range(0,301):
             e1_state='fire'
             e1_wait+=0.5
         elif e1_state=='fire':
-            score-=(5*((100-eva)/100))/hp
+            if state!='hide':
+                score-=(5*((100-eva)/100))/hp
             e1_wait+=0.5
     
     if x/10>=e2_load:
@@ -88,7 +90,8 @@ for x in range(0,301):
             e2_state='fire'
             e2_wait+=0.5
         elif e2_state=='fire':
-            score-=(5*((100-eva)/100))/hp
+            if state!='hide':
+                score-=(5*((100-eva)/100))/hp
             e2_wait+=0.5
             
     if x/10>=e3_load:
@@ -100,7 +103,8 @@ for x in range(0,301):
             e3_state='fire'
             e3_wait+=0.5
         elif e3_state=='fire':
-            score-=(5*((100-eva)/100))/hp
+            if state!='hide':
+                score-=(5*((100-eva)/100))/hp
             e3_wait+=0.5
             
 print(score)
