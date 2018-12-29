@@ -38,18 +38,25 @@ for x in range(0,201):
             vel=maxvel
             state='sprint'
             tire_time=x/10+endur
-    elif state=='sprint' and 
+    elif state=='sprint' and x/10>tire_time:
+        state='decel'
+        vel-=dccel
+    elif state=='decel':
+        vel-=dccel
+        if vel<=minvel:
+            vel=minvel
+            state='jog'
     if state=='analyze':
         if analyze(edps)<=0.5:
             score+=dam*acc/100
             state='wait'
             wait_time=(x/10)+aim
     dist+=vel
-    if dist>=10:
+    if dist>=10 and state!='wait':
         state='wait'
         wait_time=(x/10)+aim
         vel=0
-    if state=='wait' and x/10>=wait_time:
+    elif state=='wait' and x/10>=wait_time:
         state='analyze'
     
     if x/10>=e1_load:
