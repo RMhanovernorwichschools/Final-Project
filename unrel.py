@@ -35,6 +35,8 @@ for d in [5,10,20,25,35]:
     else:
         state='analyze'
     for x in range(0,301):
+        if state=='hide':
+            print(x/10)
         edps=0
         if e1_state=='fire':
             edps+=10*d/7
@@ -65,9 +67,10 @@ for d in [5,10,20,25,35]:
                 state='wait'
                 wait_time=(x/10)+aim
             else:
+                
                 state='hide'
         dist+=vel
-        if dist>=10 and state!='wait':
+        if dist>=10 and vel!=0:
             state='wait'
             wait_time=(x/10)+aim
             vel=0
