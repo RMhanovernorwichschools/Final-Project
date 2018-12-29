@@ -9,6 +9,8 @@ endur=float(input('Time at full speed: '))
 dccel=float(input('Decceleration: '))
 minvel=float(input('Jogging Pace: '))
 cau=float(input('Caution: '))
+#reasonable range runs from 5 to 67, so converts from 0,100 range
+cau=(cau*62/100)+5
 hp=float(input('Total hit points: '))
 
 dist=0
@@ -19,19 +21,24 @@ posscore=0
 negscore=0
 
 def analyze(risk):
-    return(((risk/hp)/(mdps*(acc/100)/500))**((113-cau)/30))
+    factor=((83-cau)/30)**2
+    if (((risk/hp)/(2*mdps*(acc/100)/500))**(factor)) >0.5:
+        print('nope')
+    else:
+        print('attack!')
+    return(((risk/hp)/(2*mdps*(acc/100)/500))**(factor))
 
 
-for d in [5,10,20,25,35]:
+for d in [5,6,10, 15]:
     e1_state='fire'
     e1_wait=0
     e1_load=5
     e2_state='wait'
-    e2_wait=0.5
-    e2_load=5.5
+    e2_wait=1.0
+    e2_load=6.0
     e3_state='wait'
-    e3_wait=1.0
-    e3_load=6
+    e3_wait=2.5
+    e3_load=7.5
     if d==5:
         state='accel'
     else:
