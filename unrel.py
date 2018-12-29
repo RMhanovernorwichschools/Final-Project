@@ -5,7 +5,11 @@ acc=float(input('Accuracy: '))
 eva=float(input('Agility/dodge: '))
 accel=float(input('Acceleration: '))
 maxvel=float(input('Maximum velocity: '))
+endur=float(input('Time at full speed: '))
+dccel=float(input('Decceleration: '))
+minvel=float(input('Jogging Pace: '))
 cau=float(input('Caution: '))
+hp=float(input('Total hit points: '))
 
 dist=0
 vel=0
@@ -33,7 +37,6 @@ for x in range(0,201):
         if vel>=maxvel:
             vel=maxvel
             state='sprint'
-    
     if state=='analyze':
         if analyze(edps)<=0.5:
             score+=dam*acc/100
@@ -56,7 +59,7 @@ for x in range(0,201):
             e1_state='fire'
             e1_wait+=0.5
         elif e1_state=='fire':
-            score-=5*((100-eva)/100)
+            score-=(5*((100-eva)/100))/hp
             e1_wait+=0.5
     
     if x/10>=e2_load:
@@ -68,7 +71,7 @@ for x in range(0,201):
             e2_state='fire'
             e2_wait+=0.5
         elif e2_state=='fire':
-            score-=5*((100-eva)/100)
+            score-=(5*((100-eva)/100))/hp
             e2_wait+=0.5
             
     if x/10>=e3_load:
@@ -80,8 +83,7 @@ for x in range(0,201):
             e3_state='fire'
             e3_wait+=0.5
         elif e3_state=='fire':
-            score-=5*((100-eva)/100)
+            score-=(5*((100-eva)/100))/hp
             e3_wait+=0.5
             
 print(score)
-    
