@@ -34,11 +34,11 @@ for d in [5,6,10, 15]:
     e1_wait=0
     e1_load=5
     e2_state='wait'
-    e2_wait=1.0
-    e2_load=6.0
+    e2_wait=2.0
+    e2_load=7.0
     e3_state='wait'
-    e3_wait=2.5
-    e3_load=7.5
+    e3_wait=5.0
+    e3_load=10.0
     if d==5:
         state='accel'
     else:
