@@ -119,6 +119,7 @@ e2_load=5.5
 e3_state='wait'
 e3_wait=1.0
 e3_load=6
+wait_time=0
 
 for x in range(0,301):
     edps=0
