@@ -35,7 +35,6 @@ for d in [5,10,20,25,35]:
     else:
         state='analyze'
     for x in range(0,301):
-        print(state)
         edps=0
         if e1_state=='fire':
             edps+=10*d/7
