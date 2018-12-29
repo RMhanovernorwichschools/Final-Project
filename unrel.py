@@ -17,7 +17,7 @@ state='accel'
 score=0
 
 def analyze(risk):
-    return(((risk/hp)/(3*mdps*(acc/100)/500))**((113-cau)/40))
+    return(((risk/hp)/(3*mdps*(acc/100)/500))**((113-cau)/30))
 
 
 for d in [5,10,20,25,35]:
