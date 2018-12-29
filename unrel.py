@@ -17,10 +17,10 @@ state='accel'
 score=0
 
 def analyze(risk):
-    return(((risk/hp)/(2*mdps*(acc/100)/500))**((100-cau)/40))
+    return(((risk/hp)/(3*mdps*(acc/100)/500))**((113-cau)/40))
 
 
-for d in [5,10,15,20,25,30]
+for d in [5,10,20,25,35]:
     e1_state='fire'
     e1_wait=0
     e1_load=5
@@ -35,6 +35,7 @@ for d in [5,10,15,20,25,30]
     else:
         state='analyze'
     for x in range(0,301):
+        print(state)
         edps=0
         if e1_state=='fire':
             edps+=10*d/7
