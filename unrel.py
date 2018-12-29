@@ -37,6 +37,8 @@ for x in range(0,201):
         if vel>=maxvel:
             vel=maxvel
             state='sprint'
+            tire_time=x/10+endur
+    elif state=='sprint' and 
     if state=='analyze':
         if analyze(edps)<=0.5:
             score+=dam*acc/100
