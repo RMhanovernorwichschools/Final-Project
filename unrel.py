@@ -20,29 +20,17 @@ score=0
 posscore=0
 negscore=0
 
-def analyze(risk):
-    factor=((83-cau)/30)**2
-    if (((risk/hp)/(2*mdps*(acc/100)/500))**(factor)) >0.5:
-        print('nope')
-    else:
-        print('attack!')
-    return(((risk/hp)/(2*mdps*(acc/100)/500))**(factor))
+e1_state='fire'
+e1_wait=0
+e1_load=5
+e2_state='wait'
+e2_wait=2.0
+e2_load=7.0
+e3_state='wait'
+e3_wait=5.0
+e3_load=10.0
 
 
-for d in [5,6,10, 15]:
-    e1_state='fire'
-    e1_wait=0
-    e1_load=5
-    e2_state='wait'
-    e2_wait=2.0
-    e2_load=7.0
-    e3_state='wait'
-    e3_wait=5.0
-    e3_load=10.0
-    if d==5:
-        state='accel'
-    else:
-        state='analyze'
     for x in range(0,301):
         edps=0
         if e1_state=='fire':
@@ -60,7 +48,7 @@ for d in [5,6,10, 15]:
                 vel=maxvel
                 state='sprint'
                 tire_time=x/10+endur
-        elif state=='sprint' and x/10>tire_time:
+        elif state=='sprint' and sec>tire_time:
             state='decel'
             vel-=dccel
         elif state=='decel':
@@ -68,26 +56,22 @@ for d in [5,6,10, 15]:
             if vel<=minvel:
                 vel=minvel
                 state='jog'
-        if state=='analyze' or state=='hide':
-            if analyze(edps)<=0.5:
-                posscore+=(dam*acc/100)/500
-                state='wait'
-                wait_time=(x/10)+aim
-            else:
-                
-                state='hide'
+        if state=='fire':
+            posscore+=(dam*acc/100)/500
+            state='wait'
+            wait_time=sec+aim
         dist+=vel
         if dist>=10 and vel!=0:
             state='wait'
-            wait_time=(x/10)+aim
+            wait_time=sec+aim
             vel=0
-        elif state=='wait' and x/10>=wait_time:
-            state='analyze'
+        elif state=='wait' and sec>=wait_time:
+            state='fire'
         
         if x/10>=e1_load:
             e1_state='load'
-            e1_wait=x/10+2
-            e1_load=x/10+7
+            e1_wait=sec+2
+            e1_load=sec+7
         elif e1_wait<=x/10:
             if e1_state=='load':
                 e1_state='fire'
