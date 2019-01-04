@@ -9,11 +9,11 @@ endur=float(input('Time at full speed: '))
 dccel=float(input('Decceleration: '))
 minvel=float(input('Jogging Pace: '))
 hp=float(input('Total hit points: '))
-#should have an end score of about 8.4
+#should have an end score of about -2.3
 
 '''saved sets below
     dam:20  aim:1   acc:80  eva:35  accel:0.1   maxvel:1.2  minvel:0.1  dec:0.2 endur:10    hp:500  score=8.4
-    dam:4   aim:0.1 acc:92  eva:9   accel:0.3   maxvel:1.8  minvel:0.5  dec:0.1 endur=5     hp:349  score:8.417
+    dam:4   aim:0.1 acc:92  eva:9   accel:0.3   maxvel:1.8  minvel:0.5  dec:0.1 endur=5     hp:349  score=-2.30198
 '''
 
 dist=0
@@ -36,7 +36,7 @@ e3_wait=0.5
 e3_load=5.5
 
 
-for x in range(0,301):
+for x in range(0,601):
     edps=0
     if e1_state=='fire':
         edps+=10*d/7
@@ -65,7 +65,7 @@ for x in range(0,301):
             state='jog'
             print('jogging at '+str(sec)+' sec')
     dist+=vel
-    if dist>=20 and vel!=0:
+    if dist>=100 and vel!=0:
         print('arrived at '+str(sec)+' sec')
         state='wait'
         wait_time=sec+aim
