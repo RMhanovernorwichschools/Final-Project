@@ -9,6 +9,12 @@ endur=float(input('Time at full speed: '))
 dccel=float(input('Decceleration: '))
 minvel=float(input('Jogging Pace: '))
 hp=float(input('Total hit points: '))
+#should have an end score of about 2
+
+'''saved sets below
+    dam:20  aim:1   acc:80  eva:35  accel:0.1   maxvel:1.2  minvel:0.1  dec:0.2 hp:500  score=2.0
+    dam:6.1 aim:0.1 acc:92  eva:9   accel:0.3   maxvel:1.8  minvel:0.5  dec:0.1 hp:389  score:2.1849
+'''
 
 dist=0
 vel=0
@@ -23,11 +29,11 @@ e1_state='fire'
 e1_wait=0
 e1_load=5
 e2_state='wait'
-e2_wait=2.0
-e2_load=7.0
+e2_wait=0.2
+e2_load=5.5
 e3_state='wait'
-e3_wait=5.0
-e3_load=10.0
+e3_wait=0.5
+e3_load=5.5
 
 
 for x in range(0,301):
@@ -46,22 +52,24 @@ for x in range(0,301):
         if vel>=maxvel:
             vel=maxvel
             state='sprint'
+            print('reached full speed at '+str(sec)+' sec')
             tire_time=x/10+endur
     elif state=='sprint' and sec>tire_time:
         state='decel'
         vel-=dccel
+        print('slowing at '+str(sec)+' sec')
     elif state=='decel':
         vel-=dccel
         if vel<=minvel:
             vel=minvel
             state='jog'
+            print('jogging at '+str(sec)+' sec')
     if state=='fire':
-        print('did '+str(dam)+' at '+str(sec)+' sec')
         posscore+=(dam*acc/100)/500
         state='wait'
         wait_time=sec+aim
     dist+=vel
-    if dist>=10 and vel!=0:
+    if dist>=20 and vel!=0:
         print('arrived at '+str(sec)+' sec')
         state='wait'
         wait_time=sec+aim
@@ -110,4 +118,4 @@ for x in range(0,301):
         
 print(posscore)
 print(negscore)
-print(posscore+negscore)
+print(100*(posscore+negscore))
