@@ -17,6 +17,8 @@ score=0
 posscore=0
 negscore=0
 
+d=5
+
 e1_state='fire'
 e1_wait=0
 e1_load=5
@@ -31,11 +33,11 @@ e3_load=10.0
 for x in range(0,301):
     edps=0
     if e1_state=='fire':
-        edps+=10*5/7
+        edps+=10*d/7
     if e2_state=='fire':
-        edps+=10*5/7
+        edps+=10*d/7
     if e3_state=='fire':
-        edps+=10*5/7
+        edps+=10*d/7
     edps*=(100-eva)/100
     
     sec=x/10
@@ -54,11 +56,13 @@ for x in range(0,301):
             vel=minvel
             state='jog'
     if state=='fire':
+        print('did '+str(dam)+' at '+str(sec)+' sec')
         posscore+=(dam*acc/100)/500
         state='wait'
         wait_time=sec+aim
     dist+=vel
     if dist>=10 and vel!=0:
+        print('arrived at '+str(sec)+' sec')
         state='wait'
         wait_time=sec+aim
         vel=0
