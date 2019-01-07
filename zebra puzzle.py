@@ -268,12 +268,13 @@ def gen_pos():
                         possibilities.append([it1, it2,it3])
             else:
                 possibilities.append([it1, it2])
-    for combo in possibilities:
-        for indiv in combo:
-            for i in combo:
-                for x in range(1,(len(indiv))):
-                    if i[x]==indiv[x] and indiv[0]!=i[0]:
-                        remfrom(combo, possibilities)
+    for a in [0,1,2]:    
+        for combo in possibilities:
+            for indiv in combo:
+                for i in combo:
+                    for x in range(1,(len(indiv))):
+                        if i[x]==indiv[x] and indiv[0]!=i[0]:
+                            remfrom(combo, possibilities)
     print(possibilities)
 
 for x in range(10):
