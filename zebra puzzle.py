@@ -209,6 +209,11 @@ for x in traits_fin:
     
 print(options)
 
+def remfrom(it,lis):
+    for x in lis:
+        if x==it:
+            lis.remove(it)
+
 def gen_pos():
     global possibilities
     possibilities=[]
