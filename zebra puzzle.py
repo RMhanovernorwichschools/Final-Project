@@ -275,7 +275,6 @@ def gen_pos():
                     for x in range(1,(len(indiv))):
                         if i[x]==indiv[x] and indiv[0]!=i[0]:
                             remfrom(combo, possibilities)
-    print(possibilities)
 
 for x in range(10):
     generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
