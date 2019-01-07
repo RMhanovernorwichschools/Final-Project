@@ -268,7 +268,7 @@ def gen_pos():
                         possibilities.append([it1, it2,it3])
             else:
                 possibilities.append([it1, it2])
-    for a in [0,1,2]:    
+    for a in range(len(traits_fin)):    
         for combo in possibilities:
             for indiv in combo:
                 for i in combo:
