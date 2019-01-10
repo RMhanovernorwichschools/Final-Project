@@ -338,7 +338,9 @@ sort_clues(clues)
 for a in clues:
     print(a[4])
 
-for x in range(10):
+while (ready(gen_pos(),clues)) !=1:
     generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
-    sort_clues(clues)
     print(ready(gen_pos(),clues))
+
+for a in clues:
+    print(a[4])
