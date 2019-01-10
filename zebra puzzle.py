@@ -201,8 +201,6 @@ for x in traits_fin:
     for a in items:
         option.append(ref[a.loci])
     options.append(option)
-    
-print(options)
 
 def remfrom(it,lis):
     for x in lis:
@@ -275,6 +273,21 @@ def gen_pos():
                     for x in range(1,(len(indiv))):
                         if i[x]==indiv[x] and indiv[0]!=i[0]:
                             remfrom(combo, possibilities)
+    print(possibilities)
+                            
+def ready(opt, clue):
+    workingposs=opt
+    for a in clue:
+        if a[0]=='side':
+            for x in workingposs:
+                accept=0
+                for y in range(len(x)-1):
+                    for c in x[y]:
+                        for d in x[y+1]:
+                            if c==a[1][1] and d==a[2][1]:
+                                accept=1
+                if accept==0:
+                    remfrom(x,workingposs)
 
 for x in range(10):
     generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
