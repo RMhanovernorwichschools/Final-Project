@@ -273,7 +273,7 @@ def gen_pos():
                     for x in range(1,(len(indiv))):
                         if i[x]==indiv[x] and indiv[0]!=i[0]:
                             remfrom(combo, possibilities)
-    print(possibilities)
+    return(possibilities)
                             
 def ready(opt, clue):
     workingposs=opt
@@ -317,7 +317,4 @@ sort_clues(clues)
 for a in clues:
     print(a[4])
     
-gen_pos()
-
-print(ready([[[0, 'sweater', 'white'], [1, 'hoodie', 'pale blue']]],[['left', ['coat', 'hoodie'], ['color', 'white'], '', "t"]]))
-
+print(ready(gen_pos(),clues))
