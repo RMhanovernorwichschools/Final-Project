@@ -279,16 +279,15 @@ def ready(opt, clue):
     workingposs=opt
     for a in clue:
         if a[0]=='side':
-            accept=0
             for x in workingposs:
+                accept=0
                 for y in range(len(x)-1):
                     for c in x[y]:
                         for d in x[y+1]:
-                            if c==a[1][1] and d==a[2][1] and c!=d:
+                            if (c==a[1][1] and d==a[2][1]) or (d==a[1][1] and c==a[2][1]) and c!=d:
                                 accept=1
                 if accept==0:
                     remfrom(x,workingposs)
-    print((len(workingposs)))
     return(len(workingposs))
 
 for x in range(10):
