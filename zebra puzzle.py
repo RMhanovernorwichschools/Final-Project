@@ -181,7 +181,9 @@ def sort_clues(lis):
     for x in lis:
         m=0
         for a in lis:
-            if x[4]==a[4]:
+            if a==x:
+                m==1
+            if x[4]==a[4] and m==0:
                 remfrom(x,clues)
                 m=1
             if m==0 and x[0]=='link' and a[0]=='link' and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
@@ -213,6 +215,7 @@ def remfrom(it,lis):
     for x in lis:
         if x==it:
             lis.remove(it)
+            break
 
 def gen_pos():
     global possibilities
