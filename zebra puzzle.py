@@ -183,16 +183,16 @@ def sort_clues(lis):
             if x[4]==a[4]:
                 remfrom(x,clues)
             if x[0]=='link' and a[0]=='link' and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
-                remfrom(a,clues)
+                remfrom(x,clues)
             if x[0]=='side' and (a[0]=='left' or a[0]=='right') and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
                 remfrom(x,clues)
             if x[0]=='left' and a[0]=='right' and x[1][1]==a[2][1] and a[1][1]==x[2][1]:
                 if random.randint(0,1)==0:
-                    remfrom(a,clues)
+                    remfrom(x,clues)
                 else:
                     remfrom(x,clues)
             if x[0]=='link' and a[0]=='unlink' and (x[2][0]==a[2][0] and x[1][1]==a[1][1]) or (x[2][0]==a[1][0] and x[1][1]==a[2][1]):
-                remfrom(a,clues)
+                remfrom(x,clues)
 
 options=[]
 for x in traits_fin:
