@@ -315,8 +315,17 @@ def ready(opt, clue):
                     for n in y:
                         for n1 in y:
                             if (n==a[1][1] and n1==a[2][1]):
-                                print(y)
                                 accept=1
+                if accept==0:
+                    remfrom(x,workingposs)
+        elif a[0]=='unlink':
+            for x in workingposs:
+                accept=1
+                for y in x:
+                    for n in y:
+                        for n1 in y:
+                            if (n==a[1][1] and n1==a[2][1]):
+                                accept=0
                 if accept==0:
                     remfrom(x,workingposs)
     return(len(workingposs))
