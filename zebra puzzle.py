@@ -187,7 +187,7 @@ def sort_clues(lis):
             if m==0 and x[0]=='link' and a[0]=='link' and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
                 remfrom(x,clues)
                 m=1
-            if m==0 andx[0]=='side' and (a[0]=='left' or a[0]=='right') and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
+            if m==0 and x[0]=='side' and (a[0]=='left' or a[0]=='right') and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
                 remfrom(x,clues)
                 m=1
             if m==0 and x[0]=='left' and a[0]=='right' and x[1][1]==a[2][1] and a[1][1]==x[2][1]:
