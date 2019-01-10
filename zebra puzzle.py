@@ -288,6 +288,26 @@ def ready(opt, clue):
                                 accept=1
                 if accept==0:
                     remfrom(x,workingposs)
+        elif a[0]=='right':
+            for x in workingposs:
+                accept=0
+                for y in range(len(x)-1):
+                    for c in x[y]:
+                        for d in x[y+1]:
+                            if (d==a[1][1] and c==a[2][1]) and c!=d:
+                                accept=1
+                if accept==0:
+                    remfrom(x,workingposs)
+        elif a[0]=='left':
+            for x in workingposs:
+                accept=0
+                for y in range(len(x)-1):
+                    for c in x[y]:
+                        for d in x[y+1]:
+                            if (c==a[1][1] and d==a[2][1]) and c!=d:
+                                accept=1
+                if accept==0:
+                    remfrom(x,workingposs)
     return(len(workingposs))
 
 for x in range(10):
@@ -299,5 +319,5 @@ for a in clues:
     
 gen_pos()
 
-print(ready([[[0, 'sweater', 'white'], [1, 'hoodie', 'pale blue']]],[['side', ['coat', 'hoodie'], ['color', 'white'], '', "t"]]))
+print(ready([[[0, 'sweater', 'white'], [1, 'hoodie', 'pale blue']]],[['left', ['coat', 'hoodie'], ['color', 'white'], '', "t"]]))
 
