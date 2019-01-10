@@ -181,7 +181,7 @@ def sort_clues(lis):
     for x in lis:
         for a in lis:
             if x[4]==a[4]:
-                remfrom(a,clues)
+                remfrom(x,clues)
             if x[0]=='link' and a[0]=='link' and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
                 remfrom(a,clues)
             if x[0]=='side' and (a[0]=='left' or a[0]=='right') and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
@@ -334,7 +334,11 @@ for x in range(10):
     generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
     
 sort_clues(clues)
+sort_clues(clues)
 for a in clues:
     print(a[4])
-    
-print(ready(gen_pos(),clues))
+
+while ready(gen_pos(),clues)!=1:
+    generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
+    sort_clues()
+    print(ready(gen_pos(),clues))
