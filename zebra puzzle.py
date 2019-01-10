@@ -308,6 +308,17 @@ def ready(opt, clue):
                                 accept=1
                 if accept==0:
                     remfrom(x,workingposs)
+        elif a[0]=='link':
+            for x in workingposs:
+                accept=0
+                for y in x:
+                    for n in y:
+                        for n1 in y:
+                            if (n==a[1][1] and n1==a[2][1]):
+                                print(y)
+                                accept=1
+                if accept==0:
+                    remfrom(x,workingposs)
     return(len(workingposs))
 
 for x in range(10):
