@@ -178,34 +178,34 @@ def generate_clue(x,fac,sep):
 
 def sort_clues(lis):
     global clues
-    for x in lis:
+    for x in range(len(lis)):
         m=0
-        for a in lis:
+        for a in range(len(lis)):
             if a==x:
                 m=1
-            if x[4]==a[4] and m==0:
-                remfrom(x,clues)
+            if lis[x][4]==lis[a][4] and m==0:
+                remfrom(lis[x],clues)
                 m=1
                 return 0
-            if m==0 and x[0]=='link' and a[0]=='link' and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
-                remfrom(x,clues)
+            if m==0 and lis[x][0]=='link' and lis[a][0]=='link' and ((lis[x][1][1]==lis[a][1][1] and lis[x][2][1]==lis[a][2][1]) or (lis[x][1][1]==lis[a][2][1] and lis[x][2][1]==lis[a][1][1])):
+                remfrom(lis[x],clues)
                 m=1
                 return 0
-            if m==0 and x[0]=='side' and (a[0]=='left' or a[0]=='right') and ((x[1][1]==a[1][1] and x[2][1]==a[2][1]) or (x[1][1]==a[2][1] and x[2][1]==a[1][1])):
-                remfrom(x,clues)
+            if m==0 and lis[x][0]=='side' and (lis[a][0]=='left' or lis[a][0]=='right') and ((lis[x][1][1]==lis[a][1][1] and lis[x][2][1]==lis[a][2][1]) or (lis[x][1][1]==lis[a][2][1] and lis[x][2][1]==lis[a][1][1])):
+                remfrom(lis[x],clues)
                 m=1
                 return 0
-            if m==0 and x[0]=='left' and a[0]=='right' and x[1][1]==a[2][1] and a[1][1]==x[2][1]:
+            if m==0 and lis[x][0]=='left' and lis[a][0]=='right' and lis[x][1][1]==lis[a][2][1] and lis[a][1][1]==lis[x][2][1]:
                 if random.randint(0,1)==0:
-                    remfrom(x,clues)
+                    remfrom(lis[x],clues)
                     m=1
                     return 0
                 else:
-                    remfrom(x,clues)
+                    remfrom(lis[x],clues)
                     m=1
                     return 0
-            if m==0 and x[0]=='link' and a[0]=='unlink' and (x[2][0]==a[2][0] and x[1][1]==a[1][1]) or (x[2][0]==a[1][0] and x[1][1]==a[2][1]):
-                remfrom(x,clues)
+            if m==0 and lis[x][0]=='link' and lis[a][0]=='unlink' and (lis[x][2][0]==lis[a][2][0] and lis[x][1][1]==lis[a][1][1]) or (lis[x][2][0]==lis[a][1][0] and lis[x][1][1]==lis[a][2][1]):
+                remfrom(lis[x],clues)
                 m=1
                 return 0
     return 1
