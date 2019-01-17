@@ -182,7 +182,7 @@ def sort_clues(lis):
         m=0
         for a in lis:
             if a==x:
-                m==1
+                m=1
             if x[4]==a[4] and m==0:
                 remfrom(x,clues)
                 m=1
@@ -350,19 +350,18 @@ def ready(opt, clue):
 for x in range(10):
     generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
     
-while sort_clues(clues)==0:
+for x in range(10):
     sort_clues(clues)
-for a in clues:
-    print(a[4])
+    print(len(clues))
 
-r=0
+'''r=0
 while (ready(gen_pos(),clues)) !=1:
     r+=1
     generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
     sort_clues(clues)
     print(ready(gen_pos(),clues))
     if r==12:
-        break
+        break'''
 
 for a in clues:
     print(a[4])
