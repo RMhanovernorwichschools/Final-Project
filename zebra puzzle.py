@@ -208,6 +208,7 @@ def sort_clues(lis):
                 remfrom(lis[x],clues)
                 m=1
                 return 0
+                #for some reason this one isn't triggering. find out why.
     return 1
 
 options=[]
