@@ -204,7 +204,7 @@ def sort_clues(lis):
                     remfrom(lis[a],clues)
                     m=1
                     return 0
-            if m==0 and lis[x][0]=='link' and lis[a][0]=='unlink' and (lis[x][2][0]==lis[a][2][0] and lis[x][1][1]==lis[a][1][1]) or (lis[x][2][0]==lis[a][1][0] and lis[x][1][1]==lis[a][2][1]):
+            if m==0 and lis[x][0]=='link' and lis[a][0]=='unlink' and ((lis[x][2][0]==lis[a][2][0] and lis[x][1][1]==lis[a][1][1]) or (lis[x][2][0]==lis[a][1][0] and lis[x][1][1]==lis[a][2][1]) or (lis[x][1][0]==lis[a][1][0] and lis[x][2][1]==lis[a][2][1])):
                 remfrom(lis[x],clues)
                 m=1
                 return 0
@@ -347,21 +347,16 @@ def ready(opt, clue):
                     remfrom(x,workingposs)
     return(len(workingposs))
 
-for x in range(10):
-    generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
-    
-for x in range(10):
-    sort_clues(clues)
-    print(len(clues))
+generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
 
-'''r=0
+r=0
 while (ready(gen_pos(),clues)) !=1:
     r+=1
     generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
     sort_clues(clues)
     print(ready(gen_pos(),clues))
     if r==12:
-        break'''
+        break
 
 for a in clues:
     print(a[4])
