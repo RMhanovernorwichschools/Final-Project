@@ -354,7 +354,8 @@ r=0
 while (ready(gen_pos(),clues)) !=1:
     r+=1
     generate_clue(random.choice(items).loci, random.choice(traits_fin), random.randint(1,3))
-    sort_clues(clues)
+    while sort_clues(clues)==0:
+        sort_clues(clues)
     print(ready(gen_pos(),clues))
     if r==12:
         break
