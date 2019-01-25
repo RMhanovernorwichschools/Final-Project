@@ -1,4 +1,16 @@
-dam=float(input('Damage: '))
+'''IMPORTANT NOTES:
+damage done(*5): is ratio of dps divided by 50
+damage taken(*5): is % of damage taken by an enemy firing from all(0) to none(1)
+perception(*2): is % of time when hiding enemy is found from always(1) to never(0)
+stealth(*2): is % of time when enemy while mem is hiding from never(1) to always(0)
+done damage control(*3): is ratio of dps divided by n in transition from best to worst case scenario in five steps
+taken damage control(*3): is % of damage taken by enemy in transition to best to worst case scenario in five steps
+aid to mems(*5): is change in mems damage(done and taken) (three steps, 1,2,4 mems) from *1(0) to *2.5(1)
+'''
+
+
+
+'''dam=float(input('Damage: '))
 aim=float(input('Aim time: '))
 mdps=dam/aim
 acc=float(input('Accuracy: '))
@@ -11,10 +23,10 @@ minvel=float(input('Jogging Pace: '))
 hp=float(input('Total hit points: '))
 #should have an end score of about -2.3
 
-'''saved sets below
+saved sets below
     dam:20  aim:1   acc:80  eva:35  accel:0.1   maxvel:1.2  minvel:0.1  dec:0.2 endur:10    hp:500  score=8.4
     dam:4   aim:0.1 acc:92  eva:9   accel:0.3   maxvel:1.8  minvel:0.5  dec:0.1 endur=5     hp:349  score=-2.30198
-'''
+
 
 dist=0
 vel=0
@@ -119,3 +131,4 @@ for x in range(0,601):
 print(posscore)
 print(negscore)
 print(100*(posscore+negscore))
+'''
