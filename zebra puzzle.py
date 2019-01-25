@@ -1,3 +1,5 @@
+#hate to say this, but, in order to fix, probably need to entirely rewrite the sort_clues function. Sorry.
+
 import random
 
 Names=['Willow', 'Lisbet', 'Cameron', 'Mariette', 'Annie', 'Luna', 'Celia']
@@ -204,6 +206,8 @@ def sort_clues(lis):
                     remfrom(lis[a],clues)
                     m=1
                     return 0
+            print(lis[x])
+            print(lis[a])
             if (m==0 and lis[x][0]=='link' and lis[a][0]=='unlink') and ((lis[x][2][0]==lis[a][2][0] and lis[x][1][1]==lis[a][1][1]) or (lis[x][2][0]==lis[a][1][0] and lis[x][1][1]==lis[a][2][1]) or (lis[x][1][0]==lis[a][1][0] and lis[x][2][1]==lis[a][2][1])):
                 remfrom(lis[x],clues)
                 m=1
