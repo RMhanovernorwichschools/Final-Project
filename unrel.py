@@ -1,14 +1,28 @@
 '''IMPORTANT NOTES:
-damage done(*5): is ratio of dps divided by 50
-damage taken(*5): is % of damage taken by an enemy firing from all(0) to none(1)
-perception(*2): is % of time when hiding enemy is found from always(1) to never(0)
-stealth(*2): is % of time when enemy while mem is hiding from never(1) to always(0)
-done damage control(*3): is ratio of dps divided by n in transition from best to worst case scenario in five steps
-taken damage control(*3): is % of damage taken by enemy in transition to best to worst case scenario in five steps
-aid to mems(*5): is change in mems damage(done and taken) (three steps, 1,2,4 mems) from *1(0) to *2.5(1)
+A / damage done(*5): is ratio of dps divided by 50
+B / damage taken(*5): is % of damage taken by an enemy firing from all(0) to none(1)
+C / perception(*2): is % of time when hiding enemy is found from always(1) to never(0)
+D / stealth(*2): is % of time when enemy while mem is hiding from never(1) to always(0)
+E / done damage control(*3): is ratio of dps divided by n in transition from best to worst case scenario in five steps
+F / taken damage control(*3): is % of damage taken by enemy in transition to best to worst case scenario in five steps
+G / aid to mems(*5): is change in mems damage(done and taken) (three steps, 1,2,4 mems) from *1(0) to *2.5(1)
 '''
 
+#damage per shot in hp
+dam=20
+#time to aim/shoot (time between deciding to fire and doing so) in seconds
+rof=0.4
+#shots fired before load necessary
+ammo=20
+#time it takes to load after full shots have been fired
+loadt=1
+#the special ability that the mem can use
+buff='none'
 
+if buff=='none':
+    A=(dam*ammo)/((rof*ammo)+loadt)
+    A/=50
+print('damage done sector = '+str(A))
 
 '''dam=float(input('Damage: '))
 aim=float(input('Aim time: '))
