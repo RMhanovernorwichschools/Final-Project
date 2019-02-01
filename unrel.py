@@ -24,6 +24,16 @@ if buff=='none':
     A/=50
 print('damage done sector = '+str(A))
 
+#% chance of dodging each shot
+dodge=50
+
+if buff=='none':
+    B=1*(dodge/100)
+print('damage taken sector = '+str(B))
+
+final=(A+B)/2
+print('overall = '+str(final))
+
 '''dam=float(input('Damage: '))
 aim=float(input('Aim time: '))
 mdps=dam/aim
