@@ -1,12 +1,17 @@
 '''IMPORTANT NOTES:
 A / damage done(*5): is ratio of dps divided by 50
 B / damage taken(*5): is % of damage taken by an enemy firing from all(0) to none(1)
-C / perception(*2): is % of time when hiding enemy is found from always(1) to never(0)
-D / stealth(*2): is % of time when enemy while mem is hiding from never(1) to always(0)
+C / stealth(*2): is % of time when enemy while mem is hiding from never(1) to always(0)
+D / perception(*2): is % of time when hiding enemy is found from always(1) to never(0)
 E / done damage control(*3): is ratio of dps divided by n in transition from best to worst case scenario in five steps
 F / taken damage control(*3): is % of damage taken by enemy in transition to best to worst case scenario in five steps
 G / aid to mems(*5): is change in mems damage(done and taken) (three steps, 1,2,4 mems) from *1(0) to *2.5(1)
 '''
+
+#the special ability that the mem can use
+buff_A='none'
+buff_B='none'
+buff_C='none'
 
 #damage per shot in hp
 dam=20
@@ -16,22 +21,39 @@ rof=0.4
 ammo=20
 #time it takes to load after full shots have been fired
 loadt=1
-#the special ability that the mem can use
-buff='none'
 
-if buff=='none':
+if buff_A=='none':
     A=(dam*ammo)/((rof*ammo)+loadt)
     A/=50
 print('damage done sector = '+str(A))
 
+
 #% chance of dodging each shot
 dodge=50
 
-if buff=='none':
+if buff_B=='none':
     B=1*(dodge/100)
 print('damage taken sector = '+str(B))
 
-final=(A+B)/2
+
+#% chance of being seen when enemy is not on alert
+visi=0.33
+#%chance of being seen when enemy is on alert
+al_visi=(visi**(1/2))*1.5
+if al_visi>1:
+    al_visi=1
+#% chance of alerting enemy while moving with sound
+stealth=0.66
+
+if buff_C=='none':
+    C=1-((stealth*al_visi)+(stealth*0.5*(1-al_visi))+((1-stealth)*visi))
+print('stealth sector = '+str(C))
+
+
+#increased (or decreased) likelihood to spot hidden enemies
+vis=0
+
+final=(5*A+5*B+2*C)/12
 print('overall = '+str(final))
 
 '''dam=float(input('Damage: '))
