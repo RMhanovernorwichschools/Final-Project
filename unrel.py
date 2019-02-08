@@ -44,7 +44,7 @@ al_visi=(visi**(1/2))*1.5
 if al_visi>1:
     al_visi=1
 #% chance of alerting enemy while moving with sound
-stealth=0.66
+stealth=0.4
 
 if buff_C=='none':
     C=1-((stealth*al_visi)+(stealth*0.5*(1-al_visi))+((1-stealth)*visi))
@@ -56,15 +56,23 @@ vis=0
 #increased (or decreased) likelihood to hear enemies moving
 ear=0
 #% resistance to darkness debuff
-night_vis=0.2
+night_vis=0.1
 #% resistance to fog/other blockage debuff
-bad_vis=0.1
+bad_vis=0.05
 #The way visibility decreases is by 0 (where chance to see is x1.00) to 1 (where chance to see if x0.00)
 #If bad_vis is 50%, for example, then a fog of factor 0.5 will only lead a x0.75 chance to see instead of a x0.50
 
 if buff_D=='none':
     D_1=(0.5+ear)+(1-(0.5+ear))*(0.5+vis)
-print(D_1)
+    D_emer=[]
+    for x in [0.1,0.2,0.5,0.9]:
+        vis_obstruct=(1-x)+(night_vis+bad_vis)/2
+        if vis_obstruct>1:
+            vis_obstruct=1
+        D_emer.append(D_1*vis_obstruct)
+    D_2= sum(D_emer)/len(D_emer)
+D = ((D_1+D_2)/2)
+print('perception sector = '+str(D))
 
 final=(5*A+5*B+2*C)/12
 print('overall = '+str(final))
