@@ -74,7 +74,7 @@ if buff_D=='none':
 D = ((D_1+D_2)/2)
 print('perception sector = '+str(D))
 
-final=(5*A+5*B+2*C)/12
+final=(5*A+5*B+2*C+2*D)/12
 print('overall = '+str(final))
 
 '''dam=float(input('Damage: '))
