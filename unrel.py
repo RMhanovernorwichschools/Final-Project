@@ -123,8 +123,11 @@ if buff_F=='none':
 F = sum(F_list)/len(F_list)
 print ('taken damage control sector = '+str(F))
 
+if buff_G=='none':
+    G=0
 
-final=(5*A+5*B+2*C+2*D+3*E+3*F)/20
+
+final=(5*A+5*B+2*C+2*D+3*E+3*F+5*G)/25
 print('overall = '+str(final))
 
 '''dam=float(input('Damage: '))
