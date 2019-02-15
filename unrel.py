@@ -31,9 +31,13 @@ print('damage done sector = '+str(A))
 
 #% chance of dodging each shot
 dodge=50
+#total hp
+hp=500
 
 if buff_B=='none':
-    B=1*(dodge/100)
+    enemshots=400*(dodge/100)
+    enemshots=400-enemshots
+    B=1-(enemshots/hp)
 print('damage taken sector = '+str(B))
 
 
