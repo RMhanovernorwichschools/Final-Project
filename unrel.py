@@ -15,6 +15,7 @@ buff_C='none'
 buff_D='none'
 buff_E='none'
 buff_F='none'
+buff_G='none'
 
 #damage per shot in hp
 dam=20
