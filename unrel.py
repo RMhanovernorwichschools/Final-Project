@@ -84,7 +84,7 @@ print('perception sector = '+str(D))
 
 #how efficacy decreases as hp does, first with rate (efficacy = eff*(hp/total)^damcontrol) then bonus_a (ex. +50% or +10% efficacy)
 #next component is bonus_b which is stronger b/c not percent)
-dam_control=[1,0.6,0.4]
+dam_control=[1,0.6,0.2]
 #specifically the things that decrease with damage done are accuracy to 0 and rof turns to 1.5x
 
 s1_low=0.8
