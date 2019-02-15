@@ -14,6 +14,7 @@ buff_B='none'
 buff_C='none'
 buff_D='none'
 buff_E='none'
+buff_F='none'
 
 #damage per shot in hp
 dam=20
@@ -87,11 +88,6 @@ print('perception sector = '+str(D))
 dam_control=[1,0.6,0.2]
 #specifically the things that decrease with damage done are accuracy to 0 and rof turns to 1.5x
 
-s1_low=0.8
-s2_low=0.6
-s3_low=0.4
-s4_low=0.2
-s5_low=0.05
 if buff_E=='none':
     E_list=[]
     for x in (0.8,0.6,0.4,0.2,0.05):
@@ -105,10 +101,30 @@ if buff_E=='none':
         mod_acc=acc*(ma**dam_control[0])
         E_sub=(mod_acc/100)*(dam*ammo)/((mod_rof*ammo)+loadt)
         E_sub/=50
-        print (E_sub)
         E_list.append(E_sub)
+E = sum(E_list)/len(E_list)
+print ('done damage control sector = '+str(E))
 
-final=(5*A+5*B+2*C+2*D)/12
+
+#similar to done damage control, but only evasion is affected to 0, with rate, bonus_a and bonus_b
+eva_control=[1,0.6,0.2]
+
+if buff_F=='none':
+    F_list=[]
+    for x in (0.8,0.6,0.4,0.2,0.05):
+        me=(x+(eva_control[1]*x)+eva_control[2])
+        if me>1:
+            me=1
+        mod_eva=(dodge/100)*(me**eva_control[0])
+        F_enemdam=400*mod_eva
+        F_enemdam=400-F_enemdam
+        F_sub=1-(F_enemdam/hp)
+        F_list.append(F_sub)
+F = sum(F_list)/len(F_list)
+print ('taken damage control sector = '+str(F))
+
+
+final=(5*A+5*B+2*C+2*D+3*E+3*F)/20
 print('overall = '+str(final))
 
 '''dam=float(input('Damage: '))
