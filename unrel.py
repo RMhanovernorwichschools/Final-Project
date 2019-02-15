@@ -13,9 +13,12 @@ buff_A='none'
 buff_B='none'
 buff_C='none'
 buff_D='none'
+buff_E='none'
 
 #damage per shot in hp
 dam=20
+#accuracy on average
+acc=75
 #time to aim/shoot (time between deciding to fire and doing so) in seconds
 rof=0.4
 #shots fired before load necessary
@@ -24,7 +27,7 @@ ammo=20
 loadt=1
 
 if buff_A=='none':
-    A=(dam*ammo)/((rof*ammo)+loadt)
+    A=(acc/100)*(dam*ammo)/((rof*ammo)+loadt)
     A/=50
 print('damage done sector = '+str(A))
 
@@ -77,6 +80,33 @@ if buff_D=='none':
     D_2= sum(D_emer)/len(D_emer)
 D = ((D_1+D_2)/2)
 print('perception sector = '+str(D))
+
+
+#how efficacy decreases as hp does, first with rate (efficacy = eff*(hp/total)^damcontrol) then bonus_a (ex. +50% or +10% efficacy)
+#next component is bonus_b which is stronger b/c not percent)
+dam_control=[1,0.6,0.4]
+#specifically the things that decrease with damage done are accuracy to 0 and rof turns to 1.5x
+
+s1_low=0.8
+s2_low=0.6
+s3_low=0.4
+s4_low=0.2
+s5_low=0.05
+if buff_E=='none':
+    E_list=[]
+    for x in (0.8,0.6,0.4,0.2,0.05):
+        mr=((1-x)-(dam_control[1]*(1-x))-dam_control[2])
+        if mr<0:
+            mr=0
+        mod_rof=rof*1 + rof*0.5*(mr**dam_control[0])
+        ma=(x+(dam_control[1]*x)+dam_control[2])
+        if ma>1:
+            ma=1
+        mod_acc=acc*(ma**dam_control[0])
+        E_sub=(mod_acc/100)*(dam*ammo)/((mod_rof*ammo)+loadt)
+        E_sub/=50
+        print (E_sub)
+        E_list.append(E_sub)
 
 final=(5*A+5*B+2*C+2*D)/12
 print('overall = '+str(final))
