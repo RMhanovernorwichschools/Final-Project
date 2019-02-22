@@ -8,7 +8,7 @@ F / taken damage control(*3): is % of damage taken by enemy in transition to bes
 G / aid to mems(*5): is change in mems damage(done and taken) (three steps, 1,2,4 mems) from *1(0) to *2.5(1)
 '''
 
-def contain(it,lt):
+def contain (it,lt):
     checks=0
     for x in lt:
         if x==it:
@@ -17,11 +17,9 @@ def contain(it,lt):
             checks+=1
     if checks==len(lt):
         return False
-        
-contain (3, [1,2,3])
 
 #the special ability that the mem can use
-buff_A='SE_dam'
+buff_A=['SE_dam','SE_acc']
 buff_B='none'
 buff_C='none'
 buff_D='none'
@@ -43,30 +41,27 @@ loadt=1
 if buff_A=='none':
     A=(acc/100)*(dam*ammo)/((rof*ammo)+loadt)
     A/=50
-elif buff_A=='SE_acc':
+else:
     preA_1=(acc/100)*(dam*ammo)/((rof*ammo)+loadt)
     preA_1/=50
-    #% increase to accuracy
-    accbuff=50
     #seconds load time for buff
     buffload=8
     #seconds for which buff lasts
     bufflen=3
-    modacc=acc*(1+accbuff/100)
-    preA_2=(modacc/100)*(dam*ammo)/((rof*ammo)+loadt)
-    preA_2/=50
-    A=((preA_1*buffload)+(preA_2*bufflen))/(buffload+bufflen)
-elif buff_A=='SE_dam':
-    preA_1=(acc/100)*(dam*ammo)/((rof*ammo)+loadt)
-    preA_1/=50
-    #% increase to damage
-    dambuff=60
-    #seconds load time for buff
-    buffload=8
-    #seconds for which buff lasts
-    bufflen=3
-    moddam=dam*(1+dambuff/100)
-    preA_2=(acc/100)*(moddam*ammo)/((rof*ammo)+loadt)
+    
+    if contain ('SE_acc', buff_A):
+        #% increase to accuracy
+        accbuff=50
+        modacc=acc*(1+accbuff/100)
+    else:
+        modacc=acc
+    if contain ('SE_dam', buff_A):
+        #% increase to damage
+        dambuff=60
+        moddam=dam*(1+dambuff/100)
+    else:
+        moddam=dam
+    preA_2=(modacc/100)*(moddam*ammo)/((rof*ammo)+loadt)
     preA_2/=50
     A=((preA_1*buffload)+(preA_2*bufflen))/(buffload+bufflen)
 print('damage done sector = '+str(A))
