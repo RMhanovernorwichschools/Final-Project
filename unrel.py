@@ -8,6 +8,18 @@ F / taken damage control(*3): is % of damage taken by enemy in transition to bes
 G / aid to mems(*5): is change in mems damage(done and taken) (three steps, 1,2,4 mems) from *1(0) to *2.5(1)
 '''
 
+def contain(it,lt):
+    checks=0
+    for x in lt:
+        if x==it:
+            return True
+        else:
+            checks+=1
+    if checks==len(lt):
+        return False
+        
+contain (3, [1,2,3])
+
 #the special ability that the mem can use
 buff_A='SE_dam'
 buff_B='none'
