@@ -9,7 +9,7 @@ G / aid to mems(*5): is change in mems damage(done and taken) (three steps, 1,2,
 '''
 
 #the special ability that the mem can use
-buff_A='none'
+buff_A='SE_acc'
 buff_B='none'
 buff_C='none'
 buff_D='none'
@@ -31,6 +31,19 @@ loadt=1
 if buff_A=='none':
     A=(acc/100)*(dam*ammo)/((rof*ammo)+loadt)
     A/=50
+elif buff_A=='SE_acc':
+    preA_1=(acc/100)*(dam*ammo)/((rof*ammo)+loadt)
+    preA_1/=50
+    #% increase to accuracy
+    accbuff=50
+    #seconds load time for buff
+    buffload=8
+    #seconds for which buff lasts
+    bufflen=3
+    modacc=100-((100-acc)*accbuff/100)
+    preA_2=(modacc/100)*(dam*ammo)/((rof*ammo)+loadt)
+    preA_2/=50
+    A=((preA_1*buffload)+(preA_2*bufflen))/(buffload+bufflen)
 print('damage done sector = '+str(A))
 
 
