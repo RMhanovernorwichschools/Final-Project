@@ -44,6 +44,19 @@ elif buff_A=='SE_acc':
     preA_2=(modacc/100)*(dam*ammo)/((rof*ammo)+loadt)
     preA_2/=50
     A=((preA_1*buffload)+(preA_2*bufflen))/(buffload+bufflen)
+elif buff_A=='SE_dam':
+    preA_1=(acc/100)*(dam*ammo)/((rof*ammo)+loadt)
+    preA_1/=50
+    #% increase to damage
+    dambuff=50
+    #seconds load time for buff
+    buffload=8
+    #seconds for which buff lasts
+    bufflen=3
+    moddam=dam*(1+dambuff/100)
+    preA_2=(modacc/100)*(moddam*ammo)/((rof*ammo)+loadt)
+    preA_2/=50
+    A=((preA_1*buffload)+(preA_2*bufflen))/(buffload+bufflen)
 print('damage done sector = '+str(A))
 
 
