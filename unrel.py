@@ -9,7 +9,7 @@ G / aid to mems(*5): is change in mems damage(done and taken) (three steps, 1,2,
 '''
 
 #the special ability that the mem can use
-buff_A='SE_acc'
+buff_A='SE_dam'
 buff_B='none'
 buff_C='none'
 buff_D='none'
