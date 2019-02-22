@@ -51,7 +51,7 @@ else:
     
     if contain ('SE_acc', buff_A):
         #% increase to accuracy
-        accbuff=33
+        accbuff=-48
         modacc=acc*(1+accbuff/100)
     else:
         modacc=acc
@@ -63,7 +63,7 @@ else:
         moddam=dam
     if contain('SE_rof',buff_A):
         #% decrease to time it takes to fire
-        rofbuff=33
+        rofbuff=80
         modrof=rof*(1-rofbuff/100)
     else:
         modrof=rof
