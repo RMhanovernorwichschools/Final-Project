@@ -19,7 +19,7 @@ def contain (it,lt):
         return False
 
 #the special ability that the mem can use
-buff_A=['SE_dam','SE_acc']
+buff_A=['SE_dam','SE_acc', 'SE_rof']
 buff_B='none'
 buff_C='none'
 buff_D='none'
@@ -68,7 +68,7 @@ else:
     else:
         modrof=rof
     
-    preA_2=(modacc/100)*(moddam*ammo)/((rof*ammo)+loadt)
+    preA_2=(modacc/100)*(moddam*ammo)/((modrof*ammo)+loadt)
     preA_2/=50
     A=((preA_1*buffload)+(preA_2*bufflen))/(buffload+bufflen)
 print('damage done sector = '+str(A))
