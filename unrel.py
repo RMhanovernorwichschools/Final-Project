@@ -73,7 +73,6 @@ else:
     A=((preA_1*buffload)+(preA_2*bufflen))/(buffload+bufflen)
 print('damage done sector = '+str(A))
 
-
 #% chance of dodging each shot
 dodge=50
 #total hp
