@@ -48,7 +48,7 @@ elif buff_A=='SE_dam':
     preA_1=(acc/100)*(dam*ammo)/((rof*ammo)+loadt)
     preA_1/=50
     #% increase to damage
-    dambuff=50
+    dambuff=60
     #seconds load time for buff
     buffload=8
     #seconds for which buff lasts
