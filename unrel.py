@@ -19,7 +19,7 @@ def contain (it,lt):
         return False
 
 #the special ability that the mem can use
-buff_A=['SE_dam','SE_acc', 'SE_rof']
+buff_A=['SE_acc', 'SE_rof']
 buff_B='none'
 buff_C='none'
 buff_D='none'
@@ -47,7 +47,7 @@ else:
     #seconds load time for buff
     buffload=8
     #seconds for which buff lasts
-    bufflen=3
+    bufflen=2.1
     
     if contain ('SE_acc', buff_A):
         #% increase to accuracy
@@ -63,7 +63,7 @@ else:
         moddam=dam
     if contain('SE_rof',buff_A):
         #% decrease to time it takes to fire
-        rofbuff=50
+        rofbuff=33
         modrof=rof*(1-rofbuff/100)
     else:
         modrof=rof
