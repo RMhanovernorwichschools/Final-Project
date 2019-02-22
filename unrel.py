@@ -9,7 +9,7 @@ G / aid to mems(*5): is change in mems damage(done and taken) (three steps, 1,2,
 '''
 
 #the special ability that the mem can use
-buff_A='SE_dam'
+buff_A='SE_acc'
 buff_B='none'
 buff_C='none'
 buff_D='none'
@@ -40,7 +40,7 @@ elif buff_A=='SE_acc':
     buffload=8
     #seconds for which buff lasts
     bufflen=3
-    modacc=100-((100-acc)*accbuff/100)
+    modacc=acc*(1+accbuff/100)
     preA_2=(modacc/100)*(dam*ammo)/((rof*ammo)+loadt)
     preA_2/=50
     A=((preA_1*buffload)+(preA_2*bufflen))/(buffload+bufflen)
