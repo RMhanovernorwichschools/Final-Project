@@ -61,6 +61,13 @@ else:
         moddam=dam*(1+dambuff/100)
     else:
         moddam=dam
+    if contain('SE_rof',buff_A):
+        #% decrease to time it takes to fire
+        rofbuff=50
+        modrof=rof*(1-rofbuff/100)
+    else:
+        modrof=rof
+    
     preA_2=(modacc/100)*(moddam*ammo)/((rof*ammo)+loadt)
     preA_2/=50
     A=((preA_1*buffload)+(preA_2*bufflen))/(buffload+bufflen)
