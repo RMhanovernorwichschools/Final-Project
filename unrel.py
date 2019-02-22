@@ -51,13 +51,13 @@ else:
     
     if contain ('SE_acc', buff_A):
         #% increase to accuracy
-        accbuff=50
+        accbuff=33
         modacc=acc*(1+accbuff/100)
     else:
         modacc=acc
     if contain ('SE_dam', buff_A):
         #% increase to damage
-        dambuff=60
+        dambuff=33
         moddam=dam*(1+dambuff/100)
     else:
         moddam=dam
