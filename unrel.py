@@ -57,15 +57,10 @@ else:
     
     if contain ('SE_acc', buff_A):
         #% increase to accuracy
-        accbuff=-48
-        modacc=acc*(1+accbuff/100)
-        A_accs=[]
-        for x in [0,20,40,60,80,100]:
-            e1=0.5**(1.03**(modacc-x))
-            A_accs.append(e1)
-        modacc=1-(sum(A_accs)/6)
+        accbuff=-50
+        modacc=A_acc*(1+accbuff/100)
     else:
-        modacc=A_hitscore
+        modacc=A_acc
     if contain ('SE_dam', buff_A):
         #% increase to damage
         dambuff=33
@@ -79,7 +74,7 @@ else:
     else:
         modrof=rof
     
-    preA_2=(modacc/100)*(moddam*ammo)/((modrof*ammo)+loadt)
+    preA_2=(modacc)*(moddam*ammo)/((modrof*ammo)+loadt)
     preA_2/=50
     A=((preA_1*buffload)+(preA_2*bufflen))/(buffload+bufflen)
 print('damage done sector = '+str(A))
