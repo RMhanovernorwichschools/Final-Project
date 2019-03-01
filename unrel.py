@@ -102,6 +102,23 @@ else:
     #seconds for which buff lasts
     A_bufflen=2.1
     
+    if contain('SE_eva',buff_B):
+        #% increase to evasion
+        evabuff=60
+        modeva=dodge*evabuff/100
+    else:
+        modeva=dodge
+    if contain('SE_toughness',buff_B):
+        #% decrease from 100% of damage taken per point dealt
+        tufbuff=0.45
+    else:
+        tufbuff=0
+        
+    post_B_dam=1-ID_trueeva(modeva)
+    dam_taken_buff=(400*post_B_dam)*(1-tufbuff)
+    post_B=(hp-dam_taken_buff)/hp
+    B=((pre_B*buffload)+(post_B*bufflen))/(bufflen+buffload)
+    
 print('damage taken sector = '+str(B))
 
 
