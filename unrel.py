@@ -166,7 +166,6 @@ if buff_F=='none':
             me=1
         mod_eva=(B_eva)*(me**eva_control[0])
         F_sub=mod_eva/B_eva
-        print(F_sub)
         F_list.append(F_sub)
 F = sum(F_list)/len(F_list)
 print ('taken damage control sector = '+str(F))
