@@ -38,12 +38,18 @@ ammo=20
 #time it takes to load after full shots have been fired
 loadt=1
 
+
+A_accs=[]
+for x in [0,20,40,60,80,100]:
+    e1=0.5**(1.03**(acc-x))
+    A_accs.append(e1)
+A_hitscore=1-(sum(A_accs)/6)
+
+preA_1=(A_hitscore/100)*(dam*ammo)/((rof*ammo)+loadt)
+preA_1/=50
 if buff_A=='none':
-    A=(acc/100)*(dam*ammo)/((rof*ammo)+loadt)
-    A/=50
+    A=preA_1
 else:
-    preA_1=(acc/100)*(dam*ammo)/((rof*ammo)+loadt)
-    preA_1/=50
     #seconds load time for buff
     buffload=8
     #seconds for which buff lasts
@@ -53,8 +59,13 @@ else:
         #% increase to accuracy
         accbuff=-48
         modacc=acc*(1+accbuff/100)
+        A_accs=[]
+        for x in [0,20,40,60,80,100]:
+            e1=0.5**(1.03**(modacc-x))
+            A_accs.append(e1)
+        modacc=1-(sum(A_accs)/6)
     else:
-        modacc=acc
+        modacc=A_hitscore
     if contain ('SE_dam', buff_A):
         #% increase to damage
         dambuff=33
