@@ -190,7 +190,7 @@ print ('taken damage control sector = '+str(F))
 
 if buff_G=='none':
     G=0
-
+print ('aid to mem sector = '+str(G))
 
 final=(5*A+5*B+2*C+2*D+3*E+3*F+5*G)/25
 print('overall = '+str(final))
