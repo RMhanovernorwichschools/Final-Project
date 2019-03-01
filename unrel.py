@@ -83,8 +83,8 @@ if buff_B=='none':
     for x in [0,20,40,60,80,100]:
         e1=0.5**(1.03**(x-dodge))
         B_accs.append(e1)
-    B_dam=(sum(B_accs)/6)
-    B=(400*B_dam)/hp
+    B_dam=1-(sum(B_accs)/6)
+    B=(hp-(400*B_dam))/hp
 print('damage taken sector = '+str(B))
 
 
