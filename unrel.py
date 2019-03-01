@@ -17,6 +17,13 @@ def contain (it,lt):
             checks+=1
     if checks==len(lt):
         return False
+        
+def ID_trueacc (gacc):
+    tofin=[]
+    for x in [0,20,40,60,80,100]:
+        e1=0.5**(1.03**(gacc-x))
+        tofin.append(e1)
+    return (sum(tofin)/6)
 
 #the special ability that the mem can use
 buff_A=['SE_acc', 'SE_rof']
@@ -38,13 +45,7 @@ ammo=20
 #time it takes to load after full shots have been fired
 loadt=1
 
-
-A_accs=[]
-for x in [0,20,40,60,80,100]:
-    e1=0.5**(1.03**(acc-x))
-    A_accs.append(e1)
-A_acc=1-(sum(A_accs)/6)
-
+A_acc=1-ID_trueacc(acc)
 preA_1=(A_acc)*(dam*ammo)/((rof*ammo)+loadt)
 preA_1/=50
 if buff_A=='none':
@@ -142,7 +143,7 @@ print('perception sector = '+str(D))
 
 #how efficacy decreases as hp does, first with rate (efficacy = eff*(hp/total)^damcontrol) then bonus_a (ex. +50% or +10% efficacy)
 #next component is bonus_b which is stronger b/c not percent)
-dam_control=[1,0.5,0.2]
+dam_control=[1,0.6,0.15]
 #specifically the things that decrease with damage done are accuracy to 0 and rof turns to 1.5x
 
 if buff_E=='none':
@@ -155,7 +156,9 @@ if buff_E=='none':
         ma=(x+(dam_control[1]*x)+dam_control[2])
         if ma>1:
             ma=1
-        mod_acc=A_acc*(ma**dam_control[0])
+        mod_acc=acc*(ma**dam_control[0])
+        mod_acc=1-ID_trueacc(mod_acc)
+        print(mod_acc)
         E_sub=(mod_acc)*(dam*ammo)/((mod_rof*ammo)+loadt)
         E_sub/=50
         E_list.append(E_sub)
