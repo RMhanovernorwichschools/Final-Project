@@ -73,7 +73,6 @@ else:
         modrof=rof*(1-rofbuff/100)
     else:
         modrof=rof
-    
     preA_2=(modacc)*(moddam*ammo)/((modrof*ammo)+loadt)
     preA_2/=50
     A=((preA_1*buffload)+(preA_2*bufflen))/(buffload+bufflen)
