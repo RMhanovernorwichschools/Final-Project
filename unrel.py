@@ -150,7 +150,7 @@ if buff_E=='none':
         E_sub=(mod_acc)*(dam*ammo)/((mod_rof*ammo)+loadt)
         E_sub/=50
         E_list.append(E_sub)
-E = sum(E_list)/len(E_list)
+E = (sum(E_list)/len(E_list))/A
 print ('done damage control sector = '+str(E))
 
 
