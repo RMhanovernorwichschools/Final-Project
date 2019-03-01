@@ -127,17 +127,23 @@ ear=0
 night_vis=0.1
 #% resistance to fog/other blockage debuff
 bad_vis=0.05
+#% resistance to distracting sounds, etc.
+bad_ear=0
 #The way visibility decreases is by 0 (where chance to see is x1.00) to 1 (where chance to see if x0.00)
 #If bad_vis is 50%, for example, then a fog of factor 0.5 will only lead a x0.75 chance to see instead of a x0.50
 
 if buff_D=='none':
     D_1=(0.5+ear)+(1-(0.5+ear))*(0.5+vis)
     D_emer=[]
-    for x in [0.1,0.2,0.5,0.9]:
-        vis_obstruct=(1-x)+(night_vis+bad_vis)/2
+    for x in [0.1,0.2,0.5,0.8,0.9]:
+        vis_obstruct_dark=(1-x)*(1+night_vis)
+        vis_obstruct_etc=(1-x)*(1+bad_vis)
+        vis_obstruct=vis_obstruct_etc*vis_obstruct_dark
         if vis_obstruct>1:
             vis_obstruct=1
-        D_emer.append(D_1*vis_obstruct)
+        ear_obstruct=(1-x)*(1+bad_ear)
+        c_hear=ear_obstruct*(0.5+ear)
+        D_emer.append(c_hear+(1-c_hear)*((0.5+vis)*vis_obstruct))
     D_2= sum(D_emer)/len(D_emer)
 D = ((D_1+D_2)/2)
 print('perception sector = '+str(D))
