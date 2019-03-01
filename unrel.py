@@ -63,7 +63,7 @@ else:
         modacc=A_acc
     if contain ('SE_dam', buff_A):
         #% increase to damage
-        dambuff=33
+        dambuff=40
         moddam=dam*(1+dambuff/100)
     else:
         moddam=dam
