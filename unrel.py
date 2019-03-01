@@ -88,7 +88,8 @@ if buff_B=='none':
     for x in [0,20,40,60,80,100]:
         e1=0.5**(1.03**(x-dodge))
         B_accs.append(e1)
-    B_dam=1-(sum(B_accs)/6)
+    B_eva=(sum(B_accs)/6)
+    B_dam=1-B_eva
     B=(hp-(400*B_dam))/hp
 print('damage taken sector = '+str(B))
 
@@ -155,7 +156,7 @@ print ('done damage control sector = '+str(E))
 
 
 #similar to done damage control, but only evasion is affected to 0, with rate, bonus_a and bonus_b
-eva_control=[1,0.6,0.2]
+eva_control=[1,0.6,0.1]
 
 if buff_F=='none':
     F_list=[]
@@ -163,10 +164,9 @@ if buff_F=='none':
         me=(x+(eva_control[1]*x)+eva_control[2])
         if me>1:
             me=1
-        mod_eva=(dodge/100)*(me**eva_control[0])
-        F_enemdam=400*mod_eva
-        F_enemdam=400-F_enemdam
-        F_sub=1-(F_enemdam/hp)
+        mod_eva=(B_eva)*(me**eva_control[0])
+        F_sub=mod_eva/B_eva
+        print(F_sub)
         F_list.append(F_sub)
 F = sum(F_list)/len(F_list)
 print ('taken damage control sector = '+str(F))
