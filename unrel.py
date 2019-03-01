@@ -98,7 +98,6 @@ else:
     A_buffload=8
     #seconds for which buff lasts
     A_bufflen=2.1
-    B=pre_B
     
 print('damage taken sector = '+str(B))
 
