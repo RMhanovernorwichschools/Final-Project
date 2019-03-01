@@ -83,14 +83,23 @@ dodge=50
 #total hp
 hp=500
 
+
+B_accs=[]
+for x in [0,20,40,60,80,100]:
+    e1=0.5**(1.03**(x-dodge))
+    B_accs.append(e1)
+B_eva=(sum(B_accs)/6)
+B_dam=1-B_eva
+pre_B=(hp-(400*B_dam))/hp
 if buff_B=='none':
-    B_accs=[]
-    for x in [0,20,40,60,80,100]:
-        e1=0.5**(1.03**(x-dodge))
-        B_accs.append(e1)
-    B_eva=(sum(B_accs)/6)
-    B_dam=1-B_eva
-    B=(hp-(400*B_dam))/hp
+    B=pre_B
+else:
+    #seconds load time for buff
+    A_buffload=8
+    #seconds for which buff lasts
+    A_bufflen=2.1
+    B=pre_B
+    
 print('damage taken sector = '+str(B))
 
 
