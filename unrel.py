@@ -19,11 +19,18 @@ def contain (it,lt):
         return False
         
 def ID_trueacc (gacc):
-    tofin=[]
+    tofina=[]
     for x in [0,20,40,60,80,100]:
         e1=0.5**(1.03**(gacc-x))
-        tofin.append(e1)
-    return (sum(tofin)/6)
+        tofina.append(e1)
+    return (sum(tofina)/6)
+    
+def ID_trueeva (geva):
+    tofine=[]
+    for x in [0,20,40,60,80,100]:
+        e1=0.5**(1.03**(x-geva))
+        tofine.append(e1)
+    return (sum(tofine)/6)
 
 #the special ability that the mem can use
 buff_A=['SE_acc', 'SE_rof']
@@ -79,18 +86,13 @@ else:
     A=((preA_1*A_buffload)+(preA_2*A_bufflen))/(A_buffload+A_bufflen)
 print('damage done sector = '+str(A))
 
+
 #% chance of dodging each shot
 dodge=50
 #total hp
 hp=500
 
-
-B_accs=[]
-for x in [0,20,40,60,80,100]:
-    e1=0.5**(1.03**(x-dodge))
-    B_accs.append(e1)
-B_eva=(sum(B_accs)/6)
-B_dam=1-B_eva
+B_dam=1-ID_trueeva(dodge)
 pre_B=(hp-(400*B_dam))/hp
 if buff_B=='none':
     B=pre_B
@@ -166,7 +168,7 @@ print ('done damage control sector = '+str(E))
 
 
 #similar to done damage control, but only evasion is affected to 0, with rate, bonus_a and bonus_b
-eva_control=[1,0.6,0.1]
+eva_control=[1,0.6,0.05]
 
 if buff_F=='none':
     F_list=[]
@@ -174,8 +176,8 @@ if buff_F=='none':
         me=(x+(eva_control[1]*x)+eva_control[2])
         if me>1:
             me=1
-        mod_eva=(B_eva)*(me**eva_control[0])
-        F_sub=mod_eva/B_eva
+        mod_eva=(dodge)*(me**eva_control[0])
+        F_sub=(ID_trueeva(mod_eva))/ID_trueeva(dodge)
         F_list.append(F_sub)
 F = sum(F_list)/len(F_list)
 print ('taken damage control sector = '+str(F))
