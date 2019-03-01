@@ -51,9 +51,9 @@ if buff_A=='none':
     A=preA_1
 else:
     #seconds load time for buff
-    buffload=8
+    A_buffload=8
     #seconds for which buff lasts
-    bufflen=2.1
+    A_bufflen=2.1
     
     if contain ('SE_acc', buff_A):
         #% increase to accuracy
@@ -75,7 +75,7 @@ else:
         modrof=rof
     preA_2=(modacc)*(moddam*ammo)/((modrof*ammo)+loadt)
     preA_2/=50
-    A=((preA_1*buffload)+(preA_2*bufflen))/(buffload+bufflen)
+    A=((preA_1*A_buffload)+(preA_2*A_bufflen))/(A_buffload+A_bufflen)
 print('damage done sector = '+str(A))
 
 #% chance of dodging each shot
