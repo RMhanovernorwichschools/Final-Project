@@ -30,7 +30,7 @@ buff_G='none'
 #damage per shot in hp
 dam=20
 #accuracy on average
-acc=75
+acc=60
 #time to aim/shoot (time between deciding to fire and doing so) in seconds
 rof=0.4
 #shots fired before load necessary
@@ -43,9 +43,9 @@ A_accs=[]
 for x in [0,20,40,60,80,100]:
     e1=0.5**(1.03**(acc-x))
     A_accs.append(e1)
-A_hitscore=1-(sum(A_accs)/6)
+A_acc=1-(sum(A_accs)/6)
 
-preA_1=(A_hitscore/100)*(dam*ammo)/((rof*ammo)+loadt)
+preA_1=(A_acc)*(dam*ammo)/((rof*ammo)+loadt)
 preA_1/=50
 if buff_A=='none':
     A=preA_1
