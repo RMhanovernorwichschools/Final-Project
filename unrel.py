@@ -158,7 +158,6 @@ if buff_E=='none':
             ma=1
         mod_acc=acc*(ma**dam_control[0])
         mod_acc=1-ID_trueacc(mod_acc)
-        print(mod_acc)
         E_sub=(mod_acc)*(dam*ammo)/((mod_rof*ammo)+loadt)
         E_sub/=50
         E_list.append(E_sub)
