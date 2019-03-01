@@ -146,8 +146,8 @@ if buff_E=='none':
         ma=(x+(dam_control[1]*x)+dam_control[2])
         if ma>1:
             ma=1
-        mod_acc=acc*(ma**dam_control[0])
-        E_sub=(mod_acc/100)*(dam*ammo)/((mod_rof*ammo)+loadt)
+        mod_acc=A_acc*(ma**dam_control[0])
+        E_sub=(mod_acc)*(dam*ammo)/((mod_rof*ammo)+loadt)
         E_sub/=50
         E_list.append(E_sub)
 E = sum(E_list)/len(E_list)
