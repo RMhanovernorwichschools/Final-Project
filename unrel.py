@@ -23,14 +23,14 @@ def ID_trueacc (gacc):
     for x in [0,20,40,60,80,100]:
         e1=0.5**(1.03**(gacc-x))
         tofina.append(e1)
-    return (sum(tofina)/6)
+    return (sum(tofina)/len(tofina))
     
 def ID_trueeva (geva):
     tofine=[]
     for x in [0,20,40,60,80,100]:
         e1=0.5**(1.03**(x-geva))
         tofine.append(e1)
-    return (sum(tofine)/6)
+    return (sum(tofine)/len(tofine))
 
 #the special ability that the mem can use
 buff_A=['SE_acc', 'SE_rof']
