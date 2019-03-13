@@ -31,6 +31,11 @@ def ID_trueeva (geva):
         e1=0.5**(1.03**(x-geva))
         tofine.append(e1)
     return (sum(tofine)/len(tofine))
+    
+def ID_truestel (ear, eye)
+    tofins=[]
+    for x in [0,20,40,60,80,100]:
+        
 
 #the special ability that the mem can use
 buff_A=['SE_acc', 'SE_rof']
