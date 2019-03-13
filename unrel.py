@@ -32,9 +32,26 @@ def ID_trueeva (geva):
         tofine.append(e1)
     return (sum(tofine)/len(tofine))
     
-def ID_truestel (ear, eye)
+def ID_truestel (ear, eye):
     tofins=[]
     for x in [0,20,40,60,80,100]:
+        chance_notheard=0.5**(1.05**(x-(ear+10)))
+        eye_miss = 0.5**(1.05**(x-(eye+10)))
+        alerted_found = (1-eye_miss) + 0.5
+        if alerted_found>1:
+            alerted_found=1
+        otherwise_found=(alerted_found-0.45)
+        if otherwise_found<0:
+            otherwise_found=0
+        fully_found=(1-chance_notheard)*alerted_found
+        fully_found+=(chance_notheard  * otherwise_found)
+        alerted=(1-chance_notheard)*(1-alerted_found)
+        undetec=chance_notheard*(1-otherwise_found)
+        score=(1*fully_found)+(0.5*alerted)+(0*undetec)
+        tofins.append(score)
+    return 1-(sum(tofins)/len(tofins))
+
+print(ID_truestel(70, 50))
         
 
 #the special ability that the mem can use
