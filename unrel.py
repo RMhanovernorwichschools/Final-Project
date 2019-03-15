@@ -60,8 +60,6 @@ def ID_trueper (ear, eye):
         chance_missed = chance_notheard *chance_notseen
         tofinp.append(1-chance_missed)
     return (sum(tofinp)/len(tofinp))
-
-print(ID_trueper(50, 50))
         
 
 #the special ability that the mem can use
