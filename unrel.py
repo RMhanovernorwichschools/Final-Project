@@ -52,7 +52,16 @@ def ID_truestel (ear, eye):
         tofins.append(score)
     return 1-(sum(tofins)/len(tofins))
 
-print(ID_truestel(65, 50))
+def ID_trueper (ear, eye):
+    tofinp=[]
+    for x in [0,20,40,60,80,100]:
+        chance_notheard=0.5**(1.05**(ear-(x+5)))
+        chance_notseen = 0.8**(1.05**(eye-(x+5)))
+        chance_missed = chance_notheard + (1-chance_notheard)*chance_notseen
+        tofinp.append(1-chance_missed)
+    return 1-(sum(tofinp)/len(tofinp))
+
+print(ID_trueper(50, 50))
         
 
 #the special ability that the mem can use
