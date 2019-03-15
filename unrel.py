@@ -197,6 +197,7 @@ print('perception sector = '+str(D))
 #next component is bonus_b which is stronger b/c not percent)
 dam_control=[1,0.6,0.15]
 #specifically the things that decrease with damage done are accuracy to 0 and rof turns to 1.5x
+#this improves as [a,b,c] where a decreases and b and c increase
 
 if buff_E=='none':
     E_list=[]
