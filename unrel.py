@@ -164,10 +164,10 @@ if buff_C=='none':
 print('stealth sector = '+str(C))
 
 
-#increased (or decreased) likelihood to spot hidden enemies
-vis=0
-#increased (or decreased) likelihood to hear enemies moving
-ear=0
+#score for visual perception (seeing things hard to see 0 to 100)
+vis=50
+#score for auditory perception (hearing things hard to hear 0 to 100)
+ear=50
 #% resistance to darkness debuff
 night_vis=0.1
 #% resistance to fog/other blockage debuff
@@ -178,17 +178,16 @@ bad_ear=0
 #If bad_vis is 50%, for example, then a fog of factor 0.5 will only lead a x0.75 chance to see instead of a x0.50
 
 if buff_D=='none':
-    D_1=(0.5+ear)+(1-(0.5+ear))*(0.5+vis)
+    D_1=ID_trueper(ear,vis)
     D_emer=[]
     for x in [0.1,0.2,0.5,0.8,0.9]:
-        vis_obstruct_dark=(1-x)*(1+night_vis)
-        vis_obstruct_etc=(1-x)*(1+bad_vis)
+        vis_obstruct_dark=1-(x*(1-night_vis))
+        vis_obstruct_etc=1-(x*(1-bad_vis))
         vis_obstruct=vis_obstruct_etc*vis_obstruct_dark
-        if vis_obstruct>1:
-            vis_obstruct=1
-        ear_obstruct=(1-x)*(1+bad_ear)
-        c_hear=ear_obstruct*(0.5+ear)
-        D_emer.append(c_hear+(1-c_hear)*((0.5+vis)*vis_obstruct))
+        ear_obstruct=1-(x*(1-bad_ear))
+        c_hear=ear_obstruct*ear
+        c_see=vis_obstruct*vis
+        D_emer.append(ID_trueper(c_hear,c_see))
     D_2= sum(D_emer)/len(D_emer)
 D = ((D_1+D_2)/2)
 print('perception sector = '+str(D))
