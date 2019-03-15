@@ -59,7 +59,6 @@ def ID_trueper (ear, eye):
         chance_notseen = 0.8**(1.05**(eye-x))
         chance_missed = chance_notheard *chance_notseen
         tofinp.append(1-chance_missed)
-        print(chance_missed)
     return (sum(tofinp)/len(tofinp))
 
 print(ID_trueper(50, 50))
