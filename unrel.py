@@ -154,17 +154,13 @@ else:
 print('damage taken sector = '+str(B))
 
 
-#% chance of being seen when enemy is not on alert
-visi=0.33
-#%chance of being seen when enemy is on alert
-al_visi=(visi**(1/2))*1.5
-if al_visi>1:
-    al_visi=1
-#% chance of alerting enemy while moving with sound
-stealth=0.4
+#score for quietness while sneaking (around 0 to 100)
+stel_sound=50
+#score for visual discretion whle sneaking (around 0 to 100)
+stel_visi=65
 
 if buff_C=='none':
-    C=1-((stealth*al_visi)+(stealth*0.5*(1-al_visi))+((1-stealth)*visi))
+    C=ID_truestel(stel_sound, stel_visi)
 print('stealth sector = '+str(C))
 
 
