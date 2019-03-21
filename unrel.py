@@ -275,7 +275,7 @@ else:
         e1=0.5**(1.03**(G_mab(50)-G_eed(x)))
         G_tofind.append(e1)
     G_acc_return = (sum(G_tofind)/len(G_tofind))
-    G_buff_2=12*((1-G_acc_return)*G_damb(100)/2.8)/G_hpd(300)
+    G_buff_2=12*((1-G_acc_return)*5*G_damb(20)/2.8)/G_hpd(300)
     G_2=(G_buff_2-G_default_2)/G_default_2
     
     G_default_3=ID_truestel(50,65)
@@ -292,6 +292,29 @@ else:
     #effect to enemy sight perception
     def G_evsd(x):
         return x
+    
+    G_tofins=[]
+    for x in [0,20,40,60,80,100]:
+        chance_notheard=0.5**(1.05**(G_essd(x)-G_mssb(50)-5))
+        eye_miss = 0.8**(1.05**((G_evsd(x)-G_mvsb(65))-5))
+        alerted_found = (1-eye_miss) + 0.5
+        if alerted_found>1:
+            alerted_found=1
+        otherwise_found=(alerted_found-0.45)
+        if otherwise_found<0:
+            otherwise_found=0
+        fully_found=(1-chance_notheard)*alerted_found
+        a=fully_found
+        fully_found+=(chance_notheard  * otherwise_found)
+        alerted=(1-chance_notheard)*(1-alerted_found)
+        undetec=chance_notheard*(1-otherwise_found)
+        score=(1*fully_found)+(0.5*alerted)+(0*undetec)
+        G_tofins.append(score)
+    G_buff_3 = 1-(sum(G_tofins)/len(G_tofins))
+    print(G_default_3)
+    print(G_buff_3)
+    G_3=(G_buff_3-G_default_3)/G_default_3
+    print(G_3)
     
     G=(G_1+G_2)/2
         
