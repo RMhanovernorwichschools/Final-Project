@@ -311,12 +311,9 @@ else:
         score=(1*fully_found)+(0.5*alerted)+(0*undetec)
         G_tofins.append(score)
     G_buff_3 = 1-(sum(G_tofins)/len(G_tofins))
-    print(G_default_3)
-    print(G_buff_3)
     G_3=(G_buff_3-G_default_3)/G_default_3
-    print(G_3)
     
-    G=(G_1+G_2)/2
+    G=(3*G_1+3*G_2+G_3)/7
         
 print ('aid to mem sector = '+str(G))
 
