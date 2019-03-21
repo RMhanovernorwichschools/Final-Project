@@ -69,7 +69,7 @@ buff_C='none'
 buff_D='none'
 buff_E='none'
 buff_F='none'
-buff_G='none'
+buff_G=''
 
 #damage per shot in hp
 dam=20
@@ -240,21 +240,21 @@ else:
         return x
     #effect to mem hp (same as above)
     def G_hpb(x):
-        return x+25
+        return x
     #effect to enem damage (same as above)
     def G_damd(x):
-        return x*0.9
+        return x
     #effect to enemy accuracy
     def G_accd(x):
-        return x-5
+        return x
+    
     G_tofine=[]
     for x in [0,20,40,60,80,100]:
         e1=0.5**(1.03**((G_accd(x))-(G_meb(50))))
-        tofine.append(e1)
+        G_tofine.append(e1)
     G_eva_return = (sum(G_tofine)/len(G_tofine))
     G_buff_1=((G_damd(400))*(1-G_eva_return))/(G_hpb(500))
-    print(G_default_1)
-    print(G_buff_1)
+    G=(G_default_1-G_buff_1)/G_default_1
     
 print ('aid to mem sector = '+str(G))
 
