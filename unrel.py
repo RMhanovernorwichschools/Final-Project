@@ -278,6 +278,21 @@ else:
     G_buff_2=12*((1-G_acc_return)*G_damb(100)/2.8)/G_hpd(300)
     G_2=(G_buff_2-G_default_2)/G_default_2
     
+    G_default_3=ID_truestel(50,65)
+    
+    #effect to mem visi stealth (function applied to x is how they will affect the mem's acc, for example, *2 or +20)
+    def G_mvsb(x):
+        return x
+    #effect to mem sound stealth (same as above)
+    def G_mssb(x):
+        return x
+    #effect to enem sound perception (same as above)
+    def G_essd(x):
+        return x
+    #effect to enemy sight perception
+    def G_evsd(x):
+        return x
+    
     G=(G_1+G_2)/2
         
 print ('aid to mem sector = '+str(G))
