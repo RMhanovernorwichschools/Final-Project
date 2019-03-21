@@ -236,13 +236,17 @@ if buff_G=='none':
 else:
     G_default_1=(400*(1-ID_trueeva(50)))/500
     #effect to mem evasion (function applied to x is how they will affect the mem's evasion, for example, *2 or +20)
-    def G_meb(x) = x
+    def G_meb(x):
+        return x
     #effect to mem hp (same as above)
-    def G_hpb(x) = x+25
+    def G_hpb(x):
+        return x+25
     #effect to enem damage (same as above)
-    def G_damd(x) = x*0.9
+    def G_damd(x):
+        return x*0.9
     #effect to enemy accuracy
-    def G_accd(x) = x-5
+    def G_accd(x):
+        return x-5
     G_tofine=[]
     for x in [0,20,40,60,80,100]:
         e1=0.5**(1.03**((G_accd(x))-(G_meb(50))))
