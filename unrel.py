@@ -254,9 +254,33 @@ else:
         G_tofine.append(e1)
     G_eva_return = (sum(G_tofine)/len(G_tofine))
     G_buff_1=((G_damd(400))*(1-G_eva_return))/(G_hpb(500))
-    G=(G_default_1-G_buff_1)/G_default_1
+    G_1=(G_default_1-G_buff_1)/G_default_1
     
+    G_default_2=12*((1-ID_trueacc(50))*100/2.8)/300
+    #effect to mem accuracy (function applied to x is how they will affect the mem's acc, for example, *2 or +20)
+    def G_mab(x):
+        return x
+    #effect to mem damage (same as above)
+    def G_damb(x):
+        return x
+    #effect to enem evasion (same as above)
+    def G_eed(x):
+        return x
+    #effect to enemy health
+    def G_hpd(x):
+        return x
+        
+    G_tofind=[]
+    for x in [0,20,40,60,80,100]:
+        e1=0.5**(1.03**(G_mab(50)-G_eed(x)))
+        G_tofind.append(e1)
+    G_acc_return = (sum(G_tofind)/len(G_tofind))
+    G_buff_2=12*((1-G_acc_return)*G_damb(100)/2.8)/G_hpd(300)
+    G_2=(G_buff_2-G_default_2)/G_default_2
+    
+    G=(G_1+G_2)/2
+        
 print ('aid to mem sector = '+str(G))
 
-final=(5*A+5*B+2*C+2*D+3*E+3*F+5*G)/25
+final=(5*A+5*B+2*C+2*D+3*E+3*F+10*G)/30
 print('overall = '+str(final))
