@@ -66,7 +66,7 @@ def ID_trueper (ear, eye):
 buff_A='none'
 buff_B='none'
 buff_C='none'
-buff_D='none'
+buff_D='percep boost'
 buff_E='none'
 buff_F='none'
 buff_G=''
@@ -120,7 +120,7 @@ print('damage done sector = '+str(A))
 #% chance of dodging each shot
 dodge=73
 #total hp
-hp=270
+hp=268
 
 B_dam=1-ID_trueeva(dodge)
 pre_B=(hp-(400*B_dam))/hp
@@ -155,7 +155,7 @@ print('damage taken sector = '+str(B))
 #score for quietness while sneaking (around 0 to 100)
 stel_sound=100
 #score for visual discretion whle sneaking (around 0 to 100)
-stel_visi=91
+stel_visi=80
 
 if buff_C=='none':
     C=ID_truestel(stel_sound, stel_visi)
@@ -198,13 +198,12 @@ else:
     
     #effect on visual perception
     def D_vis(x):
-        return x
+        return (x*1.1)
     #effect on auditory perception
     def D_ear(x):
-        return x
+        return x+60
         
     D_buff_1=ID_trueper(D_ear(ear),D_vis(vis))
-    print(D_buff_1)
     DB_emer=[]
     for x in [0.1,0.2,0.5,0.8,0.9]:
         vis_obstruct_dark=1-(x*(1-night_vis))
@@ -216,6 +215,7 @@ else:
         DB_emer.append(ID_trueper(c_hear,c_see))
     D_buff_2= sum(DB_emer)/len(DB_emer)
     D_buff = ((D_buff_1+D_buff_2)/2)
+    D=((D_buff*D_bufflen)+(D_default*D_buffload))/(D_bufflen+D_buffload)
     
 print('perception sector = '+str(D))
 
