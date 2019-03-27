@@ -217,7 +217,7 @@ print ('done damage control sector = '+str(E))
 
 
 #similar to done damage control, but only evasion is affected to 0, with rate, bonus_a and bonus_b
-eva_control=[1,0.6,0.05]
+eva_control=[0.7,0.7,0.06]
 
 if buff_F=='none':
     F_list=[]
