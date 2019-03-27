@@ -175,19 +175,21 @@ bad_ear=0.8
 #The way visibility decreases is by 0 (where chance to see is x1.00) to 1 (where chance to see if x0.00)
 #If bad_vis is 50%, for example, then a fog of factor 0.5 will only lead a x0.75 chance to see instead of a x0.50
 
+D_1=ID_trueper(ear,vis)
+D_emer=[]
+for x in [0.1,0.2,0.5,0.8,0.9]:
+    vis_obstruct_dark=1-(x*(1-night_vis))
+    vis_obstruct_etc=1-(x*(1-bad_vis))
+    vis_obstruct=vis_obstruct_etc*vis_obstruct_dark
+    ear_obstruct=1-(x*(1-bad_ear))
+    c_hear=ear_obstruct*ear
+    c_see=vis_obstruct*vis
+    D_emer.append(ID_trueper(c_hear,c_see))
+D_2= sum(D_emer)/len(D_emer)
+D_default = ((D_1+D_2)/2)
+
 if buff_D=='none':
-    D_1=ID_trueper(ear,vis)
-    D_emer=[]
-    for x in [0.1,0.2,0.5,0.8,0.9]:
-        vis_obstruct_dark=1-(x*(1-night_vis))
-        vis_obstruct_etc=1-(x*(1-bad_vis))
-        vis_obstruct=vis_obstruct_etc*vis_obstruct_dark
-        ear_obstruct=1-(x*(1-bad_ear))
-        c_hear=ear_obstruct*ear
-        c_see=vis_obstruct*vis
-        D_emer.append(ID_trueper(c_hear,c_see))
-    D_2= sum(D_emer)/len(D_emer)
-D = ((D_1+D_2)/2)
+    D = D_default
 print('perception sector = '+str(D))
 
 
