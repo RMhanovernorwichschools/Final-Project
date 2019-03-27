@@ -118,9 +118,9 @@ print('damage done sector = '+str(A))
 
 
 #% chance of dodging each shot
-dodge=77
+dodge=73
 #total hp
-hp=290
+hp=270
 
 B_dam=1-ID_trueeva(dodge)
 pre_B=(hp-(400*B_dam))/hp
@@ -287,10 +287,10 @@ else:
         return x
     #effect to enem sound perception (same as above)
     def G_essd(x):
-        return x
+        return x-50
     #effect to enemy sight perception
     def G_evsd(x):
-        return x
+        return (x/1.4)-5
     
     G_tofins=[]
     for x in [0,20,40,60,80,100]:
