@@ -69,7 +69,7 @@ buff_C='none'
 buff_D='none'
 buff_E='none'
 buff_F='none'
-buff_G=''
+buff_G='none'
 
 #damage per shot in hp
 dam=20
@@ -371,3 +371,58 @@ print ('aid to mem sector = '+str(G))
 
 final=(5*A+5*B+2*C+2*D+3*E+3*F+10*G)/30
 print('overall = '+str(final))
+
+''' Below are combinations that lead to the desired final score of around 0.40416852
+|||||COMBO ONE
+#the special ability that the mem can use
+buff_A=['SE_acc', 'SE_rof']
+buff_B='none'
+buff_C='none'
+buff_D='none'
+buff_E='none'
+buff_F='none'
+buff_G='none'
+
+#damage per shot in hp
+dam=20
+#accuracy on average
+acc=60
+#time to aim/shoot (time between deciding to fire and doing so) in seconds
+rof=0.4
+#shots fired before load necessary
+ammo=20
+#time it takes to load after full shots have been fired
+loadt=1
+    #seconds load time for buff
+    A_buffload=8
+    #seconds for which buff lasts
+    A_bufflen=2.1
+    #% increase to accuracy
+    accbuff=-50
+    #% decrease to time it takes to fire
+    rofbuff=80
+#% chance of dodging each shot
+dodge=50
+#total hp
+hp=500
+#score for quietness while sneaking (around 0 to 100)
+stel_sound=50
+#score for visual discretion whle sneaking (around 0 to 100)
+stel_visi=65
+#score for visual perception (seeing things hard to see 0 to 100)
+vis=50
+#score for auditory perception (hearing things hard to hear 0 to 100)
+ear=50
+#% resistance to darkness debuff
+night_vis=0.1
+#% resistance to fog/other blockage debuff
+bad_vis=0.05
+#% resistance to distracting sounds, etc.
+bad_ear=0
+#how efficacy decreases as hp does, first with rate (efficacy = eff*(hp/total)^damcontrol) then bonus_a (ex. +50% or +10% efficacy)
+#next component is bonus_b which is stronger b/c not percent)
+dam_control=[1,0.6,0.15]
+#similar to done damage control, but only evasion is affected to 0, with rate, bonus_a and bonus_b
+eva_control=[1,0.6,0.05]    |||||
+
+|||||COMBO TWO
