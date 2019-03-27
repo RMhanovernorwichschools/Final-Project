@@ -330,10 +330,10 @@ else:
     #effect to mem auditory perception (same as above)
     def G_mspb(x):
         return x
-    #effect to mems sound distraction resistance
+    #effect to mems sound distraction resistance (should be decimals)
     def G_msprb(x):
         return x
-    #effect to mems visual distraction/blockage resistance
+    #effect to mems visual distraction/blockage resistance (should be decimals)
     def G_mvprb(x):
         return x
     #effect to enem visual stealth (same as above)
@@ -365,6 +365,7 @@ else:
     G_buff_4=(G_buff_4A+G_buff_4B)/2
     G_4=(G_buff_4-G_default_4)/G_default_4
     print(G_default_4)
+    print(G_buff_4)
     
     G=(3*G_1+3*G_2+G_3+G_4)/8
         
