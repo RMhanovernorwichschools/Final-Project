@@ -190,6 +190,33 @@ D_default = ((D_1+D_2)/2)
 
 if buff_D=='none':
     D = D_default
+else:
+    #time in secs for which buff lasts
+    D_bufflen=5
+    #time in secs which buff requires to be ready
+    D_buffload=9
+    
+    #effect on visual perception
+    def D_vis(x):
+        return x
+    #effect on auditory perception
+    def D_ear(x):
+        return x
+        
+    D_buff_1=ID_trueper(D_ear(ear),D_vis(vis))
+    print(D_buff_1)
+    DB_emer=[]
+    for x in [0.1,0.2,0.5,0.8,0.9]:
+        vis_obstruct_dark=1-(x*(1-night_vis))
+        vis_obstruct_etc=1-(x*(1-bad_vis))
+        vis_obstruct=vis_obstruct_etc*vis_obstruct_dark
+        ear_obstruct=1-(x*(1-bad_ear))
+        c_hear=ear_obstruct*D_ear(ear)
+        c_see=vis_obstruct*D_vis(vis)
+        DB_emer.append(ID_trueper(c_hear,c_see))
+    D_buff_2= sum(DB_emer)/len(DB_emer)
+    D_buff = ((D_buff_1+D_buff_2)/2)
+    
 print('perception sector = '+str(D))
 
 
