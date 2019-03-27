@@ -343,8 +343,8 @@ else:
     G_buff_4A=G_percep(50,50)
     G_emer=[]
     for x in [0.1,0.2,0.5,0.8,0.9]:
-        vis_obstruct_dark=1-(x*(1-G_mvprd(0.1)))
-        vis_obstruct_etc=1-(x*(1-G_mvprd(0.05)))
+        vis_obstruct_dark=1-(x*(1-G_mvprb(0.1)))
+        vis_obstruct_etc=1-(x*(1-G_mvprb(0.05)))
         vis_obstruct=vis_obstruct_etc*vis_obstruct_dark
         ear_obstruct=1-(x*(1-G_msprb(0.01)))
         c_hear=ear_obstruct*50
