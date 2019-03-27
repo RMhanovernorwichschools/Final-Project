@@ -366,6 +366,24 @@ else:
     G_4=(G_buff_4-G_default_4)/G_default_4
     
     G=(3*G_1+3*G_2+G_3+G_4)/8
+    
+    #how long is the buff active? (seconds)
+    buff_len=1
+    #how long does it take to load/prepare? (seconds)
+    buff_load=0
+    #how many mems total can it affect?
+    G_buff_range=3
+    
+    G*=(buff_len)/(buff_len+buff_load)
+    
+    if G_buff_range>2:
+        G*=1
+    elif G_buff_range==2:
+        G*=0.917
+    elif G_buff_range==1:
+        G*=0.75
+    else:
+        G*=0.5
         
 print ('aid to mem sector = '+str(G))
 
