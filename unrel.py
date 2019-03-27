@@ -279,7 +279,6 @@ else:
     G_2=(G_buff_2-G_default_2)/G_default_2
     
     G_default_3=ID_truestel(50,65)
-    
     #effect to mem visi stealth (function applied to x is how they will affect the mem's acc, for example, *2 or +20)
     def G_mvsb(x):
         return x
@@ -313,7 +312,49 @@ else:
     G_buff_3 = 1-(sum(G_tofins)/len(G_tofins))
     G_3=(G_buff_3-G_default_3)/G_default_3
     
-    G=(3*G_1+3*G_2+G_3)/7
+    G_default_4=ID_trueper(50,50)
+    #effect on visual perception (works as described above)
+    def G_mvpb(x):
+        return x
+    #effect to mem auditory perception (same as above)
+    def G_mspb(x):
+        return x
+    #effect to mems sound distraction resistance
+    def G_msprb(x):
+        return x
+    #effect to mems visual distraction/blockage resistance
+    def G_mvprb(x):
+        return x
+    #effect to enem visual stealth (same as above)
+    def G_evpd(x):
+        return x
+    #effect to enemy auditory stealth
+    def G_espd(x):
+        return x
+    
+    def G_percep(a,b):
+        G_tofinp=[]
+        for x in [0,20,40,60,80,100]:
+            chance_notheard=0.5**(1.05**(G_mspb(a)-G_espd(x)))
+            chance_notseen = 0.8**(1.05**(G_mvpb(b)-G_evpd(x)))
+            chance_missed = chance_notheard *chance_notseen
+            G_tofinp.append(1-chance_missed)
+        return(sum(G_tofinp)/len(G_tofinp))
+    G_buff_4A=G_percep(50,50)
+    G_emer=[]
+    for x in [0.1,0.2,0.5,0.8,0.9]:
+        vis_obstruct_dark=1-(x*(1-G_mvprd(0.1)))
+        vis_obstruct_etc=1-(x*(1-G_mvprd(0.05)))
+        vis_obstruct=vis_obstruct_etc*vis_obstruct_dark
+        ear_obstruct=1-(x*(1-G_msprb(0.01)))
+        c_hear=ear_obstruct*50
+        c_see=vis_obstruct*50
+        G_emer.append(G_percep(c_hear,c_see))
+    G_buff_4B= sum(G_emer)/len(G_emer)
+    G_buff_4=(G_buff_4A+G_buff_4B)/2
+    G_4=(G_buff_4-G_default_4)/G_default_4)
+    
+    G=(3*G_1+3*G_2+G_3+G_4)/8
         
 print ('aid to mem sector = '+str(G))
 
