@@ -63,24 +63,24 @@ def ID_trueper (ear, eye):
         
 
 #the special ability that the mem can use
-buff_A=['SE_acc', 'SE_rof']
+buff_A='none'
 buff_B='none'
 buff_C='none'
 buff_D='none'
 buff_E='none'
 buff_F='none'
-buff_G='none'
+buff_G=''
 
 #damage per shot in hp
-dam=20
+dam=11
 #accuracy on average
-acc=60
+acc=77
 #time to aim/shoot (time between deciding to fire and doing so) in seconds
-rof=0.4
+rof=0.82
 #shots fired before load necessary
-ammo=20
+ammo=12
 #time it takes to load after full shots have been fired
-loadt=1
+loadt=1.2
 
 A_acc=1-ID_trueacc(acc)
 preA_1=(A_acc)*(dam*ammo)/((rof*ammo)+loadt)
@@ -95,19 +95,19 @@ else:
     
     if contain ('SE_acc', buff_A):
         #% increase to accuracy
-        accbuff=-50
+        accbuff=0
         modacc=A_acc*(1+accbuff/100)
     else:
         modacc=A_acc
     if contain ('SE_dam', buff_A):
         #% increase to damage
-        dambuff=40
+        dambuff=0
         moddam=dam*(1+dambuff/100)
     else:
         moddam=dam
     if contain('SE_rof',buff_A):
         #% decrease to time it takes to fire
-        rofbuff=80
+        rofbuff=0
         modrof=rof*(1-rofbuff/100)
     else:
         modrof=rof
@@ -118,9 +118,9 @@ print('damage done sector = '+str(A))
 
 
 #% chance of dodging each shot
-dodge=50
+dodge=77
 #total hp
-hp=500
+hp=290
 
 B_dam=1-ID_trueeva(dodge)
 pre_B=(hp-(400*B_dam))/hp
@@ -134,13 +134,13 @@ else:
     
     if contain('SE_eva',buff_B):
         #% increase to evasion
-        evabuff=60
+        evabuff=0
         modeva=dodge*evabuff/100
     else:
         modeva=dodge
     if contain('SE_toughness',buff_B):
         #% decrease from 100% of damage taken per point dealt
-        tufbuff=0.45
+        tufbuff=0
     else:
         tufbuff=0
         
@@ -153,9 +153,9 @@ print('damage taken sector = '+str(B))
 
 
 #score for quietness while sneaking (around 0 to 100)
-stel_sound=50
+stel_sound=100
 #score for visual discretion whle sneaking (around 0 to 100)
-stel_visi=65
+stel_visi=91
 
 if buff_C=='none':
     C=ID_truestel(stel_sound, stel_visi)
@@ -163,15 +163,15 @@ print('stealth sector = '+str(C))
 
 
 #score for visual perception (seeing things hard to see 0 to 100)
-vis=50
+vis=95
 #score for auditory perception (hearing things hard to hear 0 to 100)
-ear=50
+ear=100
 #% resistance to darkness debuff
-night_vis=0.1
+night_vis=0.65
 #% resistance to fog/other blockage debuff
-bad_vis=0.05
+bad_vis=0.7
 #% resistance to distracting sounds, etc.
-bad_ear=0
+bad_ear=0.8
 #The way visibility decreases is by 0 (where chance to see is x1.00) to 1 (where chance to see if x0.00)
 #If bad_vis is 50%, for example, then a fog of factor 0.5 will only lead a x0.75 chance to see instead of a x0.50
 
@@ -193,7 +193,7 @@ print('perception sector = '+str(D))
 
 #how efficacy decreases as hp does, first with rate (efficacy = eff*(hp/total)^damcontrol) then bonus_a (ex. +50% or +10% efficacy)
 #next component is bonus_b which is stronger b/c not percent)
-dam_control=[1,0.6,0.15]
+dam_control=[0.5,0.8,0.13]
 #specifically the things that decrease with damage done are accuracy to 0 and rof turns to 1.5x
 #this improves as [a,b,c] where a decreases and b and c increase
 
