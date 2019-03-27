@@ -364,8 +364,6 @@ else:
     G_buff_4B= sum(G_emer)/len(G_emer)
     G_buff_4=(G_buff_4A+G_buff_4B)/2
     G_4=(G_buff_4-G_default_4)/G_default_4
-    print(G_default_4)
-    print(G_buff_4)
     
     G=(3*G_1+3*G_2+G_3+G_4)/8
         
