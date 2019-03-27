@@ -312,7 +312,18 @@ else:
     G_buff_3 = 1-(sum(G_tofins)/len(G_tofins))
     G_3=(G_buff_3-G_default_3)/G_default_3
     
-    G_default_4=ID_trueper(50,50)
+    G_default_4A=ID_trueper(50,50)
+    GA_emer=[]
+    for x in [0.1,0.2,0.5,0.8,0.9]:
+        vis_obstruct_dark=1-(x*(1-0.1))
+        vis_obstruct_etc=1-(x*(1-0.05))
+        vis_obstruct=vis_obstruct_etc*vis_obstruct_dark
+        ear_obstruct=1-(x*(1-0.01))
+        c_hear=ear_obstruct*50
+        c_see=vis_obstruct*50
+        GA_emer.append(ID_trueper(c_hear,c_see))
+    G_default_4B= sum(GA_emer)/len(GA_emer)
+    G_default_4=(G_default_4A+G_default_4B)/2
     #effect on visual perception (works as described above)
     def G_mvpb(x):
         return x
@@ -353,6 +364,7 @@ else:
     G_buff_4B= sum(G_emer)/len(G_emer)
     G_buff_4=(G_buff_4A+G_buff_4B)/2
     G_4=(G_buff_4-G_default_4)/G_default_4
+    print(G_default_4)
     
     G=(3*G_1+3*G_2+G_3+G_4)/8
         
