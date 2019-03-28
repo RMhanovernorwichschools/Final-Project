@@ -69,7 +69,7 @@ buff_C='detri to enem percep'
 buff_D='percep boost'
 buff_E='none'
 buff_F='none'
-buff_G='stealth bonus'
+buff_G=['percep bonus', 'detri to enem percep']
 
 #damage per shot in hp
 dam=11
