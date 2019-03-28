@@ -390,7 +390,12 @@ else:
         score=(1*fully_found)+(0.5*alerted)+(0*undetec)
         G_tofins.append(score)
     G_buff_3 = 1-(sum(G_tofins)/len(G_tofins))
-    G_3=(G_buff_3-G_default_3)/G_default_3
+    
+    #how long is the buff active? (seconds)
+    GC_bufflen=9
+    #how long does it take to load/prepare? (seconds)
+    GC_buffload=15
+    G_3=(G_buff_3-G_default_3)*GC_bufflen/(G_default_3*(GC_bufflen+GC_buffload))
     
     G_default_4A=ID_trueper(50,50)
     GA_emer=[]
