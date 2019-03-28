@@ -65,7 +65,7 @@ def ID_trueper (ear, eye):
 #the special ability that the mem can use
 buff_A='none'
 buff_B='none'
-buff_C='none'
+buff_C='detri to enem percep'
 buff_D='percep boost'
 buff_E='none'
 buff_F='none'
@@ -157,8 +157,49 @@ stel_sound=100
 #score for visual discretion whle sneaking (around 0 to 100)
 stel_visi=80
 
+C_default=ID_truestel(stel_sound, stel_visi)
 if buff_C=='none':
-    C=ID_truestel(stel_sound, stel_visi)
+    C=C_default
+else:
+    #time in secs for which buff lasts
+    C_bufflen=9
+    #time in secs which buff requires to be ready
+    C_buffload=16
+    
+    #effect on own visual stealth (how easy to see)
+    def C_svs(x):
+        return x
+    #effect on own auditory stealth (how easy to hear)
+    def C_sss(x):
+        return x
+    #effect on enems visual perception
+    def C_evp(x):
+        return x*0.8 - 15
+    #effect on enems auditory perception
+    def C_esp(x):
+        return (x/2) -30
+        
+    C_tofins=[]
+    for x in [0,20,40,60,80,100]:
+        chance_notheard=0.5**(1.05**(C_esp(x)-(C_sss(stel_sound)+5)))
+        eye_miss = 0.8**(1.05**(C_evp(x)-(C_svs(stel_visi)+5)))
+        alerted_found = (1-eye_miss) + 0.5
+        if alerted_found>1:
+            alerted_found=1
+        otherwise_found=(alerted_found-0.45)
+        if otherwise_found<0:
+            otherwise_found=0
+        fully_found=(1-chance_notheard)*alerted_found
+        a=fully_found
+        fully_found+=(chance_notheard  * otherwise_found)
+        alerted=(1-chance_notheard)*(1-alerted_found)
+        undetec=chance_notheard*(1-otherwise_found)
+        score=(1*fully_found)+(0.5*alerted)+(0*undetec)
+        C_tofins.append(score)
+    C_buff = 1-(sum(C_tofins)/len(C_tofins))
+    
+    C=((C_buff*C_bufflen)+(C_default*C_buffload))/(C_bufflen+C_buffload)
+    
 print('stealth sector = '+str(C))
 
 
@@ -192,9 +233,9 @@ if buff_D=='none':
     D = D_default
 else:
     #time in secs for which buff lasts
-    D_bufflen=5
+    D_bufflen=9
     #time in secs which buff requires to be ready
-    D_buffload=9
+    D_buffload=16
     
     #effect on visual perception
     def D_vis(x):
