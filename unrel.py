@@ -174,10 +174,10 @@ else:
         return x
     #effect on enems visual perception
     def C_evp(x):
-        return x*0.8 - 15
+        return x/1.4 - 5
     #effect on enems auditory perception
     def C_esp(x):
-        return (x/2) -30
+        return x-50
         
     C_tofins=[]
     for x in [0,20,40,60,80,100]:
@@ -324,7 +324,12 @@ else:
         G_tofine.append(e1)
     G_eva_return = (sum(G_tofine)/len(G_tofine))
     G_buff_1=((G_damd(400))*(1-G_eva_return))/(G_hpb(500))
-    G_1=(G_default_1-G_buff_1)/G_default_1
+    
+    #how long is the buff active? (seconds)
+    GA_bufflen=1
+    #how long does it take to load/prepare? (seconds)
+    GA_buffload=0
+    G_1=(GA_bufflen*(G_default_1-G_buff_1))/((GA_bufflen+GA_buffload)*G_default_1)
     
     G_default_2=12*((1-ID_trueacc(50))*100/2.8)/300
     #effect to mem accuracy (function applied to x is how they will affect the mem's acc, for example, *2 or +20)
@@ -437,14 +442,8 @@ else:
     
     G=(3*G_1+3*G_2+G_3+G_4)/8
     
-    #how long is the buff active? (seconds)
-    buff_len=1
-    #how long does it take to load/prepare? (seconds)
-    buff_load=0
     #how many mems total can it affect?
     G_buff_range=3
-    
-    G*=(buff_len)/(buff_len+buff_load)
     
     if G_buff_range>2:
         G*=1
