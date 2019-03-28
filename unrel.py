@@ -326,9 +326,9 @@ else:
     G_buff_1=((G_damd(400))*(1-G_eva_return))/(G_hpb(500))
     
     #how long is the buff active? (seconds)
-    GA_bufflen=1
+    GA_bufflen=0
     #how long does it take to load/prepare? (seconds)
-    GA_buffload=0
+    GA_buffload=1
     G_1=(GA_bufflen*(G_default_1-G_buff_1))/((GA_bufflen+GA_buffload)*G_default_1)
     
     G_default_2=12*((1-ID_trueacc(50))*100/2.8)/300
@@ -351,7 +351,12 @@ else:
         G_tofind.append(e1)
     G_acc_return = (sum(G_tofind)/len(G_tofind))
     G_buff_2=12*((1-G_acc_return)*5*G_damb(20)/2.8)/G_hpd(300)
-    G_2=(G_buff_2-G_default_2)/G_default_2
+    
+    #how long is the buff active? (seconds)
+    GB_bufflen=0
+    #how long does it take to load/prepare? (seconds)
+    GB_buffload=1
+    G_2=(G_buff_2-G_default_2)*GB_bufflen/(G_default_2*(GB_bufflen+GB_buffload))
     
     G_default_3=ID_truestel(50,65)
     #effect to mem visi stealth (function applied to x is how they will affect the mem's acc, for example, *2 or +20)
