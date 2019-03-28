@@ -118,9 +118,9 @@ print('damage done sector = '+str(A))
 
 
 #% chance of dodging each shot
-dodge=73
+dodge=74
 #total hp
-hp=268
+hp=266
 
 B_dam=1-ID_trueeva(dodge)
 pre_B=(hp-(400*B_dam))/hp
@@ -155,7 +155,7 @@ print('damage taken sector = '+str(B))
 #score for quietness while sneaking (around 0 to 100)
 stel_sound=100
 #score for visual discretion whle sneaking (around 0 to 100)
-stel_visi=80
+stel_visi=78
 
 C_default=ID_truestel(stel_sound, stel_visi)
 if buff_C=='none':
@@ -164,7 +164,7 @@ else:
     #time in secs for which buff lasts
     C_bufflen=9
     #time in secs which buff requires to be ready
-    C_buffload=16
+    C_buffload=15
     
     #effect on own visual stealth (how easy to see)
     def C_svs(x):
@@ -210,7 +210,7 @@ ear=100
 #% resistance to darkness debuff
 night_vis=0.65
 #% resistance to fog/other blockage debuff
-bad_vis=0.7
+bad_vis=0.6
 #% resistance to distracting sounds, etc.
 bad_ear=0.8
 #The way visibility decreases is by 0 (where chance to see is x1.00) to 1 (where chance to see if x0.00)
@@ -235,14 +235,14 @@ else:
     #time in secs for which buff lasts
     D_bufflen=9
     #time in secs which buff requires to be ready
-    D_buffload=16
+    D_buffload=15
     
     #effect on visual perception
     def D_vis(x):
         return (x*1.1)
     #effect on auditory perception
     def D_ear(x):
-        return x+60
+        return x+51
         
     D_buff_1=ID_trueper(D_ear(ear),D_vis(vis))
     DB_emer=[]
@@ -414,7 +414,7 @@ else:
         return x
     #effect to mem auditory perception (same as above)
     def G_mspb(x):
-        return x
+        return x*1.2 +12
     #effect to mems sound distraction resistance (should be decimals)
     def G_msprb(x):
         return x
@@ -448,7 +448,12 @@ else:
         G_emer.append(G_percep(c_hear,c_see))
     G_buff_4B= sum(G_emer)/len(G_emer)
     G_buff_4=(G_buff_4A+G_buff_4B)/2
-    G_4=(G_buff_4-G_default_4)/G_default_4
+    
+    #how long is the buff active? (seconds)
+    GD_bufflen=1
+    #how long does it take to load/prepare? (seconds)
+    GD_buffload=0
+    G_4=(G_buff_4-G_default_4)*GD_bufflen/(G_default_4*(GD_bufflen+GD_buffload))
     
     G=(3*G_1+3*G_2+G_3+G_4)/8
     
