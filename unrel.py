@@ -531,11 +531,11 @@ eva_control=[1,0.6,0.05]    |||||
 #the special ability that the mem can use
 buff_A='none'
 buff_B='none'
-buff_C='none'
+buff_C='detri to enem percep'
 buff_D='percep boost'
 buff_E='none'
 buff_F='none'
-buff_G='stealth bonus'
+buff_G=['percep bonus', 'detri to enem percep']
 
 #damage per shot in hp
 dam=11
@@ -548,13 +548,23 @@ ammo=12
 #time it takes to load after full shots have been fired
 loadt=1.2
 #% chance of dodging each shot
-dodge=73
+dodge=74
 #total hp
-hp=268
+hp=266
 #score for quietness while sneaking (around 0 to 100)
 stel_sound=100
 #score for visual discretion whle sneaking (around 0 to 100)
-stel_visi=80
+stel_visi=78
+    #time in secs for which buff lasts
+    C_bufflen=9
+    #time in secs which buff requires to be ready
+    C_buffload=15
+    #effect on enems visual perception
+    def C_evp(x):
+        return x/1.4 - 5
+    #effect on enems auditory perception
+    def C_esp(x):
+        return x-50
 #score for visual perception (seeing things hard to see 0 to 100)
 vis=95
 #score for auditory perception (hearing things hard to hear 0 to 100)
@@ -562,30 +572,42 @@ ear=100
 #% resistance to darkness debuff
 night_vis=0.65
 #% resistance to fog/other blockage debuff
-bad_vis=0.7
+bad_vis=0.6
 #% resistance to distracting sounds, etc.
 bad_ear=0.8
     #time in secs for which buff lasts
-    D_bufflen=5
+    D_bufflen=9
     #time in secs which buff requires to be ready
-    D_buffload=9
+    D_buffload=15
     #effect on visual perception
     def D_vis(x):
         return (x*1.1)
     #effect on auditory perception
     def D_ear(x):
-        return x+60
+        return x+51
 #how efficacy decreases as hp does, first with rate (efficacy = eff*(hp/total)^damcontrol) then bonus_a (ex. +50% or +10% efficacy)
 #next component is bonus_b which is stronger b/c not percent)
 dam_control=[0.5,0.8,0.13]
+#similar to done damage control, but only evasion is affected to 0, with rate, bonus_a and bonus_b
 eva_control=[0.7,0.7,0.06]
-    #effect to enem sound perception (same as above)
+    #effect to enem sound perception
     def G_essd(x):
         return x-50
     #effect to enemy sight perception
     def G_evsd(x):
         return (x/1.4)-5
-    #how many mems total can it affect?
-    G_buff_range=3
+    #how long is the perception debuff active? (seconds)
+    GC_bufflen=9
+    #how long does the perception debuff take to load/prepare? (seconds)
+    GC_buffload=15
 
+    #effect to mem auditory perception (same as above)
+    def G_mspb(x):
+        return x*1.2 +12
+    #how long is the perception buff active? (seconds)
+    GD_bufflen=1
+    #how long does the perception buff take to load/prepare? (seconds)
+    GD_buffload=0
+#how many mems total can it affect?
+G_buff_range=3
 '''
