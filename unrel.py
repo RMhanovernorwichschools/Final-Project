@@ -471,7 +471,7 @@ print ('aid to mem sector = '+str(G))
 final=(5*A+5*B+2*C+2*D+3*E+3*F+10*G)/30
 print('overall = '+str(final))
 
-''' Below are combinations that lead to the desired final score of around 0.40416852
+''' Below are combinations that lead to the desired final score of around 0.3398539295292792
 |||||COMBO ONE
 #the special ability that the mem can use
 buff_A=['acc loss', 'rof boost']
