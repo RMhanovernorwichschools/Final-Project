@@ -100,7 +100,7 @@ else:
     #effect to own damage
     def A_sdb(x):
         return x
-    moddam=A_sbd(dam)
+    moddam=A_sdb(dam)
     #effect to rof
     def A_srb(x):
         return x
