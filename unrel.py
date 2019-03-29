@@ -63,24 +63,24 @@ def ID_trueper (ear, eye):
         
 
 #the special ability that the mem can use
-buff_A='none'
+buff_A=['SE_acc', 'SE_rof']
 buff_B='none'
-buff_C='detri to enem percep'
-buff_D='percep boost'
+buff_C='none'
+buff_D='none'
 buff_E='none'
 buff_F='none'
-buff_G=['percep bonus', 'detri to enem percep']
+buff_G='none'
 
 #damage per shot in hp
-dam=11
+dam=20
 #accuracy on average
-acc=77
+acc=60
 #time to aim/shoot (time between deciding to fire and doing so) in seconds
-rof=0.82
+rof=0.4
 #shots fired before load necessary
-ammo=12
+ammo=20
 #time it takes to load after full shots have been fired
-loadt=1.2
+loadt=1
 
 A_acc=1-ID_trueacc(acc)
 preA_1=(A_acc)*(dam*ammo)/((rof*ammo)+loadt)
@@ -118,9 +118,9 @@ print('damage done sector = '+str(A))
 
 
 #% chance of dodging each shot
-dodge=74
+dodge=50
 #total hp
-hp=266
+hp=500
 
 B_dam=1-ID_trueeva(dodge)
 pre_B=(hp-(400*B_dam))/hp
