@@ -95,16 +95,19 @@ else:
     
     #effect to accuracy (adds, multiplies, etc.)
     def A_sab(x):
-        return x
-    modacc=ID_trueacc(A_sab(acc))
+        return x-50
+    modacc=1-ID_trueacc(A_sab(acc))
     #effect to own damage
     def A_sdb(x):
         return x
     moddam=A_sdb(dam)
     #effect to rof
     def A_srb(x):
-        return x
+        return x*0.2
     modrof=A_srb(rof)
+    
+    print(modrof)
+    print(modacc)
     
     preA_2=(modacc)*(moddam*ammo)/((modrof*ammo)+loadt)
     preA_2/=50
