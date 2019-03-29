@@ -106,9 +106,6 @@ else:
         return x*0.2
     modrof=A_srb(rof)
     
-    print(modrof)
-    print(modacc)
-    
     preA_2=(modacc)*(moddam*ammo)/((modrof*ammo)+loadt)
     preA_2/=50
     A=((preA_1*A_buffload)+(preA_2*A_bufflen))/(A_buffload+A_bufflen)
