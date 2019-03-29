@@ -153,9 +153,9 @@ print('damage taken sector = '+str(B))
 
 
 #score for quietness while sneaking (around 0 to 100)
-stel_sound=100
+stel_sound=50
 #score for visual discretion whle sneaking (around 0 to 100)
-stel_visi=78
+stel_visi=65
 
 C_default=ID_truestel(stel_sound, stel_visi)
 if buff_C=='none':
@@ -204,15 +204,15 @@ print('stealth sector = '+str(C))
 
 
 #score for visual perception (seeing things hard to see 0 to 100)
-vis=95
+vis=50
 #score for auditory perception (hearing things hard to hear 0 to 100)
-ear=100
+ear=50
 #% resistance to darkness debuff
-night_vis=0.65
+night_vis=0.1
 #% resistance to fog/other blockage debuff
-bad_vis=0.6
+bad_vis=0.05
 #% resistance to distracting sounds, etc.
-bad_ear=0.8
+bad_ear=0
 #The way visibility decreases is by 0 (where chance to see is x1.00) to 1 (where chance to see if x0.00)
 #If bad_vis is 50%, for example, then a fog of factor 0.5 will only lead a x0.75 chance to see instead of a x0.50
 
@@ -263,7 +263,7 @@ print('perception sector = '+str(D))
 
 #how efficacy decreases as hp does, first with rate (efficacy = eff*(hp/total)^damcontrol) then bonus_a (ex. +50% or +10% efficacy)
 #next component is bonus_b which is stronger b/c not percent)
-dam_control=[0.5,0.8,0.13]
+dam_control=[1,0.6,0.15]
 #specifically the things that decrease with damage done are accuracy to 0 and rof turns to 1.5x
 #this improves as [a,b,c] where a decreases and b and c increase
 
@@ -288,7 +288,7 @@ print ('done damage control sector = '+str(E)+' ('+str(E_gen)+')')
 
 
 #similar to done damage control, but only evasion is affected to 0, with rate, bonus_a and bonus_b
-eva_control=[0.7,0.7,0.06]
+eva_control=[1,0.6,0.05]
 
 if buff_F=='none':
     F_list=[]
