@@ -63,7 +63,7 @@ def ID_trueper (ear, eye):
         
 
 #the special ability that the mem can use
-buff_A=['SE_acc', 'SE_rof']
+buff_A=['acc loss', 'rof boost']
 buff_B='none'
 buff_C='none'
 buff_D='none'
@@ -93,24 +93,19 @@ else:
     #seconds for which buff lasts
     A_bufflen=2.1
     
-    if contain ('SE_acc', buff_A):
-        #% increase to accuracy
-        accbuff=0
-        modacc=A_acc*(1+accbuff/100)
-    else:
-        modacc=A_acc
-    if contain ('SE_dam', buff_A):
-        #% increase to damage
-        dambuff=0
-        moddam=dam*(1+dambuff/100)
-    else:
-        moddam=dam
-    if contain('SE_rof',buff_A):
-        #% decrease to time it takes to fire
-        rofbuff=0
-        modrof=rof*(1-rofbuff/100)
-    else:
-        modrof=rof
+    #effect to accuracy (adds, multiplies, etc.)
+    def A_sab(x):
+        return x
+    modacc=ID_trueacc(A_sab(acc))
+    #effect to own damage
+    def A_sdb(x):
+        return x
+    moddam=A_sbd(dam)
+    #effect to rof
+    def A_srb(x):
+        return x
+    modrof=A_srb(rof)
+    
     preA_2=(modacc)*(moddam*ammo)/((modrof*ammo)+loadt)
     preA_2/=50
     A=((preA_1*A_buffload)+(preA_2*A_bufflen))/(A_buffload+A_bufflen)
