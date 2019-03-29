@@ -474,7 +474,7 @@ print('overall = '+str(final))
 ''' Below are combinations that lead to the desired final score of around 0.40416852
 |||||COMBO ONE
 #the special ability that the mem can use
-buff_A=['SE_acc', 'SE_rof']
+buff_A=['acc loss', 'rof boost']
 buff_B='none'
 buff_C='none'
 buff_D='none'
@@ -496,10 +496,12 @@ loadt=1
     A_buffload=8
     #seconds for which buff lasts
     A_bufflen=2.1
-    #% increase to accuracy
-    accbuff=-50
-    #% decrease to time it takes to fire
-    rofbuff=80
+    #effect to accuracy (adds, multiplies, etc.)
+    def A_sab(x):
+        return x-50
+    #effect to rof
+    def A_srb(x):
+        return x*0.15
 #% chance of dodging each shot
 dodge=50
 #total hp
@@ -522,7 +524,8 @@ bad_ear=0
 #next component is bonus_b which is stronger b/c not percent)
 dam_control=[1,0.6,0.15]
 #similar to done damage control, but only evasion is affected to 0, with rate, bonus_a and bonus_b
-eva_control=[1,0.6,0.05]    |||||
+eva_control=[1,0.6,0.05]
+|||||
 
 |||||COMBO TWO
 #the special ability that the mem can use
