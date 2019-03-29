@@ -296,10 +296,11 @@ if buff_F=='none':
         if me>1:
             me=1
         mod_eva=(dodge)*(me**eva_control[0])
-        F_sub=(ID_trueeva(mod_eva))/ID_trueeva(dodge)
+        F_sub=ID_trueeva(mod_eva)
         F_list.append(F_sub)
 F = sum(F_list)/len(F_list)
-print ('taken damage control sector = '+str(F))
+F_gen = F/ID_trueeva(dodge)
+print ('taken damage control sector = '+str(F)+' ('+str(F_gen)+')')
 
 if buff_G=='none':
     G=0
