@@ -103,7 +103,7 @@ else:
     moddam=A_sdb(dam)
     #effect to rof
     def A_srb(x):
-        return x*0.2
+        return x*0.15
     modrof=A_srb(rof)
     
     preA_2=(modacc)*(moddam*ammo)/((modrof*ammo)+loadt)
