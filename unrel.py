@@ -282,8 +282,9 @@ if buff_E=='none':
         E_sub=(mod_acc)*(dam*ammo)/((mod_rof*ammo)+loadt)
         E_sub/=50
         E_list.append(E_sub)
-E = (sum(E_list)/len(E_list))/A
-print ('done damage control sector = '+str(E))
+E = (sum(E_list)/len(E_list))
+E_gen= E/A
+print ('done damage control sector = '+str(E)+' ('+str(E_gen)+')')
 
 
 #similar to done damage control, but only evasion is affected to 0, with rate, bonus_a and bonus_b
