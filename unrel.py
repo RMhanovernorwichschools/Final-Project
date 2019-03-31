@@ -96,11 +96,20 @@ else:
     #effect to accuracy (adds, multiplies, etc.)
     def A_sab(x):
         return x-50
-    modacc=1-ID_trueacc(A_sab(acc))
+    #effect detriment to enems evasion
+    def A_eed(x):
+        return x
+    A_tofina=[]
+    for x in [0,20,40,60,80,100]:
+        e1=0.5**(1.03**(A_sab(acc)-A_eed(x)))
+        A_tofina.append(e1)
+    modacc= 1-(sum(A_tofina)/len(A_tofina))
     #effect to own damage
     def A_sdb(x):
         return x
-    moddam=A_sdb(dam)
+    #effect detriment to enems toughness (example, 0.1 means they take 1.1 dam for every 1 dealt.)
+    A_tuff_debuff=0
+    moddam=A_sdb(dam) * 1+A_tuff_debuff
     #effect to rof
     def A_srb(x):
         return x*0.15
