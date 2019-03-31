@@ -114,8 +114,11 @@ else:
     def A_srb(x):
         return x*0.15
     modrof=A_srb(rof)
+    #additional damage done by separate attack and %chance of this attack succeeding (ex. grenade fire, modacc for normal chance)
+    A_addidam=[0,modacc]
+    addidam= A_addidam[0]*A_addidam[1]
     
-    preA_2=(modacc)*(moddam*ammo)/((modrof*ammo)+loadt)
+    preA_2=( (modacc)*(moddam*ammo)/((modrof*ammo)+loadt) ) + addidam/A_bufflen
     preA_2/=50
     A=((preA_1*A_buffload)+(preA_2*A_bufflen))/(A_buffload+A_bufflen)
 print('damage done sector = '+str(A))
