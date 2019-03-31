@@ -109,7 +109,7 @@ else:
         return x
     #effect detriment to enems toughness (example, 0.1 means they take 1.1 dam for every 1 dealt.)
     A_tuff_debuff=0
-    moddam=A_sdb(dam) * 1+A_tuff_debuff
+    moddam=A_sdb(dam) * (1+A_tuff_debuff)
     #effect to rof
     def A_srb(x):
         return x*0.15
