@@ -135,16 +135,14 @@ if buff_B=='none':
     B=pre_B
 else:
     #seconds load time for buff
-    A_buffload=8
+    B_buffload=8
     #seconds for which buff lasts
-    A_bufflen=2.1
+    B_bufflen=2.1
     
-    if contain('SE_eva',buff_B):
-        #% increase to evasion
-        evabuff=0
-        modeva=dodge*evabuff/100
-    else:
-        modeva=dodge
+    #effect to evasion
+    def B_seb(x):
+        return x
+    modeva=ID_trueeva(B_seb(x))
     if contain('SE_toughness',buff_B):
         #% decrease from 100% of damage taken per point dealt
         tufbuff=0
