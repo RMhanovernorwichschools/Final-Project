@@ -286,7 +286,7 @@ else:
         ear_obstruct=1-(x*(1-bad_ear))
         c_hear=ear_obstruct*D_ear(ear)
         c_see=vis_obstruct*D_vis(vis)
-        DB_emer.append(ID_trueper(c_hear,c_see))
+        DB_emer.append(D_bufffind(c_hear,c_see))
     D_buff_2= sum(DB_emer)/len(DB_emer)
     D_buff = ((D_buff_1+D_buff_2)/2)
     D=((D_buff*D_bufflen)+(D_default*D_buffload))/(D_bufflen+D_buffload)
