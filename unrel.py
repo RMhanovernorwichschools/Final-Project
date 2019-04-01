@@ -64,9 +64,9 @@ def ID_trueper (ear, eye):
 
 #the special ability that the mem can use
 buff_A=['acc loss', 'rof boost']
-buff_B=''
+buff_B='none'
 buff_C='none'
-buff_D='none'
+buff_D=''
 buff_E='none'
 buff_F='none'
 buff_G='none'
@@ -261,8 +261,23 @@ else:
     #effect on auditory perception
     def D_ear(x):
         return x+51
+    #effect on enem visual stealth 
+    def D_evs(x):
+        return x
+    #effecton enem auditory stealth 
+    def D_ess(x):
+        return x
         
-    D_buff_1=ID_trueper(D_ear(ear),D_vis(vis))
+    def D_bufffind(ear,eye):
+        D_tofinp=[]
+        for x in [0,20,40,60,80,100]:
+            chance_notheard=0.5**(1.05**(ear-D_ess(x)))
+            chance_notseen = 0.8**(1.05**(eye-D_evs(x)))
+            chance_missed = chance_notheard *chance_notseen
+            D_tofinp.append(1-chance_missed)
+        return (sum(D_tofinp)/len(D_tofinp))
+    D_buff_1=D_bufffind(D_ear(ear),D_vis(vis))
+    
     DB_emer=[]
     for x in [0.1,0.2,0.5,0.8,0.9]:
         vis_obstruct_dark=1-(x*(1-night_vis))
