@@ -142,14 +142,18 @@ else:
     #effect to evasion
     def B_seb(x):
         return x
-    modeva=ID_trueeva(B_seb(x))
-    if contain('SE_toughness',buff_B):
-        #% decrease from 100% of damage taken per point dealt
-        tufbuff=0
-    else:
-        tufbuff=0
+    #effect detriment to enems acc
+    def B_ead(x):
+        return x
+    B_tofine=[]
+    for x in [0,20,40,60,80,100]:
+        e1=0.5**(1.03**(B_ead(x)-B_seb(dodge)))
+        B_tofine.append(e1)
+    modeva (sum(B_tofine)/len(B_tofine))
+    #effect on own toughness (decrease from 100% of damage taken per point dealt)
+    tufbuff=0
         
-    post_B_dam=1-ID_trueeva(modeva)
+    post_B_dam=1-modeva
     dam_taken_buff=(400*post_B_dam)*(1-tufbuff)
     post_B=(hp-dam_taken_buff)/hp
     B=((pre_B*buffload)+(post_B*bufflen))/(bufflen+buffload)
