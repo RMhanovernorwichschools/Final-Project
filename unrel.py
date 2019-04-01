@@ -647,4 +647,5 @@ eva_control=[0.7,0.7,0.06]
     GD_buffload=0
 #how many mems total can G_buffs affect?
 G_buff_range=3
+||||||
 '''
