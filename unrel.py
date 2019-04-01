@@ -63,24 +63,24 @@ def ID_trueper (ear, eye):
         
 
 #the special ability that the mem can use
-buff_A=['acc loss', 'rof boost']
+buff_A='none'
 buff_B='none'
-buff_C='none'
-buff_D=''
+buff_C='enem percep debuff'
+buff_D='percep boost'
 buff_E='none'
 buff_F='none'
-buff_G='none'
+buff_G=['enem percep debuff', 'percep boost']
 
 #damage per shot in hp
-dam=20
+dam=12
 #accuracy on average
-acc=60
+acc=80
 #time to aim/shoot (time between deciding to fire and doing so) in seconds
-rof=0.4
+rof=0.8
 #shots fired before load necessary
-ammo=20
+ammo=15
 #time it takes to load after full shots have been fired
-loadt=1
+loadt=1.2
 
 A_acc=1-ID_trueacc(acc)
 preA_1=(A_acc)*(dam*ammo)/((rof*ammo)+loadt)
@@ -89,9 +89,9 @@ if buff_A=='none':
     A=preA_1
 else:
     #seconds load time for buff
-    A_buffload=8
+    A_buffload=1
     #seconds for which buff lasts
-    A_bufflen=2.1
+    A_bufflen=0
     
     #effect to accuracy (adds, multiplies, etc.)
     def A_sab(x):
@@ -125,9 +125,9 @@ print('damage done sector = '+str(A))
 
 
 #% chance of dodging each shot
-dodge=50
+dodge=80
 #total hp
-hp=500
+hp=265
 
 B_dam=1-ID_trueeva(dodge)
 pre_B=(hp-(400*B_dam))/hp
@@ -135,9 +135,9 @@ if buff_B=='none':
     B=pre_B
 else:
     #seconds load time for buff
-    B_buffload=8
+    B_buffload=1
     #seconds for which buff lasts
-    B_bufflen=2.1
+    B_bufflen=0
     
     #effect to evasion
     def B_seb(x):
@@ -171,9 +171,9 @@ print('damage taken sector = '+str(B))
 
 
 #score for quietness while sneaking (around 0 to 100)
-stel_sound=50
+stel_sound=98
 #score for visual discretion whle sneaking (around 0 to 100)
-stel_visi=65
+stel_visi=78
 
 C_default=ID_truestel(stel_sound, stel_visi)
 if buff_C=='none':
@@ -182,7 +182,7 @@ else:
     #time in secs for which buff lasts
     C_bufflen=9
     #time in secs which buff requires to be ready
-    C_buffload=15
+    C_buffload=12
     
     #effect on own visual stealth (how easy to see)
     def C_svs(x):
@@ -195,7 +195,7 @@ else:
         return x/1.4 - 5
     #effect on enems auditory perception
     def C_esp(x):
-        return x-50
+        return x-55
         
     C_tofins=[]
     for x in [0,20,40,60,80,100]:
@@ -222,15 +222,15 @@ print('stealth sector = '+str(C))
 
 
 #score for visual perception (seeing things hard to see 0 to 100)
-vis=50
+vis=95
 #score for auditory perception (hearing things hard to hear 0 to 100)
-ear=50
+ear=100
 #% resistance to darkness debuff
-night_vis=0.1
+night_vis=0.65
 #% resistance to fog/other blockage debuff
-bad_vis=0.05
+bad_vis=0.6
 #% resistance to distracting sounds, etc.
-bad_ear=0
+bad_ear=0.8
 #The way visibility decreases is by 0 (where chance to see is x1.00) to 1 (where chance to see if x0.00)
 #If bad_vis is 50%, for example, then a fog of factor 0.5 will only lead a x0.75 chance to see instead of a x0.50
 
@@ -253,7 +253,7 @@ else:
     #time in secs for which buff lasts
     D_bufflen=9
     #time in secs which buff requires to be ready
-    D_buffload=15
+    D_buffload=12
     
     #effect on visual perception
     def D_vis(x):
@@ -296,7 +296,7 @@ print('perception sector = '+str(D))
 
 #how efficacy decreases as hp does, first with rate (efficacy = eff*(hp/total)^damcontrol) then bonus_a (ex. +50% or +10% efficacy)
 #next component is bonus_b which is stronger b/c not percent)
-dam_control=[1,0.6,0.15]
+dam_control=[0.5,0.8,0.4]
 #specifically the things that decrease with damage done are accuracy to 0 and rof turns to 1.5x
 #this improves as [a,b,c] where a decreases and b and c increase
 
@@ -314,6 +314,7 @@ if buff_E=='none':
         mod_acc=1-ID_trueacc(mod_acc)
         E_sub=(mod_acc)*(dam*ammo)/((mod_rof*ammo)+loadt)
         E_sub/=50
+        print(E_sub)
         E_list.append(E_sub)
 E = (sum(E_list)/len(E_list))
 E_gen= E/A
@@ -321,7 +322,7 @@ print ('done damage control sector = '+str(E)+' ('+str(E_gen)+')')
 
 
 #similar to done damage control, but only evasion is affected to 0, with rate, bonus_a and bonus_b
-eva_control=[1,0.6,0.05]
+eva_control=[0.7,0.7,0.06]
 
 if buff_F=='none':
     F_list=[]
@@ -402,7 +403,7 @@ else:
         return x
     #effect to enem sound perception (same as above)
     def G_essd(x):
-        return x-50
+        return x-55
     #effect to enemy sight perception
     def G_evsd(x):
         return (x/1.4)-5
@@ -429,7 +430,7 @@ else:
     #how long is the buff active? (seconds)
     GC_bufflen=9
     #how long does it take to load/prepare? (seconds)
-    GC_buffload=15
+    GC_buffload=12
     G_3=(G_buff_3-G_default_3)*GC_bufflen/(G_default_3*(GC_bufflen+GC_buffload))
     
     G_default_4A=ID_trueper(50,50)
@@ -449,7 +450,7 @@ else:
         return x
     #effect to mem auditory perception (same as above)
     def G_mspb(x):
-        return x*1.2 +12
+        return x*1.3 +15
     #effect to mems sound distraction resistance (should be decimals)
     def G_msprb(x):
         return x
