@@ -64,7 +64,7 @@ def ID_trueper (ear, eye):
 
 #the special ability that the mem can use
 buff_A=['acc loss', 'rof boost']
-buff_B='none'
+buff_B=''
 buff_C='none'
 buff_D='none'
 buff_E='none'
@@ -144,19 +144,19 @@ else:
         return x
     #effect detriment to enems acc
     def B_ead(x):
-        return x
+        return x/2
     B_tofine=[]
     for x in [0,20,40,60,80,100]:
         e1=0.5**(1.03**(B_ead(x)-B_seb(dodge)))
         B_tofine.append(e1)
-    modeva (sum(B_tofine)/len(B_tofine))
+    modeva = (sum(B_tofine)/len(B_tofine))
     #effect on own toughness (decrease from 100% of damage taken per point dealt)
     tufbuff=0
         
     post_B_dam=1-modeva
     dam_taken_buff=(400*post_B_dam)*(1-tufbuff)
     post_B=(hp-dam_taken_buff)/hp
-    B=((pre_B*buffload)+(post_B*bufflen))/(bufflen+buffload)
+    B=((pre_B*B_buffload)+(post_B*B_bufflen))/(B_bufflen+B_buffload)
     
 print('damage taken sector = '+str(B))
 
