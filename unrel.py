@@ -144,7 +144,7 @@ else:
         return x
     #effect detriment to enems acc
     def B_ead(x):
-        return x/2
+        return x
     B_tofine=[]
     for x in [0,20,40,60,80,100]:
         e1=0.5**(1.03**(B_ead(x)-B_seb(dodge)))
