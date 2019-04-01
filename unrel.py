@@ -76,11 +76,11 @@ dam=12
 #accuracy on average
 acc=80
 #time to aim/shoot (time between deciding to fire and doing so) in seconds
-rof=0.8
+rof=0.74
 #shots fired before load necessary
 ammo=15
 #time it takes to load after full shots have been fired
-loadt=1.2
+loadt=1.15
 
 A_acc=1-ID_trueacc(acc)
 preA_1=(A_acc)*(dam*ammo)/((rof*ammo)+loadt)
@@ -314,7 +314,6 @@ if buff_E=='none':
         mod_acc=1-ID_trueacc(mod_acc)
         E_sub=(mod_acc)*(dam*ammo)/((mod_rof*ammo)+loadt)
         E_sub/=50
-        print(E_sub)
         E_list.append(E_sub)
 E = (sum(E_list)/len(E_list))
 E_gen= E/A
@@ -570,40 +569,40 @@ eva_control=[1,0.6,0.05]
 #the special ability that the mem can use
 buff_A='none'
 buff_B='none'
-buff_C='detri to enem percep'
+buff_C='enem percep debuff'
 buff_D='percep boost'
 buff_E='none'
 buff_F='none'
-buff_G=['percep bonus', 'detri to enem percep']
+buff_G=['enem percep debuff', 'percep boost']
 
 #damage per shot in hp
-dam=11
+dam=12
 #accuracy on average
-acc=77
+acc=80
 #time to aim/shoot (time between deciding to fire and doing so) in seconds
-rof=0.82
+rof=0.74
 #shots fired before load necessary
-ammo=12
+ammo=15
 #time it takes to load after full shots have been fired
-loadt=1.2
+loadt=1.15
 #% chance of dodging each shot
-dodge=74
+dodge=80
 #total hp
-hp=266
+hp=265
 #score for quietness while sneaking (around 0 to 100)
-stel_sound=100
+stel_sound=98
 #score for visual discretion whle sneaking (around 0 to 100)
 stel_visi=78
     #time in secs for which buff lasts
     C_bufflen=9
     #time in secs which buff requires to be ready
-    C_buffload=15
+    C_buffload=12
     #effect on enems visual perception
     def C_evp(x):
         return x/1.4 - 5
     #effect on enems auditory perception
     def C_esp(x):
-        return x-50
+        return x-55
 #score for visual perception (seeing things hard to see 0 to 100)
 vis=95
 #score for auditory perception (hearing things hard to hear 0 to 100)
@@ -617,7 +616,7 @@ bad_ear=0.8
     #time in secs for which buff lasts
     D_bufflen=9
     #time in secs which buff requires to be ready
-    D_buffload=15
+    D_buffload=12
     #effect on visual perception
     def D_vis(x):
         return (x*1.1)
@@ -626,27 +625,26 @@ bad_ear=0.8
         return x+51
 #how efficacy decreases as hp does, first with rate (efficacy = eff*(hp/total)^damcontrol) then bonus_a (ex. +50% or +10% efficacy)
 #next component is bonus_b which is stronger b/c not percent)
-dam_control=[0.5,0.8,0.13]
+dam_control=[0.5,0.8,0.4]
 #similar to done damage control, but only evasion is affected to 0, with rate, bonus_a and bonus_b
 eva_control=[0.7,0.7,0.06]
-    #effect to enem sound perception
+    #effect to enem sound perception (same as above)
     def G_essd(x):
-        return x-50
+        return x-55
     #effect to enemy sight perception
     def G_evsd(x):
         return (x/1.4)-5
-    #how long is the perception debuff active? (seconds)
+    #how long is the buff active? (seconds)
     GC_bufflen=9
-    #how long does the perception debuff take to load/prepare? (seconds)
-    GC_buffload=15
-
+    #how long does it take to load/prepare? (seconds)
+    GC_buffload=12
     #effect to mem auditory perception (same as above)
     def G_mspb(x):
-        return x*1.2 +12
-    #how long is the perception buff active? (seconds)
+        return x*1.3 +15
+    #how long is the buff active? (seconds)
     GD_bufflen=1
-    #how long does the perception buff take to load/prepare? (seconds)
+    #how long does it take to load/prepare? (seconds)
     GD_buffload=0
-#how many mems total can it affect?
+#how many mems total can G_buffs affect?
 G_buff_range=3
 '''
