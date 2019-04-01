@@ -158,11 +158,13 @@ else:
     #effect detriment on enems damage (note - cannot exceed 10)
     def B_edd(x):
         return x
+    #own self-heal ability (number of hp that can be restored)
+    B_heal=0
         
     post_B_dam=1-modeva
     B_enemdam=(B_edd(10)/B_erd(0.4))*16
     dam_taken_buff=(B_enemdam*post_B_dam)*(1-tufbuff)
-    post_B=(hp-dam_taken_buff)/hp
+    post_B=(B_heal+hp-dam_taken_buff)/hp
     B=((pre_B*B_buffload)+(post_B*B_bufflen))/(B_bufflen+B_buffload)
     
 print('damage taken sector = '+str(B))
