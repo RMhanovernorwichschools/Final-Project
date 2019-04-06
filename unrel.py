@@ -63,24 +63,24 @@ def ID_trueper (ear, eye):
         
 
 #the special ability that the mem can use
-buff_A='none'
+buff_A='enem eva debuff'
 buff_B='none'
-buff_C='enem percep debuff'
-buff_D='percep boost'
+buff_C='none'
+buff_D='none'
 buff_E='none'
 buff_F='none'
-buff_G=['enem percep debuff', 'percep boost']
+buff_G='enem eva debuff'
 
 #damage per shot in hp
-dam=12
+dam=80
 #accuracy on average
-acc=80
+acc=91
 #time to aim/shoot (time between deciding to fire and doing so) in seconds
-rof=0.74
+rof=1.6
 #shots fired before load necessary
-ammo=15
+ammo=4
 #time it takes to load after full shots have been fired
-loadt=1.15
+loadt=4
 
 A_acc=1-ID_trueacc(acc)
 preA_1=(A_acc)*(dam*ammo)/((rof*ammo)+loadt)
@@ -89,16 +89,16 @@ if buff_A=='none':
     A=preA_1
 else:
     #seconds load time for buff
-    A_buffload=1
+    A_buffload=10
     #seconds for which buff lasts
-    A_bufflen=0
+    A_bufflen=4.5
     
     #effect to accuracy (adds, multiplies, etc.)
     def A_sab(x):
-        return x-50
+        return x
     #effect detriment to enems evasion
     def A_eed(x):
-        return x
+        return x/2 - 15
     A_tofina=[]
     for x in [0,20,40,60,80,100]:
         e1=0.5**(1.03**(A_sab(acc)-A_eed(x)))
@@ -112,7 +112,7 @@ else:
     moddam=A_sdb(dam) * (1+A_tuff_debuff)
     #effect to rof
     def A_srb(x):
-        return x*0.15
+        return x
     modrof=A_srb(rof)
     #additional damage done by separate attack and %chance of this attack succeeding (ex. grenade fire, modacc for normal chance)
     A_addidam=[0,modacc]
@@ -125,9 +125,9 @@ print('damage done sector = '+str(A))
 
 
 #% chance of dodging each shot
-dodge=80
+dodge=20
 #total hp
-hp=265
+hp=420
 
 B_dam=1-ID_trueeva(dodge)
 pre_B=(hp-(400*B_dam))/hp
@@ -171,9 +171,9 @@ print('damage taken sector = '+str(B))
 
 
 #score for quietness while sneaking (around 0 to 100)
-stel_sound=98
+stel_sound=75
 #score for visual discretion whle sneaking (around 0 to 100)
-stel_visi=78
+stel_visi=70
 
 C_default=ID_truestel(stel_sound, stel_visi)
 if buff_C=='none':
@@ -222,15 +222,15 @@ print('stealth sector = '+str(C))
 
 
 #score for visual perception (seeing things hard to see 0 to 100)
-vis=95
+vis=80
 #score for auditory perception (hearing things hard to hear 0 to 100)
-ear=100
+ear=60
 #% resistance to darkness debuff
-night_vis=0.65
+night_vis=0.15
 #% resistance to fog/other blockage debuff
-bad_vis=0.6
+bad_vis=0.5
 #% resistance to distracting sounds, etc.
-bad_ear=0.8
+bad_ear=0
 #The way visibility decreases is by 0 (where chance to see is x1.00) to 1 (where chance to see if x0.00)
 #If bad_vis is 50%, for example, then a fog of factor 0.5 will only lead a x0.75 chance to see instead of a x0.50
 
@@ -296,7 +296,7 @@ print('perception sector = '+str(D))
 
 #how efficacy decreases as hp does, first with rate (efficacy = eff*(hp/total)^damcontrol) then bonus_a (ex. +50% or +10% efficacy)
 #next component is bonus_b which is stronger b/c not percent)
-dam_control=[0.5,0.8,0.4]
+dam_control=[0.6,1,0.5]
 #specifically the things that decrease with damage done are accuracy to 0 and rof turns to 1.5x
 #this improves as [a,b,c] where a decreases and b and c increase
 
@@ -321,7 +321,7 @@ print ('done damage control sector = '+str(E)+' ('+str(E_gen)+')')
 
 
 #similar to done damage control, but only evasion is affected to 0, with rate, bonus_a and bonus_b
-eva_control=[0.7,0.7,0.06]
+eva_control=[0.8,0.5,0]
 
 if buff_F=='none':
     F_list=[]
@@ -375,7 +375,7 @@ else:
         return x
     #effect to enem evasion (same as above)
     def G_eed(x):
-        return x
+        return x/2 -15
     #effect to enemy health
     def G_hpd(x):
         return x
@@ -388,9 +388,9 @@ else:
     G_buff_2=12*((1-G_acc_return)*5*G_damb(20)/2.8)/G_hpd(300)
     
     #how long is the buff active? (seconds)
-    GB_bufflen=0
+    GB_bufflen=4.5
     #how long does it take to load/prepare? (seconds)
-    GB_buffload=1
+    GB_buffload=10
     G_2=(G_buff_2-G_default_2)*GB_bufflen/(G_default_2*(GB_bufflen+GB_buffload))
     
     G_default_3=ID_truestel(50,65)
