@@ -63,24 +63,24 @@ def ID_trueper (ear, eye):
         
 
 #the special ability that the mem can use
-buff_A='enem eva debuff'
+buff_A='rof buff and dam buff'
 buff_B='none'
 buff_C='none'
-buff_D='none'
+buff_D='percep debuff'
 buff_E='none'
 buff_F='none'
-buff_G='enem eva debuff'
+buff_G='none'
 
 #damage per shot in hp
-dam=80
+dam=8
 #accuracy on average
-acc=91
+acc=39
 #time to aim/shoot (time between deciding to fire and doing so) in seconds
-rof=1.6
+rof=0.15
 #shots fired before load necessary
-ammo=4
+ammo=30
 #time it takes to load after full shots have been fired
-loadt=4
+loadt=0.6
 
 A_acc=1-ID_trueacc(acc)
 preA_1=(A_acc)*(dam*ammo)/((rof*ammo)+loadt)
@@ -89,16 +89,16 @@ if buff_A=='none':
     A=preA_1
 else:
     #seconds load time for buff
-    A_buffload=10
+    A_buffload=7
     #seconds for which buff lasts
-    A_bufflen=4.5
+    A_bufflen=3
     
     #effect to accuracy (adds, multiplies, etc.)
     def A_sab(x):
         return x
     #effect detriment to enems evasion
     def A_eed(x):
-        return x/2 - 15
+        return x
     A_tofina=[]
     for x in [0,20,40,60,80,100]:
         e1=0.5**(1.03**(A_sab(acc)-A_eed(x)))
@@ -106,13 +106,13 @@ else:
     modacc= 1-(sum(A_tofina)/len(A_tofina))
     #effect to own damage
     def A_sdb(x):
-        return x
+        return x+5
     #effect detriment to enems toughness (example, 0.1 means they take 1.1 dam for every 1 dealt.)
     A_tuff_debuff=0
     moddam=A_sdb(dam) * (1+A_tuff_debuff)
     #effect to rof
     def A_srb(x):
-        return x
+        return x*0.5
     modrof=A_srb(rof)
     #additional damage done by separate attack and %chance of this attack succeeding (ex. grenade fire, modacc for normal chance)
     A_addidam=[0,modacc]
@@ -125,9 +125,9 @@ print('damage done sector = '+str(A))
 
 
 #% chance of dodging each shot
-dodge=20
+dodge=91
 #total hp
-hp=420
+hp=290
 
 B_dam=1-ID_trueeva(dodge)
 pre_B=(hp-(400*B_dam))/hp
@@ -171,18 +171,18 @@ print('damage taken sector = '+str(B))
 
 
 #score for quietness while sneaking (around 0 to 100)
-stel_sound=75
+stel_sound=15
 #score for visual discretion whle sneaking (around 0 to 100)
-stel_visi=70
+stel_visi=15
 
 C_default=ID_truestel(stel_sound, stel_visi)
 if buff_C=='none':
     C=C_default
 else:
     #time in secs for which buff lasts
-    C_bufflen=9
+    C_bufflen=0
     #time in secs which buff requires to be ready
-    C_buffload=12
+    C_buffload=1
     
     #effect on own visual stealth (how easy to see)
     def C_svs(x):
@@ -222,13 +222,13 @@ print('stealth sector = '+str(C))
 
 
 #score for visual perception (seeing things hard to see 0 to 100)
-vis=80
+vis=18
 #score for auditory perception (hearing things hard to hear 0 to 100)
-ear=60
+ear=7
 #% resistance to darkness debuff
-night_vis=0.15
+night_vis=0
 #% resistance to fog/other blockage debuff
-bad_vis=0.5
+bad_vis=0
 #% resistance to distracting sounds, etc.
 bad_ear=0
 #The way visibility decreases is by 0 (where chance to see is x1.00) to 1 (where chance to see if x0.00)
@@ -251,16 +251,16 @@ if buff_D=='none':
     D = D_default
 else:
     #time in secs for which buff lasts
-    D_bufflen=9
+    D_bufflen=3
     #time in secs which buff requires to be ready
-    D_buffload=12
+    D_buffload=7
     
     #effect on visual perception
     def D_vis(x):
-        return (x*1.1)
+        return x/2
     #effect on auditory perception
     def D_ear(x):
-        return x+51
+        return x-10
     #effect on enem visual stealth 
     def D_evs(x):
         return x
@@ -293,10 +293,9 @@ else:
     
 print('perception sector = '+str(D))
 
-
 #how efficacy decreases as hp does, first with rate (efficacy = eff*(hp/total)^damcontrol) then bonus_a (ex. +50% or +10% efficacy)
 #next component is bonus_b which is stronger b/c not percent)
-dam_control=[0.6,1,0.5]
+dam_control=[1.1,1.2,0.6]
 #specifically the things that decrease with damage done are accuracy to 0 and rof turns to 1.5x
 #this improves as [a,b,c] where a decreases and b and c increase
 
@@ -321,7 +320,7 @@ print ('done damage control sector = '+str(E)+' ('+str(E_gen)+')')
 
 
 #similar to done damage control, but only evasion is affected to 0, with rate, bonus_a and bonus_b
-eva_control=[0.8,0.5,0]
+eva_control=[1.2,0.8,0]
 
 if buff_F=='none':
     F_list=[]
