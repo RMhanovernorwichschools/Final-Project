@@ -5,8 +5,18 @@ import copy
 a sample one here, and we can work on people typing their own with it later.'''
 
 def choice_wo(l, ex):
-    l.remove(ex)
+    for a in ex:
+        l.remove(a)
     return rd.choice(l)
+    
+def mergeify(l):
+    resp=[]
+    for x in range(len(l[0])):
+        item=[]
+        for y in l:
+            item.append(y[x])
+        resp.append(item)
+    return resp
 
 class puzzle_base:
     def __init__(self,rs,ans):
@@ -17,30 +27,37 @@ class puzzle_base:
         self.all_ans=ans
         self.options=[]
         for x in self.keys:
-            if x[1]=='position':
-                break
             portion=[]
-            for y in self.chars:
+            for y in self.all_ans:
                 portion.append(y[x[0]])
             self.options.append(portion)
+        self.tot_combos=[]
+        
+    def owner(self,trait):
+        for x in self.all_ans:
+            for y in x:
+                if y==trait:
+                    return x
+        
     
     def clue(self, specific, char):
         if specific==0:
             if rd.randint(0,1)==1:
                 typ='equal'
                 p1=rd.choice(char)
-                p2=choice_wo(char,p1)
+                p2=choice_wo(char,[p1])
                 specs=[p1,p2]
             else:
                 typ='distin'
                 others=copy.deepcopy(self.all_ans)
                 others.remove(char)
                 p1_t=rd.choice(self.keys)
-                p2_t=choice_wo(self.keys,p1_t)
+                p2_t=choice_wo(self.keys,[p1_t])
                 p1=char[p1_t[0]]
                 p2=rd.choice(others)[p2_t[0]]
                 specs=[p1,p2]
         return (typ,specs)
+        
             
         
 
@@ -55,4 +72,6 @@ sample=puzzle_base(['name', 'coat', 'color', 'scent', 'hobby'], [['Willow', 'rai
               ['Cameron', 'hoodie', 'navy blue', 'cinnamon', 'reading'], ['June', 'fleece', 'grey', 'lavender', 'singing'], 
               ['Sam', 'fur coat', 'tan', 'fish', 'sewing']])
               
-print(sample.clue(0,sample.all_ans[2]))
+print(sample.owner('lavender'))
+
+
