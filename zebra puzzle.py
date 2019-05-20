@@ -4,6 +4,10 @@ import copy
 '''Format should really be you input final result and generates clues based on that, so I'm going to do that with
 a sample one here, and we can work on people typing their own with it later.'''
 
+def choice_wo(l, ex):
+    l.remove(ex)
+    return rd.choice(l)
+
 class puzzle_base:
     def __init__(self,rs,ans):
         self.keys=[(x,rs[x]) for x in range(len(rs))]+[(len(rs),'position')]
@@ -20,13 +24,23 @@ class puzzle_base:
                 portion.append(y[x[0]])
             self.options.append(portion)
     
-    def clue(specific, char):
+    def clue(self, specific, char):
         if specific==0:
             if rd.randint(0,1)==1:
                 typ='equal'
-                p1=rd.choice
+                p1=rd.choice(char)
+                p2=choice_wo(char,p1)
+                specs=[p1,p2]
             else:
                 typ='distin'
+                others=copy.deepcopy(self.all_ans)
+                others.remove(char)
+                p1_t=rd.choice(self.keys)
+                p2_t=choice_wo(self.keys,p1_t)
+                p1=char[p1_t[0]]
+                p2=rd.choice(others)[p2_t[0]]
+                specs=[p1,p2]
+        return (typ,specs)
             
         
 
@@ -41,4 +55,4 @@ sample=puzzle_base(['name', 'coat', 'color', 'scent', 'hobby'], [['Willow', 'rai
               ['Cameron', 'hoodie', 'navy blue', 'cinnamon', 'reading'], ['June', 'fleece', 'grey', 'lavender', 'singing'], 
               ['Sam', 'fur coat', 'tan', 'fish', 'sewing']])
               
-print(sample.options)
+print(sample.clue(0,sample.all_ans[2]))
