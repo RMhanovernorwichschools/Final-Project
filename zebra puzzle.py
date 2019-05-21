@@ -9,14 +9,43 @@ def choice_wo(l, ex):
         l.remove(a)
     return rd.choice(l)
     
+def list_wo(l,ex):
+    a=[]
+    for x in l:
+        accept=True
+        for exp in ex:
+            if x==exp:
+                accept=False
+        if accept==True:
+            a.append(x)
+    return a
+    
 def mergeify(l):
     resp=[]
     for x in range(len(l[0])):
         item=[]
         for y in l:
-            item.append(y[x])
+            if type(y[x])==list:
+                for z in y[x]:
+                    item.append(z)
+            else:
+                item.append(y[x])
         resp.append(item)
     return resp
+    
+print(mergeify([[[1,2],[3,4]],[2,1]]))
+
+def allorders(l):
+    if len(l)==1:
+        return [l]
+    resp=[]
+    for x in l:
+        rest=list_wo(l,[x])
+        for y in allorders(rest):
+            resp.append([x]+y)
+    return(resp)
+    
+#def combos(aspects):
 
 class puzzle_base:
     def __init__(self,rs,ans):
@@ -27,11 +56,14 @@ class puzzle_base:
         self.all_ans=ans
         self.options=[]
         for x in self.keys:
+            if x[1]=='position':
+                break
             portion=[]
-            for y in self.all_ans:
+            for y in self.chars:
                 portion.append(y[x[0]])
             self.options.append(portion)
         self.tot_combos=[]
+        
         
     def owner(self,trait):
         for x in self.all_ans:
@@ -39,7 +71,6 @@ class puzzle_base:
                 if y==trait:
                     return x
         
-    
     def clue(self, specific, char):
         if specific==0:
             if rd.randint(0,1)==1:
